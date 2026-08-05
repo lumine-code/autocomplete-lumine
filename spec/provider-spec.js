@@ -61,7 +61,7 @@ describe("Lumine API autocompletions", () => {
     const emptyProjectPath = temp.mkdirSync("some-guy");
     atom.project.setPaths([emptyProjectPath]);
 
-    return atom.workspace.open(".atom/init.coffee").then(() => {
+    return atom.workspace.open(".atom/init.js").then(() => {
       expect(provider.packageDirectories.length).toBe(0);
       editor = atom.workspace.getActiveTextEditor();
       editor.setText("atom.");
