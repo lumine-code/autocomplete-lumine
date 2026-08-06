@@ -40,7 +40,7 @@
   "devDependencies": {
     "@babel/parser": "^8.0.1",
     "@eslint/js": "^10.0.1",
-    "@lumine-code/temp": "https://github.com/lumine-code/node-temp.git#150772eb009638e11ed741bf8548aa74c8e5dd1c",
+    "@lumine-code/temp": "github:lumine-code/node-temp#150772eb009638e11ed741bf8548aa74c8e5dd1c",
     "babylon": "^6.18.0",
     "eslint": "^10.8.0",
     "eslint-config-prettier": "^10.1.8",
