@@ -14,20 +14,30 @@
   dependency for `@babel/parser` (which produces a compatible AST). No
   `descriptionMoreURL` is emitted: there is no Lumine API reference site to link to.
 
-  Run with `npm run update` from this package directory, after installing this
-  package's dev dependencies.
+  Run with `npm run update -- --editor <path>` from this package directory,
+  after installing this package's dev dependencies. LUMINE_CORE_ROOT is also
+  accepted for compatibility with existing automation.
 */
 
 const fs = require("fs");
 const path = require("path");
 const parser = require("@babel/parser");
 
-// From the editor checkout this climbs to the repository root; once the
-// package lives in its own repository, point LUMINE_CORE_ROOT at an editor
-// checkout instead.
-const CORE_ROOT = process.env.LUMINE_CORE_ROOT
-  ? path.resolve(process.env.LUMINE_CORE_ROOT)
-  : path.join(__dirname, "..", "..", "..");
+function optionValue(name) {
+  const index = process.argv.indexOf(name);
+  if (index === -1) return null;
+  const value = process.argv[index + 1];
+  if (!value || value.startsWith("--")) {
+    throw new Error(`${name} requires a path.`);
+  }
+  return value;
+}
+
+const coreRootOption = optionValue("--editor") || process.env.LUMINE_CORE_ROOT;
+if (!coreRootOption) {
+  throw new Error("Pass --editor <path> or set LUMINE_CORE_ROOT to a Lumine editor checkout.");
+}
+const CORE_ROOT = path.resolve(coreRootOption);
 const SRC_DIR = path.join(CORE_ROOT, "src");
 const OUTPUT = path.join(__dirname, "..", "completions.json");
 

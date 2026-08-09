@@ -16,6 +16,17 @@ To install `autocomplete-lumine` search for _autocomplete-lumine_ in the Install
 
 - **autocomplete.provider** (`1.0.0`): provided to supply `lumine.` API suggestions to autocomplete.
 
+## Regenerating completions
+
+Install the development dependencies and point the update script at any Lumine editor checkout:
+
+```sh
+npm install
+npm run update -- --editor /path/to/lumine
+```
+
+`LUMINE_CORE_ROOT` may be set instead of passing `--editor`.
+
 ## Contributing
 
 Got ideas to make this package better, found a bug, or want to help add new features? Just drop your thoughts on GitHub. Any feedback is welcome!
