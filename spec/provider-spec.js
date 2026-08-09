@@ -33,38 +33,38 @@ describe("Lumine API autocompletions", () => {
 
   beforeEach(async () => {
     jasmine.useRealClock();
-    await atom.packages.activatePackage("autocomplete-lumine");
-    provider = atom.packages
+    await lumine.packages.activatePackage("autocomplete-lumine");
+    provider = lumine.packages
       .getActivePackage("autocomplete-lumine")
       .mainModule.provideAutocomplete();
     await conditionPromise(() => Object.keys(provider.completions).length > 0, "completions");
     await conditionPromise(() => provider.packageDirectories?.length > 0, "package directories");
-    await atom.workspace.open("test.js");
-    editor = atom.workspace.getActiveTextEditor();
+    await lumine.workspace.open("test.js");
+    editor = lumine.workspace.getActiveTextEditor();
   });
 
   it("only includes completions in files that are in a Lumine package or Lumine core", () => {
-    const emptyProjectPath = temp.mkdirSync("atom-project-");
-    atom.project.setPaths([emptyProjectPath]);
+    const emptyProjectPath = temp.mkdirSync("lumine-project-");
+    lumine.project.setPaths([emptyProjectPath]);
 
-    return atom.workspace.open("empty.js").then(() => {
+    return lumine.workspace.open("empty.js").then(() => {
       expect(provider.packageDirectories.length).toBe(0);
-      editor = atom.workspace.getActiveTextEditor();
-      editor.setText("atom.");
+      editor = lumine.workspace.getActiveTextEditor();
+      editor.setText("lumine.");
       editor.setCursorBufferPosition([0, Infinity]);
 
       expect(getCompletions()).toBeUndefined();
     });
   });
 
-  it("only includes completions in .atom/init", () => {
+  it("includes completions in .lumine/init", () => {
     const emptyProjectPath = temp.mkdirSync("some-guy");
-    atom.project.setPaths([emptyProjectPath]);
+    lumine.project.setPaths([emptyProjectPath]);
 
-    return atom.workspace.open(".atom/init.js").then(() => {
+    return lumine.workspace.open(".lumine/init.js").then(() => {
       expect(provider.packageDirectories.length).toBe(0);
-      editor = atom.workspace.getActiveTextEditor();
-      editor.setText("atom.");
+      editor = lumine.workspace.getActiveTextEditor();
+      editor.setText("lumine.");
       editor.setCursorBufferPosition([0, Infinity]);
 
       expect(getCompletions()).not.toBeUndefined();
@@ -73,19 +73,19 @@ describe("Lumine API autocompletions", () => {
 
   it("does not fail when no editor path", () => {
     const emptyProjectPath = temp.mkdirSync("some-guy");
-    atom.project.setPaths([emptyProjectPath]);
+    lumine.project.setPaths([emptyProjectPath]);
 
-    return atom.workspace.open().then(() => {
+    return lumine.workspace.open().then(() => {
       expect(provider.packageDirectories.length).toBe(0);
-      editor = atom.workspace.getActiveTextEditor();
-      editor.setText("atom.");
+      editor = lumine.workspace.getActiveTextEditor();
+      editor.setText("lumine.");
       editor.setCursorBufferPosition([0, Infinity]);
       expect(getCompletions()).toBeUndefined();
     });
   });
 
-  it("includes properties and functions on the atom global", () => {
-    editor.setText("atom.");
+  it("includes properties and functions on the lumine global", () => {
+    editor.setText("lumine.");
     editor.setCursorBufferPosition([0, Infinity]);
 
     // Instance properties are sorted ahead of methods.
@@ -93,11 +93,11 @@ describe("Lumine API autocompletions", () => {
     expect(getCompletions().some(({ text }) => text === "window")).toBe(true);
     expect(getCompletions().some(({ text }) => text === "clipboard")).toBe(true);
 
-    editor.setText("var c = atom.");
+    editor.setText("var c = lumine.");
     editor.setCursorBufferPosition([0, Infinity]);
     expect(getCompletions().some(({ text }) => text === "clipboard")).toBe(true);
 
-    editor.setText("atom.c");
+    editor.setText("lumine.c");
     editor.setCursorBufferPosition([0, Infinity]);
 
     const clipboard = completionNamed("clipboard");
@@ -109,32 +109,32 @@ describe("Lumine API autocompletions", () => {
     expect(completionNamed("confirm")).toBeUndefined();
   });
 
-  it("includes methods on atom global properties", () => {
-    editor.setText("atom.clipboard.");
+  it("includes methods on lumine global properties", () => {
+    editor.setText("lumine.clipboard.");
     editor.setCursorBufferPosition([0, Infinity]);
 
     expect(getCompletions().length).toBeGreaterThan(0);
     expect(completionNamed("read").text).toBe("read()");
     expect(completionNamed("write").snippet).toBe("write(${1:text}, ${2:metadata})");
 
-    editor.setText("atom.window.");
+    editor.setText("lumine.window.");
     editor.setCursorBufferPosition([0, Infinity]);
     expect(completionNamed("getId").text).toBe("getId()");
     expect(completionNamed("broadcast").snippet).toMatch(/^broadcast\(/);
     expect(completionNamed("confirm").snippet).toMatch(/^confirm\(/);
 
-    editor.setText("atom.app.");
+    editor.setText("lumine.app.");
     editor.setCursorBufferPosition([0, Infinity]);
     expect(completionNamed("getPath").snippet).toBe("getPath(${1:name})");
     expect(completionNamed("getVersion").text).toBe("getVersion()");
     expect(completionNamed("openWindow").snippet).toMatch(/^openWindow\(/);
     expect(completionNamed("restart").text).toBe("restart()");
 
-    editor.setText("atom.shell.");
+    editor.setText("lumine.shell.");
     editor.setCursorBufferPosition([0, Infinity]);
     expect(completionNamed("openExternal").snippet).toMatch(/^openExternal\(/);
 
-    editor.setText("atom.runtime.");
+    editor.setText("lumine.runtime.");
     editor.setCursorBufferPosition([0, Infinity]);
     expect(completionNamed("whenShellEnvironmentLoaded").text).toBe("whenShellEnvironmentLoaded()");
   });

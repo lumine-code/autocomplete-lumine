@@ -4,7 +4,7 @@ Autocompletions for the Lumine API.
 
 ## Features
 
-- **API completions**: suggests properties and methods available on the `atom.` global.
+- **API completions**: suggests properties and methods available on the `lumine.` global.
 - **Package-aware**: activates only while editing files inside a Lumine package.
 - **Language support**: works in JavaScript and CoffeeScript source.
 
@@ -14,7 +14,7 @@ To install `autocomplete-lumine` search for _autocomplete-lumine_ in the Install
 
 ## Services
 
-- **autocomplete.provider** (`1.0.0`): provided to supply `atom.` API suggestions to autocomplete.
+- **autocomplete.provider** (`1.0.0`): provided to supply `lumine.` API suggestions to autocomplete.
 
 ## Contributing
 

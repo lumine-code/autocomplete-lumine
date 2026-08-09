@@ -91,7 +91,7 @@ function stripDocMarkupFromMetadata(files) {
   return files;
 }
 
-// Some core classes (e.g. AtomEnvironment) are documented with a JSDoc `@class`
+// Some core classes (e.g. LumineEnvironment) are documented with a JSDoc `@class`
 // block instead of an Atom-style `Public:`/`Extended:` comment. joanna tags those
 // `Private:`, and tello then drops the whole class. Their public members are still
 // what we want, so promote such classes to `Public:` (the class summary itself is
@@ -196,7 +196,7 @@ function typeFromJsdoc(comment) {
 
 // Recover the pieces joanna/tello miss because the core is partway through a
 // migration to JSDoc: instance properties documented with `/** @type {Class} */`
-// (which drive the recursive `atom.<service>.` completions) and method parameter
+// (which drive the recursive `lumine.<service>.` completions) and method parameter
 // names (used to build snippets when the Atom-doc `* \`arg\`` list is absent).
 // Returns { [className]: { properties: Map<name, type>, params: Map<name, string[]> } }.
 function extractJsdocData(jsFiles) {
@@ -251,7 +251,7 @@ function extractJsdocData(jsFiles) {
 }
 
 // Types that describe a plain value rather than an object worth completing on;
-// `@type {Boolean}` and friends should not become `atom.<service>`-style entries.
+// `@type {Boolean}` and friends should not become `lumine.<service>`-style entries.
 const PRIMITIVE_TYPES = new Set([
   "Boolean",
   "String",
@@ -321,7 +321,12 @@ function update() {
   mergeJsdocData(classes, extractJsdocData(jsFiles));
 
   const publicClasses = {};
-  for (const [name, { instanceProperties, instanceMethods }] of Object.entries(classes)) {
+  const classEntries = Object.entries(classes).sort(([left], [right]) => {
+    if (left === "LumineEnvironment") return -1;
+    if (right === "LumineEnvironment") return 1;
+    return left.localeCompare(right);
+  });
+  for (const [name, { instanceProperties, instanceMethods }] of classEntries) {
     const properties = (instanceProperties ?? [])
       .filter(isVisible)
       .map(convertPropertyToSuggestion)

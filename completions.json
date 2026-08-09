@@ -1,116 +1,5 @@
 {
-  "AppService": [
-    {
-      "name": "getFileIcon",
-      "text": null,
-      "snippet": "getFileIcon(${1:filePath}, ${2:options})",
-      "description": "Load an operating-system file icon as a data URL.",
-      "leftLabel": "Promise",
-      "type": "method"
-    },
-    {
-      "name": "getLocale",
-      "text": "getLocale()",
-      "snippet": null,
-      "description": "Return the application locale captured during bootstrap.",
-      "leftLabel": "String",
-      "type": "method"
-    },
-    {
-      "name": "getName",
-      "text": "getName()",
-      "snippet": null,
-      "description": "Return the full name of this Lumine application.",
-      "leftLabel": "String",
-      "type": "method"
-    },
-    {
-      "name": "getPath",
-      "text": null,
-      "snippet": "getPath(${1:name})",
-      "description": "Return an Electron application path captured during bootstrap.",
-      "leftLabel": "String",
-      "type": "method"
-    },
-    {
-      "name": "getReleaseChannel",
-      "text": "getReleaseChannel()",
-      "snippet": null,
-      "description": "Return the current release channel.",
-      "type": "method"
-    },
-    {
-      "name": "getResourcePath",
-      "text": "getResourcePath()",
-      "snippet": null,
-      "description": "Return the editor resource directory captured during bootstrap.",
-      "leftLabel": "String",
-      "type": "method"
-    },
-    {
-      "name": "getUserDefault",
-      "text": null,
-      "snippet": "getUserDefault(${1:key}, ${2:type})",
-      "description": "Read an operating-system user default.",
-      "leftLabel": "Promise",
-      "type": "method"
-    },
-    {
-      "name": "getVersion",
-      "text": "getVersion()",
-      "snippet": null,
-      "description": "Return the Lumine application version.",
-      "leftLabel": "String",
-      "type": "method"
-    },
-    {
-      "name": "isDefaultProtocolClient",
-      "text": null,
-      "snippet": "isDefaultProtocolClient(${1:protocol}, ${2:path}, ${3:args})",
-      "description": "Determine whether Lumine is the default handler for a protocol.",
-      "leftLabel": "Promise",
-      "type": "method"
-    },
-    {
-      "name": "isReleasedVersion",
-      "text": "isReleasedVersion()",
-      "snippet": null,
-      "description": "Determine whether this build came from the release pipeline.",
-      "type": "method"
-    },
-    {
-      "name": "openWindow",
-      "text": null,
-      "snippet": "openWindow(${1:params})",
-      "description": "Open paths in a new or reusable Lumine window.",
-      "leftLabel": null,
-      "type": "method"
-    },
-    {
-      "name": "restart",
-      "text": "restart()",
-      "snippet": null,
-      "description": "Restart Lumine with the current launch options.",
-      "leftLabel": "Promise",
-      "type": "method"
-    },
-    {
-      "name": "setAsDefaultProtocolClient",
-      "text": null,
-      "snippet": "setAsDefaultProtocolClient(${1:protocol}, ${2:path}, ${3:args})",
-      "description": "Register Lumine as the default handler for a protocol.",
-      "leftLabel": "Promise",
-      "type": "method"
-    },
-    {
-      "name": "versionSatisfies",
-      "text": null,
-      "snippet": "versionSatisfies(${1:range})",
-      "description": "Determine whether the current application version satisfies a\nsemantic-version range.",
-      "type": "method"
-    }
-  ],
-  "AtomEnvironment": [
+  "LumineEnvironment": [
     {
       "name": "app",
       "text": "app",
@@ -299,6 +188,117 @@
       "description": "A {Workspace} instance.",
       "leftLabel": "Workspace",
       "type": "property"
+    }
+  ],
+  "AppService": [
+    {
+      "name": "getFileIcon",
+      "text": null,
+      "snippet": "getFileIcon(${1:filePath}, ${2:options})",
+      "description": "Load an operating-system file icon as a data URL.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "getLocale",
+      "text": "getLocale()",
+      "snippet": null,
+      "description": "Return the application locale captured during bootstrap.",
+      "leftLabel": "String",
+      "type": "method"
+    },
+    {
+      "name": "getName",
+      "text": "getName()",
+      "snippet": null,
+      "description": "Return the full name of this Lumine application.",
+      "leftLabel": "String",
+      "type": "method"
+    },
+    {
+      "name": "getPath",
+      "text": null,
+      "snippet": "getPath(${1:name})",
+      "description": "Return an Electron application path captured during bootstrap.",
+      "leftLabel": "String",
+      "type": "method"
+    },
+    {
+      "name": "getReleaseChannel",
+      "text": "getReleaseChannel()",
+      "snippet": null,
+      "description": "Return the current release channel.",
+      "type": "method"
+    },
+    {
+      "name": "getResourcePath",
+      "text": "getResourcePath()",
+      "snippet": null,
+      "description": "Return the editor resource directory captured during bootstrap.",
+      "leftLabel": "String",
+      "type": "method"
+    },
+    {
+      "name": "getUserDefault",
+      "text": null,
+      "snippet": "getUserDefault(${1:key}, ${2:type})",
+      "description": "Read an operating-system user default.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "getVersion",
+      "text": "getVersion()",
+      "snippet": null,
+      "description": "Return the Lumine application version.",
+      "leftLabel": "String",
+      "type": "method"
+    },
+    {
+      "name": "isDefaultProtocolClient",
+      "text": null,
+      "snippet": "isDefaultProtocolClient(${1:protocol}, ${2:path}, ${3:args})",
+      "description": "Determine whether Lumine is the default handler for a protocol.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "isReleasedVersion",
+      "text": "isReleasedVersion()",
+      "snippet": null,
+      "description": "Determine whether this build came from the release pipeline.",
+      "type": "method"
+    },
+    {
+      "name": "openWindow",
+      "text": null,
+      "snippet": "openWindow(${1:params})",
+      "description": "Open paths in a new or reusable Lumine window.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "restart",
+      "text": "restart()",
+      "snippet": null,
+      "description": "Restart Lumine with the current launch options.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "setAsDefaultProtocolClient",
+      "text": null,
+      "snippet": "setAsDefaultProtocolClient(${1:protocol}, ${2:path}, ${3:args})",
+      "description": "Register Lumine as the default handler for a protocol.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "versionSatisfies",
+      "text": null,
+      "snippet": "versionSatisfies(${1:range})",
+      "description": "Determine whether the current application version satisfies a\nsemantic-version range.",
+      "type": "method"
     }
   ],
   "BufferedNodeProcess": [
@@ -1057,118 +1057,6 @@
       "type": "method"
     }
   ],
-  "DisplayMarkerLayer": [
-    {
-      "name": "clear",
-      "text": "clear()",
-      "snippet": null,
-      "description": "Destroy all markers in this layer.",
-      "type": "method"
-    },
-    {
-      "name": "destroy",
-      "text": "destroy()",
-      "snippet": null,
-      "description": "Destroy this layer.",
-      "type": "method"
-    },
-    {
-      "name": "findMarkers",
-      "text": null,
-      "snippet": "findMarkers(${1:params})",
-      "description": "Find markers in the layer conforming to the given parameters.",
-      "leftLabel": "Array",
-      "type": "method"
-    },
-    {
-      "name": "getMarker",
-      "text": null,
-      "snippet": "getMarker(${1:id})",
-      "description": "Get an existing marker by its id.",
-      "leftLabel": "DisplayMarker",
-      "type": "method"
-    },
-    {
-      "name": "getMarkerCount",
-      "text": "getMarkerCount()",
-      "snippet": null,
-      "description": "Get the number of markers in the marker layer.",
-      "leftLabel": "Number",
-      "type": "method"
-    },
-    {
-      "name": "getMarkers",
-      "text": "getMarkers()",
-      "snippet": null,
-      "description": "Get all markers in the layer.",
-      "leftLabel": "Array",
-      "type": "method"
-    },
-    {
-      "name": "isDestroyed",
-      "text": "isDestroyed()",
-      "snippet": null,
-      "description": "Determine whether this layer has been destroyed.",
-      "leftLabel": "Boolean",
-      "type": "method"
-    },
-    {
-      "name": "markBufferPosition",
-      "text": null,
-      "snippet": "markBufferPosition(${1:bufferPosition}, ${2:options})",
-      "description": "Create a marker on this layer with its head at the given buffer\nposition and no tail.",
-      "leftLabel": "DisplayMarker",
-      "type": "method"
-    },
-    {
-      "name": "markBufferRange",
-      "text": null,
-      "snippet": "markBufferRange(${1:bufferRange}, ${2:options})",
-      "description": "Create a marker with the given buffer range.",
-      "leftLabel": "DisplayMarker",
-      "type": "method"
-    },
-    {
-      "name": "markScreenPosition",
-      "text": null,
-      "snippet": "markScreenPosition(${1:screenPosition}, ${2:options})",
-      "description": "Create a marker on this layer with its head at the given screen\nposition and no tail.",
-      "leftLabel": "DisplayMarker",
-      "type": "method"
-    },
-    {
-      "name": "markScreenRange",
-      "text": null,
-      "snippet": "markScreenRange(${1:screenRange}, ${2:options})",
-      "description": "Create a marker with the given screen range.",
-      "leftLabel": "DisplayMarker",
-      "type": "method"
-    },
-    {
-      "name": "onDidCreateMarker",
-      "text": null,
-      "snippet": "onDidCreateMarker(${1:callback})",
-      "description": "Subscribe to be notified synchronously whenever markers are created\non this layer. *Avoid this method for optimal performance when interacting\nwith layers that could contain large numbers of markers.*",
-      "leftLabel": "Disposable",
-      "type": "method"
-    },
-    {
-      "name": "onDidDestroy",
-      "text": null,
-      "snippet": "onDidDestroy(${1:callback})",
-      "description": "Subscribe to be notified synchronously when this layer is destroyed.",
-      "leftLabel": "Disposable",
-      "type": "method"
-    },
-    {
-      "name": "onDidUpdate",
-      "text": null,
-      "snippet": "onDidUpdate(${1:callback})",
-      "description": "Subscribe to be notified asynchronously whenever markers are\ncreated, updated, or destroyed on this layer. *Prefer this method for\noptimal performance when interacting with layers that could contain large\nnumbers of markers.*",
-      "leftLabel": "Disposable",
-      "type": "method"
-    }
-  ],
   "DisplayMarker": [
     {
       "name": "clearTail",
@@ -1422,6 +1310,118 @@
       "text": null,
       "snippet": "setTailScreenPosition(${1:screenPosition}, ${2:options})",
       "description": "Sets the screen position of the marker's tail.",
+      "type": "method"
+    }
+  ],
+  "DisplayMarkerLayer": [
+    {
+      "name": "clear",
+      "text": "clear()",
+      "snippet": null,
+      "description": "Destroy all markers in this layer.",
+      "type": "method"
+    },
+    {
+      "name": "destroy",
+      "text": "destroy()",
+      "snippet": null,
+      "description": "Destroy this layer.",
+      "type": "method"
+    },
+    {
+      "name": "findMarkers",
+      "text": null,
+      "snippet": "findMarkers(${1:params})",
+      "description": "Find markers in the layer conforming to the given parameters.",
+      "leftLabel": "Array",
+      "type": "method"
+    },
+    {
+      "name": "getMarker",
+      "text": null,
+      "snippet": "getMarker(${1:id})",
+      "description": "Get an existing marker by its id.",
+      "leftLabel": "DisplayMarker",
+      "type": "method"
+    },
+    {
+      "name": "getMarkerCount",
+      "text": "getMarkerCount()",
+      "snippet": null,
+      "description": "Get the number of markers in the marker layer.",
+      "leftLabel": "Number",
+      "type": "method"
+    },
+    {
+      "name": "getMarkers",
+      "text": "getMarkers()",
+      "snippet": null,
+      "description": "Get all markers in the layer.",
+      "leftLabel": "Array",
+      "type": "method"
+    },
+    {
+      "name": "isDestroyed",
+      "text": "isDestroyed()",
+      "snippet": null,
+      "description": "Determine whether this layer has been destroyed.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
+      "name": "markBufferPosition",
+      "text": null,
+      "snippet": "markBufferPosition(${1:bufferPosition}, ${2:options})",
+      "description": "Create a marker on this layer with its head at the given buffer\nposition and no tail.",
+      "leftLabel": "DisplayMarker",
+      "type": "method"
+    },
+    {
+      "name": "markBufferRange",
+      "text": null,
+      "snippet": "markBufferRange(${1:bufferRange}, ${2:options})",
+      "description": "Create a marker with the given buffer range.",
+      "leftLabel": "DisplayMarker",
+      "type": "method"
+    },
+    {
+      "name": "markScreenPosition",
+      "text": null,
+      "snippet": "markScreenPosition(${1:screenPosition}, ${2:options})",
+      "description": "Create a marker on this layer with its head at the given screen\nposition and no tail.",
+      "leftLabel": "DisplayMarker",
+      "type": "method"
+    },
+    {
+      "name": "markScreenRange",
+      "text": null,
+      "snippet": "markScreenRange(${1:screenRange}, ${2:options})",
+      "description": "Create a marker with the given screen range.",
+      "leftLabel": "DisplayMarker",
+      "type": "method"
+    },
+    {
+      "name": "onDidCreateMarker",
+      "text": null,
+      "snippet": "onDidCreateMarker(${1:callback})",
+      "description": "Subscribe to be notified synchronously whenever markers are created\non this layer. *Avoid this method for optimal performance when interacting\nwith layers that could contain large numbers of markers.*",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidDestroy",
+      "text": null,
+      "snippet": "onDidDestroy(${1:callback})",
+      "description": "Subscribe to be notified synchronously when this layer is destroyed.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidUpdate",
+      "text": null,
+      "snippet": "onDidUpdate(${1:callback})",
+      "description": "Subscribe to be notified asynchronously whenever markers are\ncreated, updated, or destroyed on this layer. *Prefer this method for\noptimal performance when interacting with layers that could contain large\nnumbers of markers.*",
+      "leftLabel": "Disposable",
       "type": "method"
     }
   ],
@@ -2348,6 +2348,47 @@
       "type": "method"
     }
   ],
+  "Notification": [
+    {
+      "name": "dismiss",
+      "text": "dismiss()",
+      "snippet": null,
+      "description": "Dismisses the notification, removing it from the UI. Calling this\nprogrammatically will call all callbacks added via `onDidDismiss`.",
+      "type": "method"
+    },
+    {
+      "name": "getMessage",
+      "text": "getMessage()",
+      "snippet": null,
+      "description": "",
+      "leftLabel": "String",
+      "type": "method"
+    },
+    {
+      "name": "getType",
+      "text": "getType()",
+      "snippet": null,
+      "description": "",
+      "leftLabel": "String",
+      "type": "method"
+    },
+    {
+      "name": "onDidDismiss",
+      "text": null,
+      "snippet": "onDidDismiss(${1:callback})",
+      "description": "Invoke the given callback when the notification is dismissed.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidDisplay",
+      "text": null,
+      "snippet": "onDidDisplay(${1:callback})",
+      "description": "Invoke the given callback when the notification is displayed.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    }
+  ],
   "NotificationManager": [
     {
       "name": "addError",
@@ -2436,44 +2477,37 @@
       "type": "method"
     }
   ],
-  "Notification": [
+  "Package": [
     {
-      "name": "dismiss",
-      "text": "dismiss()",
+      "name": "getBuildFailureOutput",
+      "text": "getBuildFailureOutput()",
       "snippet": null,
-      "description": "Dismisses the notification, removing it from the UI. Calling this\nprogrammatically will call all callbacks added via `onDidDismiss`.",
-      "type": "method"
-    },
-    {
-      "name": "getMessage",
-      "text": "getMessage()",
-      "snippet": null,
-      "description": "",
+      "description": "If a previous rebuild failed, get the contents of stderr.",
       "leftLabel": "String",
       "type": "method"
     },
     {
-      "name": "getType",
-      "text": "getType()",
+      "name": "isCompatible",
+      "text": "isCompatible()",
       "snippet": null,
-      "description": "",
-      "leftLabel": "String",
+      "description": "Are all native modules depended on by this package correctly\ncompiled against the current version of Lumine?",
+      "leftLabel": "Boolean",
       "type": "method"
     },
     {
-      "name": "onDidDismiss",
+      "name": "onDidDeactivate",
       "text": null,
-      "snippet": "onDidDismiss(${1:callback})",
-      "description": "Invoke the given callback when the notification is dismissed.",
+      "snippet": "onDidDeactivate(${1:callback})",
+      "description": "Invoke the given callback when all packages have been activated.",
       "leftLabel": "Disposable",
       "type": "method"
     },
     {
-      "name": "onDidDisplay",
-      "text": null,
-      "snippet": "onDidDisplay(${1:callback})",
-      "description": "Invoke the given callback when the notification is displayed.",
-      "leftLabel": "Disposable",
+      "name": "rebuild",
+      "text": "rebuild()",
+      "snippet": null,
+      "description": "Rebuild native modules in this package's dependencies for the\ncurrent version of Lumine.",
+      "leftLabel": "Promise",
       "type": "method"
     }
   ],
@@ -2680,40 +2714,6 @@
       "text": null,
       "snippet": "resolvePackagePath(${1:name})",
       "description": "Resolve the given package name to a path on disk.",
-      "type": "method"
-    }
-  ],
-  "Package": [
-    {
-      "name": "getBuildFailureOutput",
-      "text": "getBuildFailureOutput()",
-      "snippet": null,
-      "description": "If a previous rebuild failed, get the contents of stderr.",
-      "leftLabel": "String",
-      "type": "method"
-    },
-    {
-      "name": "isCompatible",
-      "text": "isCompatible()",
-      "snippet": null,
-      "description": "Are all native modules depended on by this package correctly\ncompiled against the current version of Lumine?",
-      "leftLabel": "Boolean",
-      "type": "method"
-    },
-    {
-      "name": "onDidDeactivate",
-      "text": null,
-      "snippet": "onDidDeactivate(${1:callback})",
-      "description": "Invoke the given callback when all packages have been activated.",
-      "leftLabel": "Disposable",
-      "type": "method"
-    },
-    {
-      "name": "rebuild",
-      "text": "rebuild()",
-      "snippet": null,
-      "description": "Rebuild native modules in this package's dependencies for the\ncurrent version of Lumine.",
-      "leftLabel": "Promise",
       "type": "method"
     }
   ],
@@ -5333,72 +5333,6 @@
       "type": "method"
     }
   ],
-  "TextEditorRegistry": [
-    {
-      "name": "add",
-      "text": null,
-      "snippet": "add(${1:editor}, ${2:options})",
-      "description": "Register a {TextEditor}, so that features written against the\nregistry reach it.",
-      "leftLabel": "Disposable",
-      "type": "method"
-    },
-    {
-      "name": "getActiveTextEditor",
-      "text": "getActiveTextEditor()",
-      "snippet": null,
-      "description": "Get the editor the user is typing in, wherever it is.",
-      "leftLabel": "TextEditor",
-      "type": "method"
-    },
-    {
-      "name": "getEditors",
-      "text": "getEditors()",
-      "snippet": null,
-      "description": "Get every registered editor.",
-      "leftLabel": "Array",
-      "type": "method"
-    },
-    {
-      "name": "maintainConfig",
-      "text": null,
-      "snippet": "maintainConfig(${1:editor})",
-      "description": "Keep a {TextEditor}'s settings in sync with the user's.",
-      "leftLabel": "Disposable",
-      "type": "method"
-    },
-    {
-      "name": "observe",
-      "text": null,
-      "snippet": "observe(${1:callback})",
-      "description": "Invoke the given callback with every registered editor, now and\nin the future.",
-      "leftLabel": "Disposable",
-      "type": "method"
-    },
-    {
-      "name": "onDidRemoveEditor",
-      "text": null,
-      "snippet": "onDidRemoveEditor(${1:callback})",
-      "description": "Invoke the given callback when an editor is removed from the\nregistry.",
-      "leftLabel": "Disposable",
-      "type": "method"
-    },
-    {
-      "name": "remove",
-      "text": null,
-      "snippet": "remove(${1:editor})",
-      "description": "Remove a {TextEditor} from the registry.",
-      "leftLabel": "Boolean",
-      "type": "method"
-    },
-    {
-      "name": "roleFor",
-      "text": null,
-      "snippet": "roleFor(${1:editor})",
-      "description": "Get the role a {TextEditor} was registered with.",
-      "leftLabel": "String",
-      "type": "method"
-    }
-  ],
   "TextEditor": [
     {
       "name": "abortTransaction",
@@ -7249,6 +7183,72 @@
       "type": "method"
     }
   ],
+  "TextEditorRegistry": [
+    {
+      "name": "add",
+      "text": null,
+      "snippet": "add(${1:editor}, ${2:options})",
+      "description": "Register a {TextEditor}, so that features written against the\nregistry reach it.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "getActiveTextEditor",
+      "text": "getActiveTextEditor()",
+      "snippet": null,
+      "description": "Get the editor the user is typing in, wherever it is.",
+      "leftLabel": "TextEditor",
+      "type": "method"
+    },
+    {
+      "name": "getEditors",
+      "text": "getEditors()",
+      "snippet": null,
+      "description": "Get every registered editor.",
+      "leftLabel": "Array",
+      "type": "method"
+    },
+    {
+      "name": "maintainConfig",
+      "text": null,
+      "snippet": "maintainConfig(${1:editor})",
+      "description": "Keep a {TextEditor}'s settings in sync with the user's.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "observe",
+      "text": null,
+      "snippet": "observe(${1:callback})",
+      "description": "Invoke the given callback with every registered editor, now and\nin the future.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidRemoveEditor",
+      "text": null,
+      "snippet": "onDidRemoveEditor(${1:callback})",
+      "description": "Invoke the given callback when an editor is removed from the\nregistry.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "remove",
+      "text": null,
+      "snippet": "remove(${1:editor})",
+      "description": "Remove a {TextEditor} from the registry.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
+      "name": "roleFor",
+      "text": null,
+      "snippet": "roleFor(${1:editor})",
+      "description": "Get the role a {TextEditor} was registered with.",
+      "leftLabel": "String",
+      "type": "method"
+    }
+  ],
   "ThemeManager": [
     {
       "name": "getActiveThemeNames",
@@ -7868,190 +7868,6 @@
       "type": "method"
     }
   ],
-  "WorkspaceCenter": [
-    {
-      "name": "activateNextPane",
-      "text": "activateNextPane()",
-      "snippet": null,
-      "description": "Make the next pane active.",
-      "type": "method"
-    },
-    {
-      "name": "activatePreviousPane",
-      "text": "activatePreviousPane()",
-      "snippet": null,
-      "description": "Make the previous pane active.",
-      "type": "method"
-    },
-    {
-      "name": "getActivePane",
-      "text": "getActivePane()",
-      "snippet": null,
-      "description": "Get the active {Pane}.",
-      "leftLabel": "Pane",
-      "type": "method"
-    },
-    {
-      "name": "getActivePaneItem",
-      "text": "getActivePaneItem()",
-      "snippet": null,
-      "description": "Get the active {Pane}'s active item.",
-      "leftLabel": "Object",
-      "type": "method"
-    },
-    {
-      "name": "getActiveTextEditor",
-      "text": "getActiveTextEditor()",
-      "snippet": null,
-      "description": "Get the active item if it is an {TextEditor}.",
-      "leftLabel": "TextEditor",
-      "type": "method"
-    },
-    {
-      "name": "getPaneItems",
-      "text": "getPaneItems()",
-      "snippet": null,
-      "description": "Get all pane items in the workspace center.",
-      "leftLabel": "Array",
-      "type": "method"
-    },
-    {
-      "name": "getPanes",
-      "text": "getPanes()",
-      "snippet": null,
-      "description": "Get all panes in the workspace center.",
-      "leftLabel": "Array",
-      "type": "method"
-    },
-    {
-      "name": "getTextEditors",
-      "text": "getTextEditors()",
-      "snippet": null,
-      "description": "Get all text editors in the workspace center.",
-      "leftLabel": "Array",
-      "type": "method"
-    },
-    {
-      "name": "observeActivePane",
-      "text": null,
-      "snippet": "observeActivePane(${1:callback})",
-      "description": "Invoke the given callback with the current active pane and when\nthe active pane changes.",
-      "leftLabel": "Disposable",
-      "type": "method"
-    },
-    {
-      "name": "observeActivePaneItem",
-      "text": null,
-      "snippet": "observeActivePaneItem(${1:callback})",
-      "description": "Invoke the given callback with the current active pane item and\nwith all future active pane items in the workspace center.",
-      "leftLabel": "Disposable",
-      "type": "method"
-    },
-    {
-      "name": "observePaneItems",
-      "text": null,
-      "snippet": "observePaneItems(${1:callback})",
-      "description": "Invoke the given callback with all current and future panes items\nin the workspace center.",
-      "leftLabel": "Disposable",
-      "type": "method"
-    },
-    {
-      "name": "observePanes",
-      "text": null,
-      "snippet": "observePanes(${1:callback})",
-      "description": "Invoke the given callback with all current and future panes in the\nworkspace center.",
-      "leftLabel": "Disposable",
-      "type": "method"
-    },
-    {
-      "name": "observeTextEditors",
-      "text": null,
-      "snippet": "observeTextEditors(${1:callback})",
-      "description": "Invoke the given callback with all current and future text\neditors in the workspace center.",
-      "leftLabel": "Disposable",
-      "type": "method"
-    },
-    {
-      "name": "onDidAddPane",
-      "text": null,
-      "snippet": "onDidAddPane(${1:callback})",
-      "description": "Invoke the given callback when a pane is added to the workspace\ncenter.",
-      "leftLabel": "Disposable",
-      "type": "method"
-    },
-    {
-      "name": "onDidAddPaneItem",
-      "text": null,
-      "snippet": "onDidAddPaneItem(${1:callback})",
-      "description": "Invoke the given callback when a pane item is added to the\nworkspace center.",
-      "leftLabel": "Disposable",
-      "type": "method"
-    },
-    {
-      "name": "onDidAddTextEditor",
-      "text": null,
-      "snippet": "onDidAddTextEditor(${1:callback})",
-      "description": "Invoke the given callback when a text editor is added to the\nworkspace center.",
-      "leftLabel": "Disposable",
-      "type": "method"
-    },
-    {
-      "name": "onDidChangeActivePane",
-      "text": null,
-      "snippet": "onDidChangeActivePane(${1:callback})",
-      "description": "Invoke the given callback when the active pane changes.",
-      "leftLabel": "Disposable",
-      "type": "method"
-    },
-    {
-      "name": "onDidChangeActivePaneItem",
-      "text": null,
-      "snippet": "onDidChangeActivePaneItem(${1:callback})",
-      "description": "Invoke the given callback when the active pane item changes.",
-      "leftLabel": "Disposable",
-      "type": "method"
-    },
-    {
-      "name": "onDidDestroyPane",
-      "text": null,
-      "snippet": "onDidDestroyPane(${1:callback})",
-      "description": "Invoke the given callback when a pane is destroyed in the\nworkspace center.",
-      "leftLabel": "Disposable",
-      "type": "method"
-    },
-    {
-      "name": "onDidDestroyPaneItem",
-      "text": null,
-      "snippet": "onDidDestroyPaneItem(${1:callback})",
-      "description": "Invoke the given callback when a pane item is destroyed.",
-      "leftLabel": "Disposable",
-      "type": "method"
-    },
-    {
-      "name": "onDidStopChangingActivePaneItem",
-      "text": null,
-      "snippet": "onDidStopChangingActivePaneItem(${1:callback})",
-      "description": "Invoke the given callback when the active pane item stops\nchanging.",
-      "leftLabel": "Disposable",
-      "type": "method"
-    },
-    {
-      "name": "onWillDestroyPane",
-      "text": null,
-      "snippet": "onWillDestroyPane(${1:callback})",
-      "description": "Invoke the given callback before a pane is destroyed in the\nworkspace center.",
-      "leftLabel": "Disposable",
-      "type": "method"
-    },
-    {
-      "name": "onWillDestroyPaneItem",
-      "text": null,
-      "snippet": "onWillDestroyPaneItem(${1:callback})",
-      "description": "Invoke the given callback when a pane item is about to be\ndestroyed, before the user is prompted to save it.",
-      "leftLabel": "Disposable",
-      "type": "method"
-    }
-  ],
   "Workspace": [
     {
       "name": "activateNextPane",
@@ -8602,6 +8418,190 @@
       "snippet": "toggle(${1:itemOrURI})",
       "description": "Search the workspace for items matching the given URI. If any are found, hide them.\nOtherwise, open the URL.",
       "leftLabel": null,
+      "type": "method"
+    }
+  ],
+  "WorkspaceCenter": [
+    {
+      "name": "activateNextPane",
+      "text": "activateNextPane()",
+      "snippet": null,
+      "description": "Make the next pane active.",
+      "type": "method"
+    },
+    {
+      "name": "activatePreviousPane",
+      "text": "activatePreviousPane()",
+      "snippet": null,
+      "description": "Make the previous pane active.",
+      "type": "method"
+    },
+    {
+      "name": "getActivePane",
+      "text": "getActivePane()",
+      "snippet": null,
+      "description": "Get the active {Pane}.",
+      "leftLabel": "Pane",
+      "type": "method"
+    },
+    {
+      "name": "getActivePaneItem",
+      "text": "getActivePaneItem()",
+      "snippet": null,
+      "description": "Get the active {Pane}'s active item.",
+      "leftLabel": "Object",
+      "type": "method"
+    },
+    {
+      "name": "getActiveTextEditor",
+      "text": "getActiveTextEditor()",
+      "snippet": null,
+      "description": "Get the active item if it is an {TextEditor}.",
+      "leftLabel": "TextEditor",
+      "type": "method"
+    },
+    {
+      "name": "getPaneItems",
+      "text": "getPaneItems()",
+      "snippet": null,
+      "description": "Get all pane items in the workspace center.",
+      "leftLabel": "Array",
+      "type": "method"
+    },
+    {
+      "name": "getPanes",
+      "text": "getPanes()",
+      "snippet": null,
+      "description": "Get all panes in the workspace center.",
+      "leftLabel": "Array",
+      "type": "method"
+    },
+    {
+      "name": "getTextEditors",
+      "text": "getTextEditors()",
+      "snippet": null,
+      "description": "Get all text editors in the workspace center.",
+      "leftLabel": "Array",
+      "type": "method"
+    },
+    {
+      "name": "observeActivePane",
+      "text": null,
+      "snippet": "observeActivePane(${1:callback})",
+      "description": "Invoke the given callback with the current active pane and when\nthe active pane changes.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "observeActivePaneItem",
+      "text": null,
+      "snippet": "observeActivePaneItem(${1:callback})",
+      "description": "Invoke the given callback with the current active pane item and\nwith all future active pane items in the workspace center.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "observePaneItems",
+      "text": null,
+      "snippet": "observePaneItems(${1:callback})",
+      "description": "Invoke the given callback with all current and future panes items\nin the workspace center.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "observePanes",
+      "text": null,
+      "snippet": "observePanes(${1:callback})",
+      "description": "Invoke the given callback with all current and future panes in the\nworkspace center.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "observeTextEditors",
+      "text": null,
+      "snippet": "observeTextEditors(${1:callback})",
+      "description": "Invoke the given callback with all current and future text\neditors in the workspace center.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidAddPane",
+      "text": null,
+      "snippet": "onDidAddPane(${1:callback})",
+      "description": "Invoke the given callback when a pane is added to the workspace\ncenter.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidAddPaneItem",
+      "text": null,
+      "snippet": "onDidAddPaneItem(${1:callback})",
+      "description": "Invoke the given callback when a pane item is added to the\nworkspace center.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidAddTextEditor",
+      "text": null,
+      "snippet": "onDidAddTextEditor(${1:callback})",
+      "description": "Invoke the given callback when a text editor is added to the\nworkspace center.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidChangeActivePane",
+      "text": null,
+      "snippet": "onDidChangeActivePane(${1:callback})",
+      "description": "Invoke the given callback when the active pane changes.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidChangeActivePaneItem",
+      "text": null,
+      "snippet": "onDidChangeActivePaneItem(${1:callback})",
+      "description": "Invoke the given callback when the active pane item changes.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidDestroyPane",
+      "text": null,
+      "snippet": "onDidDestroyPane(${1:callback})",
+      "description": "Invoke the given callback when a pane is destroyed in the\nworkspace center.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidDestroyPaneItem",
+      "text": null,
+      "snippet": "onDidDestroyPaneItem(${1:callback})",
+      "description": "Invoke the given callback when a pane item is destroyed.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidStopChangingActivePaneItem",
+      "text": null,
+      "snippet": "onDidStopChangingActivePaneItem(${1:callback})",
+      "description": "Invoke the given callback when the active pane item stops\nchanging.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onWillDestroyPane",
+      "text": null,
+      "snippet": "onWillDestroyPane(${1:callback})",
+      "description": "Invoke the given callback before a pane is destroyed in the\nworkspace center.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onWillDestroyPaneItem",
+      "text": null,
+      "snippet": "onWillDestroyPaneItem(${1:callback})",
+      "description": "Invoke the given callback when a pane item is about to be\ndestroyed, before the user is prompted to save it.",
+      "leftLabel": "Disposable",
       "type": "method"
     }
   ]
