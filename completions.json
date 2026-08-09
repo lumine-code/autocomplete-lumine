@@ -1,5 +1,70 @@
 {
+  "AppService": [
+    {
+      "name": "getFileIcon",
+      "text": null,
+      "snippet": "getFileIcon(${1:filePath}, ${2:options})",
+      "description": "Load an operating-system file icon as a data URL.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "getLocale",
+      "text": "getLocale()",
+      "snippet": null,
+      "description": "Return the application locale captured during bootstrap.",
+      "leftLabel": "String",
+      "type": "method"
+    },
+    {
+      "name": "getPath",
+      "text": null,
+      "snippet": "getPath(${1:name})",
+      "description": "Return an Electron application path captured during bootstrap.",
+      "leftLabel": "String",
+      "type": "method"
+    },
+    {
+      "name": "getUserDefault",
+      "text": null,
+      "snippet": "getUserDefault(${1:key}, ${2:type})",
+      "description": "Read an operating-system user default.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "isDefaultProtocolClient",
+      "text": null,
+      "snippet": "isDefaultProtocolClient(${1:protocol}, ${2:path}, ${3:args})",
+      "description": "Determine whether Lumine is the default handler for a protocol.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "restart",
+      "text": "restart()",
+      "snippet": null,
+      "description": "Restart Lumine with the current launch options.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "setAsDefaultProtocolClient",
+      "text": null,
+      "snippet": "setAsDefaultProtocolClient(${1:protocol}, ${2:path}, ${3:args})",
+      "description": "Register Lumine as the default handler for a protocol.",
+      "leftLabel": "Promise",
+      "type": "method"
+    }
+  ],
   "AtomEnvironment": [
+    {
+      "name": "app",
+      "text": "app",
+      "description": "A {AppService} instance.",
+      "leftLabel": "AppService",
+      "type": "property"
+    },
     {
       "name": "clipboard",
       "text": "clipboard",
@@ -141,10 +206,24 @@
       "type": "property"
     },
     {
+      "name": "uriHandlers",
+      "text": "uriHandlers",
+      "description": "A {URIHandlerRegistry} instance.",
+      "leftLabel": "URIHandlerRegistry",
+      "type": "property"
+    },
+    {
       "name": "views",
       "text": "views",
       "description": "A {ViewRegistry} instance.",
       "leftLabel": "ViewRegistry",
+      "type": "property"
+    },
+    {
+      "name": "window",
+      "text": "window",
+      "description": "A {WindowService} instance.",
+      "leftLabel": "WindowService",
       "type": "property"
     },
     {
@@ -155,39 +234,11 @@
       "type": "property"
     },
     {
-      "name": "center",
-      "text": "center()",
-      "snippet": null,
-      "description": "Move current window to the center of the screen.",
-      "type": "method"
-    },
-    {
-      "name": "close",
-      "text": "close()",
-      "snippet": null,
-      "description": "Close the current window.",
-      "type": "method"
-    },
-    {
       "name": "confirm",
       "text": null,
-      "snippet": "confirm(${1:options}, ${2:callback})",
-      "description": "A flexible way to open a dialog akin to an alert dialog.",
-      "leftLabel": "Number",
-      "type": "method"
-    },
-    {
-      "name": "executeJavaScriptInDevTools",
-      "text": null,
-      "snippet": "executeJavaScriptInDevTools(${1:code})",
-      "description": "Execute code in dev tools.",
-      "type": "method"
-    },
-    {
-      "name": "focus",
-      "text": "focus()",
-      "snippet": null,
-      "description": "Focus the current window.",
+      "snippet": "confirm(${1:options})",
+      "description": "Show a non-blocking confirmation dialog.",
+      "leftLabel": "Promise",
       "type": "method"
     },
     {
@@ -199,25 +250,10 @@
       "type": "method"
     },
     {
-      "name": "getCurrentWindow",
-      "text": "getCurrentWindow()",
-      "snippet": null,
-      "description": "Get the current window",
-      "type": "method"
-    },
-    {
       "name": "getLoadSettings",
       "text": "getLoadSettings()",
       "snippet": null,
       "description": "Get the load settings for the current window.",
-      "leftLabel": "Object",
-      "type": "method"
-    },
-    {
-      "name": "getPosition",
-      "text": "getPosition()",
-      "snippet": null,
-      "description": "Get the position of current window.",
       "leftLabel": "Object",
       "type": "method"
     },
@@ -227,14 +263,6 @@
       "snippet": null,
       "description": "Gets the release channel of the Lumine application.",
       "leftLabel": "String",
-      "type": "method"
-    },
-    {
-      "name": "getSize",
-      "text": "getSize()",
-      "snippet": null,
-      "description": "Get the size of current window.",
-      "leftLabel": "Object",
       "type": "method"
     },
     {
@@ -262,13 +290,6 @@
       "type": "method"
     },
     {
-      "name": "hide",
-      "text": "hide()",
-      "snippet": null,
-      "description": "Hide the current window.",
-      "type": "method"
-    },
-    {
       "name": "inDevMode",
       "text": "inDevMode()",
       "snippet": null,
@@ -287,22 +308,6 @@
     {
       "name": "inSpecMode",
       "text": "inSpecMode()",
-      "snippet": null,
-      "description": "",
-      "leftLabel": "Boolean",
-      "type": "method"
-    },
-    {
-      "name": "isFullScreen",
-      "text": "isFullScreen()",
-      "snippet": null,
-      "description": "",
-      "leftLabel": "Boolean",
-      "type": "method"
-    },
-    {
-      "name": "isMaximized",
-      "text": "isMaximized()",
       "snippet": null,
       "description": "",
       "leftLabel": "Boolean",
@@ -348,14 +353,6 @@
       "type": "method"
     },
     {
-      "name": "openDevTools",
-      "text": "openDevTools()",
-      "snippet": null,
-      "description": "Open the dev tools for the current window.",
-      "leftLabel": "Promise",
-      "type": "method"
-    },
-    {
       "name": "openExternal",
       "text": null,
       "snippet": "openExternal(${1:url})",
@@ -372,75 +369,11 @@
       "type": "method"
     },
     {
-      "name": "pickFolder",
-      "text": null,
-      "snippet": "pickFolder(${1:callback})",
-      "description": "Prompt the user to select one or more folders.",
-      "type": "method"
-    },
-    {
-      "name": "reload",
-      "text": "reload()",
-      "snippet": null,
-      "description": "Reload the current window.",
-      "type": "method"
-    },
-    {
-      "name": "restartApplication",
-      "text": "restartApplication()",
-      "snippet": null,
-      "description": "Relaunch the entire application.",
-      "type": "method"
-    },
-    {
-      "name": "setFullScreen",
-      "text": null,
-      "snippet": "setFullScreen(${1:fullScreen})",
-      "description": "Set the full screen state of the current window.",
-      "type": "method"
-    },
-    {
-      "name": "setPosition",
-      "text": null,
-      "snippet": "setPosition(${1:x}, ${2:y})",
-      "description": "Set the position of current window.",
-      "type": "method"
-    },
-    {
-      "name": "setSize",
-      "text": null,
-      "snippet": "setSize(${1:width}, ${2:height})",
-      "description": "Set the size of current window.",
-      "type": "method"
-    },
-    {
-      "name": "show",
-      "text": "show()",
-      "snippet": null,
-      "description": "Show the current window.",
-      "type": "method"
-    },
-    {
       "name": "showItemInFolder",
       "text": null,
       "snippet": "showItemInFolder(${1:filePath})",
       "description": "Reveals the given path in the system's file browser, selecting\nit if possible.",
       "leftLabel": "Promise",
-      "type": "method"
-    },
-    {
-      "name": "toggleDevTools",
-      "text": "toggleDevTools()",
-      "snippet": null,
-      "description": "Toggle the visibility of the dev tools for the current window.",
-      "leftLabel": "Promise",
-      "type": "method"
-    },
-    {
-      "name": "toggleFullScreen",
-      "text": "toggleFullScreen()",
-      "snippet": null,
-      "description": "Toggle the full screen state of the current window.",
       "type": "method"
     },
     {
@@ -456,6 +389,14 @@
       "text": null,
       "snippet": "whenShellEnvironmentLoaded(${1:callback})",
       "description": "Invoke the given callback as soon as the shell environment is\nloaded (or immediately if it was already loaded).",
+      "type": "method"
+    },
+    {
+      "name": "whenWindowLoaded",
+      "text": null,
+      "snippet": "whenWindowLoaded(${1:callback})",
+      "description": "Invoke the given callback as soon as the window has finished\nloading (or immediately if it already has).",
+      "leftLabel": "Disposable",
       "type": "method"
     }
   ],
@@ -673,6 +614,16 @@
       "text": null,
       "snippet": "unset(${1:keyPath}, ${2:options})",
       "description": "Restore the setting at `keyPath` to its default value.",
+      "type": "method"
+    }
+  ],
+  "ContextMenuManager": [
+    {
+      "name": "show",
+      "text": null,
+      "snippet": "show(${1:target}, ${2:menuTemplate})",
+      "description": "Show a native context menu for a DOM target.",
+      "leftLabel": "Promise",
       "type": "method"
     }
   ],
@@ -1160,6 +1111,32 @@
       "text": null,
       "snippet": "setProperties(${1:newProperties})",
       "description": "Update the marker with new Properties. Allows you to change the decoration's class.",
+      "type": "method"
+    }
+  ],
+  "DefaultDirectoryProvider": [
+    {
+      "name": "directoryForURI",
+      "text": null,
+      "snippet": "directoryForURI(${1:uri})",
+      "description": "Create a Directory that corresponds to the specified URI.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "directoryForURISync",
+      "text": null,
+      "snippet": "directoryForURISync(${1:uri})",
+      "description": "Create a Directory that corresponds to the specified URI.",
+      "leftLabel": "Directory",
+      "type": "method"
+    },
+    {
+      "name": "normalizePath",
+      "text": null,
+      "snippet": "normalizePath(${1:uri})",
+      "description": "Normalizes path.",
+      "leftLabel": "String",
       "type": "method"
     }
   ],
@@ -2236,6 +2213,14 @@
       "text": null,
       "snippet": "onDidAddGrammar(${1:callback})",
       "description": "Invoke the given callback when a grammar is added to the registry.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidRemoveGrammar",
+      "text": null,
+      "snippet": "onDidRemoveGrammar(${1:callback})",
+      "description": "Invoke the given callback when a grammar is removed from the\nregistry, which happens whenever the package that provides it deactivates.",
       "leftLabel": "Disposable",
       "type": "method"
     },
@@ -3544,6 +3529,14 @@
       "snippet": "setPaths(${1:projectPaths}, ${2:options})",
       "description": "Set the paths of the project's directories.",
       "type": "method"
+    },
+    {
+      "name": "setState",
+      "text": null,
+      "snippet": "setState(${1:projectPaths})",
+      "description": "Open a different project in this window.",
+      "leftLabel": "Promise",
+      "type": "method"
     }
   ],
   "Range": [
@@ -3715,6 +3708,327 @@
       "type": "method"
     }
   ],
+  "RepositoryRegistry": [
+    {
+      "name": "add",
+      "text": null,
+      "snippet": "add(${1:filePath}, ${2:options})",
+      "description": "Register the repository containing a path, and keep it.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "addOperationProvider",
+      "text": null,
+      "snippet": "addOperationProvider(${1:provider}, ${2:options})",
+      "description": "Supply the Git implementation behind the registry's operations.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "canExecuteGitCommands",
+      "text": "canExecuteGitCommands()",
+      "snippet": null,
+      "description": "Whether any provider can run raw Git commands.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
+      "name": "canPerformOperation",
+      "text": null,
+      "snippet": "canPerformOperation(${1:repository}, ${2:operationName})",
+      "description": "Whether an operation can be performed on a repository right now.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
+      "name": "canPerformWorkspaceOperation",
+      "text": null,
+      "snippet": "canPerformWorkspaceOperation(${1:operationName})",
+      "description": "Whether a repository-creating operation can be performed.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
+      "name": "clone",
+      "text": null,
+      "snippet": "clone(${1:remoteUrl}, ${2:destinationPath}, ${3:options})",
+      "description": "Clone a remote into a directory and register the result.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "executeGit",
+      "text": null,
+      "snippet": "executeGit(${1:args}, ${2:workingDirectory}, ${3:options})",
+      "description": "Run a Git command through whichever provider offers one.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "forget",
+      "text": null,
+      "snippet": "forget(${1:repository})",
+      "description": "Drop every manual hold {::add} placed on a repository.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
+      "name": "getActiveRepository",
+      "text": "getActiveRepository()",
+      "snippet": null,
+      "description": "The repository the window is currently working in. It follows\nthe active pane item unless a consumer pinned a selection with\n{::setActiveRepository}. An item whose path lies outside every repository\nclears it; only path-less items keep the current selection.",
+      "leftLabel": "GitRepository",
+      "type": "method"
+    },
+    {
+      "name": "getActiveRepositoryContext",
+      "text": "getActiveRepositoryContext()",
+      "snippet": null,
+      "description": "The active repository together with the directory it applies to.",
+      "leftLabel": "Object",
+      "type": "method"
+    },
+    {
+      "name": "getById",
+      "text": null,
+      "snippet": "getById(${1:id})",
+      "description": "Look a repository up by the id the registry gave it.",
+      "leftLabel": "GitRepository",
+      "type": "method"
+    },
+    {
+      "name": "getForPath",
+      "text": null,
+      "snippet": "getForPath(${1:filePath})",
+      "description": "The repository a path belongs to, from what is already\nregistered.",
+      "leftLabel": "GitRepository",
+      "type": "method"
+    },
+    {
+      "name": "getGitExecutablePath",
+      "text": "getGitExecutablePath()",
+      "snippet": null,
+      "description": "The Git binary the active provider runs.",
+      "leftLabel": "String",
+      "type": "method"
+    },
+    {
+      "name": "getOperationCapabilities",
+      "text": null,
+      "snippet": "getOperationCapabilities(${1:repository})",
+      "description": "Every operation any provider can perform on a repository.",
+      "leftLabel": "Array",
+      "type": "method"
+    },
+    {
+      "name": "getOperations",
+      "text": null,
+      "snippet": "getOperations(${1:repository})",
+      "description": "The operations available on a repository.",
+      "leftLabel": "Object",
+      "type": "method"
+    },
+    {
+      "name": "getPendingOperations",
+      "text": null,
+      "snippet": "getPendingOperations(${1:repository})",
+      "description": "The operations queued or running right now.",
+      "leftLabel": "Array",
+      "type": "method"
+    },
+    {
+      "name": "getRepositories",
+      "text": "getRepositories()",
+      "snippet": null,
+      "description": "Every registered repository.",
+      "leftLabel": "Array",
+      "type": "method"
+    },
+    {
+      "name": "getSnapshot",
+      "text": "getSnapshot()",
+      "snippet": null,
+      "description": "The registered repositories together with the version they were\nread at.",
+      "leftLabel": "Object",
+      "type": "method"
+    },
+    {
+      "name": "getWorkspaceOperationCapabilities",
+      "text": "getWorkspaceOperationCapabilities()",
+      "snippet": null,
+      "description": "Which of `initialize` and `clone` a provider can perform.",
+      "leftLabel": "Array",
+      "type": "method"
+    },
+    {
+      "name": "initialize",
+      "text": null,
+      "snippet": "initialize(${1:directoryPath}, ${2:options})",
+      "description": "Create a repository in a directory and register it.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "isActiveRepositoryPinned",
+      "text": "isActiveRepositoryPinned()",
+      "snippet": null,
+      "description": "Whether the active repository is pinned to a manual selection.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
+      "name": "observeActiveRepository",
+      "text": null,
+      "snippet": "observeActiveRepository(${1:callback})",
+      "description": "Invoke the callback with the current context immediately, and\nagain on every change.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "observeRepositories",
+      "text": null,
+      "snippet": "observeRepositories(${1:callback})",
+      "description": "Invoke the callback with every registered repository, now and in\nthe future.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidAddRepository",
+      "text": null,
+      "snippet": "onDidAddRepository(${1:callback})",
+      "description": "Invoke the callback when a repository is registered.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidChange",
+      "text": null,
+      "snippet": "onDidChange(${1:callback})",
+      "description": "Invoke the callback once per batch of changes to the registered\nset, with everything that changed together.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidChangeActiveRepository",
+      "text": null,
+      "snippet": "onDidChangeActiveRepository(${1:callback})",
+      "description": "Invoke the callback whenever the active repository context changes.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidFinishOperation",
+      "text": null,
+      "snippet": "onDidFinishOperation(${1:callback})",
+      "description": "Invoke the callback when an operation finishes, whether or not it\nsucceeded.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidFinishRescan",
+      "text": null,
+      "snippet": "onDidFinishRescan(${1:callback})",
+      "description": "Invoke the callback when a rescan finishes, whether or not it\nsucceeded.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidQueueOperation",
+      "text": null,
+      "snippet": "onDidQueueOperation(${1:callback})",
+      "description": "Invoke the callback when an operation is queued behind another on\nthe same repository.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidRemoveRepository",
+      "text": null,
+      "snippet": "onDidRemoveRepository(${1:callback})",
+      "description": "Invoke the callback when a repository is removed.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidStartOperation",
+      "text": null,
+      "snippet": "onDidStartOperation(${1:callback})",
+      "description": "Invoke the callback when an operation starts running.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidStartRescan",
+      "text": null,
+      "snippet": "onDidStartRescan(${1:callback})",
+      "description": "Invoke the callback when a rescan of the project roots begins.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "resolveDirectory",
+      "text": null,
+      "snippet": "resolveDirectory(${1:directory})",
+      "description": "The repository for a {Directory}, discovering and registering one\nif it is not known yet.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "resolveDirectorySync",
+      "text": null,
+      "snippet": "resolveDirectorySync(${1:directory})",
+      "description": "{::resolveDirectory}, synchronously. Reads the filesystem.",
+      "leftLabel": "GitRepository",
+      "type": "method"
+    },
+    {
+      "name": "resolveForPath",
+      "text": null,
+      "snippet": "resolveForPath(${1:filePath})",
+      "description": "The repository a path belongs to, discovering and registering one\nif it is not known yet.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "resolveForPathSync",
+      "text": null,
+      "snippet": "resolveForPathSync(${1:filePath})",
+      "description": "{::resolveForPath}, synchronously.",
+      "leftLabel": "GitRepository",
+      "type": "method"
+    },
+    {
+      "name": "retain",
+      "text": null,
+      "snippet": "retain(${1:repository}, ${2:source})",
+      "description": "Keep a repository alive for as long as you hold the result.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "runOperation",
+      "text": null,
+      "snippet": "runOperation(${1:repository}, ${2:operation})",
+      "description": "Run your own work against a repository, holding it alive for the\nduration.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "setActiveRepository",
+      "text": null,
+      "snippet": "setActiveRepository(${1:repository}, ${2:options})",
+      "description": "Select the active repository manually.",
+      "type": "method"
+    },
+    {
+      "name": "setActiveRepositoryForPath",
+      "text": null,
+      "snippet": "setActiveRepositoryForPath(${1:filePath}, ${2:options})",
+      "description": "Resolve the repository for a path and make it the active one.",
+      "leftLabel": "Promise",
+      "type": "method"
+    }
+  ],
   "ScopeDescriptor": [
     {
       "name": "constructor",
@@ -3729,6 +4043,48 @@
       "snippet": null,
       "description": "",
       "leftLabel": "Array",
+      "type": "method"
+    }
+  ],
+  "SecretStore": [
+    {
+      "name": "delete",
+      "text": null,
+      "snippet": "delete(${1:key})",
+      "description": "Forget a secret.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "get",
+      "text": null,
+      "snippet": "get(${1:key})",
+      "description": "Read a secret.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "isEncryptionAvailable",
+      "text": "isEncryptionAvailable()",
+      "snippet": null,
+      "description": "Whether the operating system will encrypt what is stored.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "onDidChange",
+      "text": null,
+      "snippet": "onDidChange(${1:callback})",
+      "description": "Invoke the callback when a secret is stored or removed.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "set",
+      "text": null,
+      "snippet": "set(${1:key}, ${2:value})",
+      "description": "Store a secret.",
+      "leftLabel": "Promise",
       "type": "method"
     }
   ],
@@ -4993,6 +5349,72 @@
       "type": "method"
     }
   ],
+  "TextEditorRegistry": [
+    {
+      "name": "add",
+      "text": null,
+      "snippet": "add(${1:editor}, ${2:options})",
+      "description": "Register a {TextEditor}, so that features written against the\nregistry reach it.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "getActiveTextEditor",
+      "text": "getActiveTextEditor()",
+      "snippet": null,
+      "description": "Get the editor the user is typing in, wherever it is.",
+      "leftLabel": "TextEditor",
+      "type": "method"
+    },
+    {
+      "name": "getEditors",
+      "text": "getEditors()",
+      "snippet": null,
+      "description": "Get every registered editor.",
+      "leftLabel": "Array",
+      "type": "method"
+    },
+    {
+      "name": "maintainConfig",
+      "text": null,
+      "snippet": "maintainConfig(${1:editor})",
+      "description": "Keep a {TextEditor}'s settings in sync with the user's.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "observe",
+      "text": null,
+      "snippet": "observe(${1:callback})",
+      "description": "Invoke the given callback with every registered editor, now and\nin the future.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidRemoveEditor",
+      "text": null,
+      "snippet": "onDidRemoveEditor(${1:callback})",
+      "description": "Invoke the given callback when an editor is removed from the\nregistry.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "remove",
+      "text": null,
+      "snippet": "remove(${1:editor})",
+      "description": "Remove a {TextEditor} from the registry.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
+      "name": "roleFor",
+      "text": null,
+      "snippet": "roleFor(${1:editor})",
+      "description": "Get the role a {TextEditor} was registered with.",
+      "leftLabel": "String",
+      "type": "method"
+    }
+  ],
   "TextEditor": [
     {
       "name": "abortTransaction",
@@ -5141,6 +5563,20 @@
       "type": "method"
     },
     {
+      "name": "collapseBlankLines",
+      "text": null,
+      "snippet": "collapseBlankLines(${1:options})",
+      "description": "Reduce every run of blank lines in the buffer to a single blank line.",
+      "type": "method"
+    },
+    {
+      "name": "collapseContentSpaces",
+      "text": null,
+      "snippet": "collapseContentSpaces(${1:options})",
+      "description": "Collapse runs of spaces in line content without changing indentation.",
+      "type": "method"
+    },
+    {
       "name": "copySelectedText",
       "text": null,
       "snippet": "copySelectedText(${1:clipboard})",
@@ -5246,6 +5682,13 @@
       "text": null,
       "snippet": "deleteToEndOfWord(${1:options})",
       "description": "For each selection, if the selection is empty, delete all characters\nof the containing word following the cursor. Otherwise delete the selected\ntext.",
+      "type": "method"
+    },
+    {
+      "name": "deleteToNextLineContent",
+      "text": null,
+      "snippet": "deleteToNextLineContent(${1:options})",
+      "description": "Delete through the indentation of the line following each selection.",
       "type": "method"
     },
     {
@@ -6407,6 +6850,13 @@
       "type": "method"
     },
     {
+      "name": "scrollToScreenRange",
+      "text": null,
+      "snippet": "scrollToScreenRange(${1:screenRange}, ${2:options})",
+      "description": "Scrolls the editor to the given screen range.",
+      "type": "method"
+    },
+    {
       "name": "selectAll",
       "text": "selectAll()",
       "snippet": null,
@@ -7055,6 +7505,311 @@
       "type": "method"
     }
   ],
+  "WindowService": [
+    {
+      "name": "broadcast",
+      "text": null,
+      "snippet": "broadcast(${1:eventName}, ${2:args})",
+      "description": "Send a serializable event to every other registered Lumine window.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "center",
+      "text": "center()",
+      "snippet": null,
+      "description": "Center the current window on its display.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "close",
+      "text": "close()",
+      "snippet": null,
+      "description": "Close the current window.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "closeDevTools",
+      "text": "closeDevTools()",
+      "snippet": null,
+      "description": "Close the current window's developer tools.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "downloadURL",
+      "text": null,
+      "snippet": "downloadURL(${1:url})",
+      "description": "Start a download in the current window.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "executeJavaScriptInDevTools",
+      "text": null,
+      "snippet": "executeJavaScriptInDevTools(${1:code})",
+      "description": "Evaluate JavaScript in the current window's developer tools.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "focus",
+      "text": "focus()",
+      "snippet": null,
+      "description": "Focus the current window.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "getId",
+      "text": "getId()",
+      "snippet": null,
+      "description": "Return the stable numeric id of the current Lumine window.",
+      "type": "method"
+    },
+    {
+      "name": "getPosition",
+      "text": "getPosition()",
+      "snippet": null,
+      "description": "Return the current screen position.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "getPrimaryDisplayWorkAreaSize",
+      "text": "getPrimaryDisplayWorkAreaSize()",
+      "snippet": null,
+      "description": "Return the primary display's available work-area size.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "getSize",
+      "text": "getSize()",
+      "snippet": null,
+      "description": "Return the current content size.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "getState",
+      "text": "getState()",
+      "snippet": null,
+      "description": "Return a snapshot of the current window state.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "hide",
+      "text": "hide()",
+      "snippet": null,
+      "description": "Hide the current window.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "isFullScreen",
+      "text": "isFullScreen()",
+      "snippet": null,
+      "description": "Determine whether the current window is full screen.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "isMaximized",
+      "text": "isMaximized()",
+      "snippet": null,
+      "description": "Determine whether the current window is maximized.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "isVisible",
+      "text": "isVisible()",
+      "snippet": null,
+      "description": "Determine whether the current window is visible.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "maximize",
+      "text": "maximize()",
+      "snippet": null,
+      "description": "Maximize the current window.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "minimize",
+      "text": "minimize()",
+      "snippet": null,
+      "description": "Minimize the current window.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "onDidBlur",
+      "text": null,
+      "snippet": "onDidBlur(${1:callback})",
+      "description": "Invoke `callback` when the window loses focus.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidEnterFullScreen",
+      "text": null,
+      "snippet": "onDidEnterFullScreen(${1:callback})",
+      "description": "Invoke `callback` after entering full-screen mode.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidFocus",
+      "text": null,
+      "snippet": "onDidFocus(${1:callback})",
+      "description": "Invoke `callback` when the window gains focus.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidLeaveFullScreen",
+      "text": null,
+      "snippet": "onDidLeaveFullScreen(${1:callback})",
+      "description": "Invoke `callback` after leaving full-screen mode.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidMaximize",
+      "text": null,
+      "snippet": "onDidMaximize(${1:callback})",
+      "description": "Invoke `callback` after the window is maximized.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidReceive",
+      "text": null,
+      "snippet": "onDidReceive(${1:eventName}, ${2:callback})",
+      "description": "Subscribe to named events broadcast by other Lumine windows.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidUnmaximize",
+      "text": null,
+      "snippet": "onDidUnmaximize(${1:callback})",
+      "description": "Invoke `callback` after a maximized window is restored.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "openDevTools",
+      "text": "openDevTools()",
+      "snippet": null,
+      "description": "Open the current window's developer tools.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "pickFolder",
+      "text": "pickFolder()",
+      "snippet": null,
+      "description": "Ask the user to select one or more folders.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "reload",
+      "text": "reload()",
+      "snippet": null,
+      "description": "Reload the current window.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "setAutoHideMenuBar",
+      "text": null,
+      "snippet": "setAutoHideMenuBar(${1:autoHide})",
+      "description": "Control whether the menu bar hides automatically.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "setFullScreen",
+      "text": null,
+      "snippet": "setFullScreen(${1:fullScreen})",
+      "description": "Enter or leave full-screen mode.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "setMenuBarVisibility",
+      "text": null,
+      "snippet": "setMenuBarVisibility(${1:visible})",
+      "description": "Show or hide the menu bar.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "setPosition",
+      "text": null,
+      "snippet": "setPosition(${1:x}, ${2:y})",
+      "description": "Set the current screen position.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "setSize",
+      "text": null,
+      "snippet": "setSize(${1:width}, ${2:height})",
+      "description": "Set the content size.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "show",
+      "text": "show()",
+      "snippet": null,
+      "description": "Show the current window and restore its focus policy.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "showSaveDialog",
+      "text": null,
+      "snippet": "showSaveDialog(${1:options})",
+      "description": "Show a save dialog owned by the current window.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "toggleDevTools",
+      "text": "toggleDevTools()",
+      "snippet": null,
+      "description": "Toggle the current window's developer tools.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "toggleFullScreen",
+      "text": "toggleFullScreen()",
+      "snippet": null,
+      "description": "Toggle full-screen mode.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "unmaximize",
+      "text": "unmaximize()",
+      "snippet": null,
+      "description": "Restore a maximized window.",
+      "leftLabel": "Promise",
+      "type": "method"
+    }
+  ],
   "WorkspaceCenter": [
     {
       "name": "activateNextPane",
@@ -7343,11 +8098,33 @@
       "type": "method"
     },
     {
+      "name": "clear",
+      "text": null,
+      "snippet": "clear(${1:options})",
+      "description": "Destroy every item in the given pane container locations,\nleaving each of them with a single empty pane.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "closeActivePaneItemOrEmptyPaneOrWindow",
+      "text": "closeActivePaneItemOrEmptyPaneOrWindow()",
+      "snippet": null,
+      "description": "Close the workspace center's active pane item, or its active pane\nif that pane is empty, or the window if only the empty root pane is left.",
+      "type": "method"
+    },
+    {
       "name": "createItemForURI",
       "text": null,
       "snippet": "createItemForURI(${1:uri})",
       "description": "Creates a new item that corresponds to the provided URI.",
       "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "destroyActivePaneItem",
+      "text": "destroyActivePaneItem()",
+      "snippet": null,
+      "description": "Destroy (close) the active pane item.",
       "type": "method"
     },
     {
@@ -7737,6 +8514,20 @@
       "snippet": "replace(${1:regex}, ${2:replacementText}, ${3:filePaths}, ${4:iterator})",
       "description": "Performs a replace across all the specified files in the project.",
       "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "saveActivePaneItem",
+      "text": "saveActivePaneItem()",
+      "snippet": null,
+      "description": "Save the workspace center's active pane item.",
+      "type": "method"
+    },
+    {
+      "name": "saveActivePaneItemAs",
+      "text": "saveActivePaneItemAs()",
+      "snippet": null,
+      "description": "Prompt for a path and save the workspace center's active pane\nitem to it.",
       "type": "method"
     },
     {
