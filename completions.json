@@ -17,10 +17,33 @@
       "type": "method"
     },
     {
+      "name": "getName",
+      "text": "getName()",
+      "snippet": null,
+      "description": "Return the full name of this Lumine application.",
+      "leftLabel": "String",
+      "type": "method"
+    },
+    {
       "name": "getPath",
       "text": null,
       "snippet": "getPath(${1:name})",
       "description": "Return an Electron application path captured during bootstrap.",
+      "leftLabel": "String",
+      "type": "method"
+    },
+    {
+      "name": "getReleaseChannel",
+      "text": "getReleaseChannel()",
+      "snippet": null,
+      "description": "Return the current release channel.",
+      "type": "method"
+    },
+    {
+      "name": "getResourcePath",
+      "text": "getResourcePath()",
+      "snippet": null,
+      "description": "Return the editor resource directory captured during bootstrap.",
       "leftLabel": "String",
       "type": "method"
     },
@@ -33,11 +56,34 @@
       "type": "method"
     },
     {
+      "name": "getVersion",
+      "text": "getVersion()",
+      "snippet": null,
+      "description": "Return the Lumine application version.",
+      "leftLabel": "String",
+      "type": "method"
+    },
+    {
       "name": "isDefaultProtocolClient",
       "text": null,
       "snippet": "isDefaultProtocolClient(${1:protocol}, ${2:path}, ${3:args})",
       "description": "Determine whether Lumine is the default handler for a protocol.",
       "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "isReleasedVersion",
+      "text": "isReleasedVersion()",
+      "snippet": null,
+      "description": "Determine whether this build came from the release pipeline.",
+      "type": "method"
+    },
+    {
+      "name": "openWindow",
+      "text": null,
+      "snippet": "openWindow(${1:params})",
+      "description": "Open paths in a new or reusable Lumine window.",
+      "leftLabel": null,
       "type": "method"
     },
     {
@@ -54,6 +100,13 @@
       "snippet": "setAsDefaultProtocolClient(${1:protocol}, ${2:path}, ${3:args})",
       "description": "Register Lumine as the default handler for a protocol.",
       "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "versionSatisfies",
+      "text": null,
+      "snippet": "versionSatisfies(${1:range})",
+      "description": "Determine whether the current application version satisfies a\nsemantic-version range.",
       "type": "method"
     }
   ],
@@ -171,10 +224,24 @@
       "type": "property"
     },
     {
+      "name": "runtime",
+      "text": "runtime",
+      "description": "A {RuntimeService} instance.",
+      "leftLabel": "RuntimeService",
+      "type": "property"
+    },
+    {
       "name": "secrets",
       "text": "secrets",
       "description": "A {SecretStore} instance.",
       "leftLabel": "SecretStore",
+      "type": "property"
+    },
+    {
+      "name": "shell",
+      "text": "shell",
+      "description": "A {ShellService} instance.",
+      "leftLabel": "ShellService",
       "type": "property"
     },
     {
@@ -232,172 +299,6 @@
       "description": "A {Workspace} instance.",
       "leftLabel": "Workspace",
       "type": "property"
-    },
-    {
-      "name": "confirm",
-      "text": null,
-      "snippet": "confirm(${1:options})",
-      "description": "Show a non-blocking confirmation dialog.",
-      "leftLabel": "Promise",
-      "type": "method"
-    },
-    {
-      "name": "getAppName",
-      "text": "getAppName()",
-      "snippet": null,
-      "description": "Get the full name of this Lumine release (e.g. \"Lumine\", \"Lumine Beta\")",
-      "leftLabel": "String",
-      "type": "method"
-    },
-    {
-      "name": "getLoadSettings",
-      "text": "getLoadSettings()",
-      "snippet": null,
-      "description": "Get the load settings for the current window.",
-      "leftLabel": "Object",
-      "type": "method"
-    },
-    {
-      "name": "getReleaseChannel",
-      "text": "getReleaseChannel()",
-      "snippet": null,
-      "description": "Gets the release channel of the Lumine application.",
-      "leftLabel": "String",
-      "type": "method"
-    },
-    {
-      "name": "getStartupMarkers",
-      "text": "getStartupMarkers()",
-      "snippet": null,
-      "description": "Get all markers containing startup timing information.",
-      "leftLabel": null,
-      "type": "method"
-    },
-    {
-      "name": "getVersion",
-      "text": "getVersion()",
-      "snippet": null,
-      "description": "Get the version of the Lumine application.",
-      "leftLabel": "String",
-      "type": "method"
-    },
-    {
-      "name": "getWindowLoadTime",
-      "text": "getWindowLoadTime()",
-      "snippet": null,
-      "description": "Get the time taken to completely load the current window.",
-      "leftLabel": "Number",
-      "type": "method"
-    },
-    {
-      "name": "inDevMode",
-      "text": "inDevMode()",
-      "snippet": null,
-      "description": "",
-      "leftLabel": "Boolean",
-      "type": "method"
-    },
-    {
-      "name": "inSafeMode",
-      "text": "inSafeMode()",
-      "snippet": null,
-      "description": "",
-      "leftLabel": "Boolean",
-      "type": "method"
-    },
-    {
-      "name": "inSpecMode",
-      "text": "inSpecMode()",
-      "snippet": null,
-      "description": "",
-      "leftLabel": "Boolean",
-      "type": "method"
-    },
-    {
-      "name": "isReleasedVersion",
-      "text": "isReleasedVersion()",
-      "snippet": null,
-      "description": "",
-      "leftLabel": "Boolean",
-      "type": "method"
-    },
-    {
-      "name": "onDidThrowError",
-      "text": null,
-      "snippet": "onDidThrowError(${1:callback})",
-      "description": "Invoke the given callback whenever there is an unhandled error,\nwhether thrown or carried by a rejected promise nobody handled.",
-      "leftLabel": "Disposable",
-      "type": "method"
-    },
-    {
-      "name": "onWillDestroy",
-      "text": null,
-      "snippet": "onWillDestroy(${1:callback})",
-      "description": "Invoke the given callback when the environment is destroying, as\nhappens during window close or reload.",
-      "leftLabel": "Disposable",
-      "type": "method"
-    },
-    {
-      "name": "onWillThrowError",
-      "text": null,
-      "snippet": "onWillThrowError(${1:callback})",
-      "description": "Invoke the given callback when there is an unhandled error, but\nbefore the devtools pop open",
-      "leftLabel": "Disposable",
-      "type": "method"
-    },
-    {
-      "name": "open",
-      "text": null,
-      "snippet": "open(${1:params})",
-      "description": "Open a new Lumine window using the given options.",
-      "type": "method"
-    },
-    {
-      "name": "openExternal",
-      "text": null,
-      "snippet": "openExternal(${1:url})",
-      "description": "Opens the given URL in the default manner for the operating\nsystem.",
-      "leftLabel": "Promise",
-      "type": "method"
-    },
-    {
-      "name": "openPath",
-      "text": null,
-      "snippet": "openPath(${1:filePath})",
-      "description": "Opens the given path in the default manner for the operating\nsystem.",
-      "leftLabel": "Promise",
-      "type": "method"
-    },
-    {
-      "name": "showItemInFolder",
-      "text": null,
-      "snippet": "showItemInFolder(${1:filePath})",
-      "description": "Reveals the given path in the system's file browser, selecting\nit if possible.",
-      "leftLabel": "Promise",
-      "type": "method"
-    },
-    {
-      "name": "trashItem",
-      "text": null,
-      "snippet": "trashItem(${1:filePath})",
-      "description": "Moves an item to the trash.",
-      "leftLabel": "Promise",
-      "type": "method"
-    },
-    {
-      "name": "whenShellEnvironmentLoaded",
-      "text": null,
-      "snippet": "whenShellEnvironmentLoaded(${1:callback})",
-      "description": "Invoke the given callback as soon as the shell environment is\nloaded (or immediately if it was already loaded).",
-      "type": "method"
-    },
-    {
-      "name": "whenWindowLoaded",
-      "text": null,
-      "snippet": "whenWindowLoaded(${1:callback})",
-      "description": "Invoke the given callback as soon as the window has finished\nloading (or immediately if it already has).",
-      "leftLabel": "Disposable",
-      "type": "method"
     }
   ],
   "BufferedNodeProcess": [
@@ -2489,6 +2390,13 @@
       "type": "method"
     },
     {
+      "name": "beep",
+      "text": "beep()",
+      "snippet": null,
+      "description": "Request audible or visual attention from notification consumers.",
+      "type": "method"
+    },
+    {
       "name": "clear",
       "text": "clear()",
       "snippet": null,
@@ -2508,6 +2416,14 @@
       "text": null,
       "snippet": "onDidAddNotification(${1:callback})",
       "description": "Invoke the given callback after a notification has been added.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidBeep",
+      "text": null,
+      "snippet": "onDidBeep(${1:callback})",
+      "description": "Invoke the given callback whenever {::beep} is called.",
       "leftLabel": "Disposable",
       "type": "method"
     },
@@ -4029,6 +3945,40 @@
       "type": "method"
     }
   ],
+  "RuntimeService": [
+    {
+      "name": "getShellLoadTime",
+      "text": "getShellLoadTime()",
+      "snippet": null,
+      "description": "Return the shell-environment load time captured at bootstrap.",
+      "leftLabel": "Number",
+      "type": "method"
+    },
+    {
+      "name": "onDidThrowError",
+      "text": null,
+      "snippet": "onDidThrowError(${1:callback})",
+      "description": "Subscribe after an unhandled renderer error is reported.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onWillThrowError",
+      "text": null,
+      "snippet": "onWillThrowError(${1:callback})",
+      "description": "Subscribe before an unhandled renderer error is reported.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "whenShellEnvironmentLoaded",
+      "text": "whenShellEnvironmentLoaded()",
+      "snippet": null,
+      "description": "Wait until the current renderer has loaded its shell environment.",
+      "leftLabel": "Promise",
+      "type": "method"
+    }
+  ],
   "ScopeDescriptor": [
     {
       "name": "constructor",
@@ -4574,6 +4524,40 @@
       "text": null,
       "snippet": "toggleLineComments(${1:options})",
       "description": "Wraps the selected lines in comments if they aren't currently part\nof a comment.",
+      "type": "method"
+    }
+  ],
+  "ShellService": [
+    {
+      "name": "openExternal",
+      "text": null,
+      "snippet": "openExternal(${1:url})",
+      "description": "Open a URL with its operating system default handler.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "openPath",
+      "text": null,
+      "snippet": "openPath(${1:filePath})",
+      "description": "Open a path with its operating system default application.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "showItemInFolder",
+      "text": null,
+      "snippet": "showItemInFolder(${1:filePath})",
+      "description": "Reveal a path in the operating system file browser.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "trashItem",
+      "text": null,
+      "snippet": "trashItem(${1:filePath})",
+      "description": "Move an item to the operating system trash.",
+      "leftLabel": "Promise",
       "type": "method"
     }
   ],
@@ -7539,6 +7523,14 @@
       "type": "method"
     },
     {
+      "name": "confirm",
+      "text": null,
+      "snippet": "confirm(${1:options})",
+      "description": "Show a non-blocking confirmation dialog owned by the current\nwindow.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
       "name": "downloadURL",
       "text": null,
       "snippet": "downloadURL(${1:url})",
@@ -7570,6 +7562,21 @@
       "type": "method"
     },
     {
+      "name": "getInitialPaths",
+      "text": "getInitialPaths()",
+      "snippet": null,
+      "description": "Return the paths supplied when the current window was opened.",
+      "type": "method"
+    },
+    {
+      "name": "getLoadTime",
+      "text": "getLoadTime()",
+      "snippet": null,
+      "description": "Return the completed load time for the current window.",
+      "leftLabel": "Number",
+      "type": "method"
+    },
+    {
       "name": "getPosition",
       "text": "getPosition()",
       "snippet": null,
@@ -7594,6 +7601,13 @@
       "type": "method"
     },
     {
+      "name": "getStartupMarkers",
+      "text": "getStartupMarkers()",
+      "snippet": null,
+      "description": "Return startup timing markers for the current window.",
+      "type": "method"
+    },
+    {
       "name": "getState",
       "text": "getState()",
       "snippet": null,
@@ -7610,6 +7624,13 @@
       "type": "method"
     },
     {
+      "name": "isDevMode",
+      "text": "isDevMode()",
+      "snippet": null,
+      "description": "Determine whether the current window is in development mode.",
+      "type": "method"
+    },
+    {
       "name": "isFullScreen",
       "text": "isFullScreen()",
       "snippet": null,
@@ -7618,11 +7639,32 @@
       "type": "method"
     },
     {
+      "name": "isHeadless",
+      "text": "isHeadless()",
+      "snippet": null,
+      "description": "Determine whether the current window is running headlessly.",
+      "type": "method"
+    },
+    {
       "name": "isMaximized",
       "text": "isMaximized()",
       "snippet": null,
       "description": "Determine whether the current window is maximized.",
       "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "isSafeMode",
+      "text": "isSafeMode()",
+      "snippet": null,
+      "description": "Determine whether the current window is in safe mode.",
+      "type": "method"
+    },
+    {
+      "name": "isSpecMode",
+      "text": "isSpecMode()",
+      "snippet": null,
+      "description": "Determine whether the current window is running specs.",
       "type": "method"
     },
     {
@@ -7702,6 +7744,14 @@
       "text": null,
       "snippet": "onDidUnmaximize(${1:callback})",
       "description": "Invoke `callback` after a maximized window is restored.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onWillDestroy",
+      "text": null,
+      "snippet": "onWillDestroy(${1:callback})",
+      "description": "Subscribe before the current editor window is destroyed.",
       "leftLabel": "Disposable",
       "type": "method"
     },
@@ -7806,6 +7856,14 @@
       "text": "unmaximize()",
       "snippet": null,
       "description": "Restore a maximized window.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "whenLoaded",
+      "text": "whenLoaded()",
+      "snippet": null,
+      "description": "Wait until the current editor window has finished loading.",
       "leftLabel": "Promise",
       "type": "method"
     }

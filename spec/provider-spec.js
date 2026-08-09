@@ -106,10 +106,7 @@ describe("Lumine API autocompletions", () => {
     expect(completionNamed("commands").type).toBe("property");
     expect(completionNamed("config").type).toBe("property");
 
-    const confirm = completionNamed("confirm");
-    expect(confirm.type).toBe("method");
-    expect(confirm.snippet).toMatch(/^confirm\(/);
-    expect(confirm.descriptionMoreURL).toBeUndefined();
+    expect(completionNamed("confirm")).toBeUndefined();
   });
 
   it("includes methods on atom global properties", () => {
@@ -124,10 +121,21 @@ describe("Lumine API autocompletions", () => {
     editor.setCursorBufferPosition([0, Infinity]);
     expect(completionNamed("getId").text).toBe("getId()");
     expect(completionNamed("broadcast").snippet).toMatch(/^broadcast\(/);
+    expect(completionNamed("confirm").snippet).toMatch(/^confirm\(/);
 
     editor.setText("atom.app.");
     editor.setCursorBufferPosition([0, Infinity]);
     expect(completionNamed("getPath").snippet).toBe("getPath(${1:name})");
+    expect(completionNamed("getVersion").text).toBe("getVersion()");
+    expect(completionNamed("openWindow").snippet).toMatch(/^openWindow\(/);
     expect(completionNamed("restart").text).toBe("restart()");
+
+    editor.setText("atom.shell.");
+    editor.setCursorBufferPosition([0, Infinity]);
+    expect(completionNamed("openExternal").snippet).toMatch(/^openExternal\(/);
+
+    editor.setText("atom.runtime.");
+    editor.setCursorBufferPosition([0, Infinity]);
+    expect(completionNamed("whenShellEnvironmentLoaded").text).toBe("whenShellEnvironmentLoaded()");
   });
 });
