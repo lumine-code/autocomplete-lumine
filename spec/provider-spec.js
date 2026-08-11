@@ -89,7 +89,7 @@ describe("Lumine API autocompletions", () => {
     editor.setCursorBufferPosition([0, Infinity]);
 
     // Instance properties are sorted ahead of methods.
-    expect(getCompletions().some(({ text }) => text === "app")).toBe(true);
+    expect(getCompletions().some(({ text }) => text === "application")).toBe(true);
     expect(getCompletions().some(({ text }) => text === "window")).toBe(true);
     expect(getCompletions().some(({ text }) => text === "clipboard")).toBe(true);
 
@@ -123,7 +123,7 @@ describe("Lumine API autocompletions", () => {
     expect(completionNamed("broadcast").snippet).toMatch(/^broadcast\(/);
     expect(completionNamed("confirm").snippet).toMatch(/^confirm\(/);
 
-    editor.setText("lumine.app.");
+    editor.setText("lumine.application.");
     editor.setCursorBufferPosition([0, Infinity]);
     expect(completionNamed("getPath").snippet).toBe("getPath(${1:name})");
     expect(completionNamed("getVersion").text).toBe("getVersion()");

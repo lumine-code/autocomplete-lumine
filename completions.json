@@ -1,10 +1,10 @@
 {
   "LumineEnvironment": [
     {
-      "name": "app",
-      "text": "app",
-      "description": "A {@link AppService} instance",
-      "leftLabel": "AppService",
+      "name": "application",
+      "text": "application",
+      "description": "A {@link ApplicationService} instance",
+      "leftLabel": "ApplicationService",
       "type": "property"
     },
     {
@@ -204,7 +204,7 @@
       "type": "property"
     }
   ],
-  "AppService": [
+  "ApplicationService": [
     {
       "name": "getFileIcon",
       "text": null,
