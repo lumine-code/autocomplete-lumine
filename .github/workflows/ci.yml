@@ -85,6 +85,9 @@ jobs:
         run: |
           install() { npm ci --ignore-scripts; }
           install || install || install
+      - name: Check generated completions
+        working-directory: autocomplete-lumine
+        run: npm run update:check -- --editor ../lumine
       - name: Download the Electron binary
         working-directory: lumine
         run: node ./node_modules/electron/install.js
