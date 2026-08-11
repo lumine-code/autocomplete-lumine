@@ -37,15 +37,25 @@ function compareNames(left, right) {
   return left.name.localeCompare(right.name);
 }
 
+function plainDocumentationText(value) {
+  return value
+    ?.replace(
+      /\{@link\s+([^}\s|]+)(?:\s*\|\s*|\s+)?([^}]*)\}/g,
+      (_match, target, label) => label.trim() || target.replace("#", "."),
+    )
+    .replace(/`([^`]+)`/g, "$1");
+}
+
 function propertySuggestion(member) {
   return {
     name: member.name,
     text: member.name,
-    description:
+    description: plainDocumentationText(
       member.summary ||
-      member.returnDescription ||
-      member.propertyType ||
-      "Documented API property.",
+        member.returnDescription ||
+        member.propertyType ||
+        "Documented API property.",
+    ),
     leftLabel: member.propertyType || member.summary?.match(/\{([^}]+)\}/)?.[1],
     type: "property",
   };
@@ -59,10 +69,11 @@ function methodSuggestion(member) {
     name: member.name,
     text: null,
     snippet: null,
-    description:
+    description: plainDocumentationText(
       member.summary ||
-      member.returnDescription ||
-      (member.returnType ? `Returns ${member.returnType}.` : "Documented API method."),
+        member.returnDescription ||
+        (member.returnType ? `Returns ${member.returnType}.` : "Documented API method."),
+    ),
     leftLabel: member.returnType,
     type: "method",
   };
