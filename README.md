@@ -10,11 +10,11 @@ Autocompletions for the Lumine API.
 
 ## Installation
 
-To install `autocomplete-lumine` search for _autocomplete-lumine_ in the Install pane of the Lumine settings or run `lumine --install lumine-code/autocomplete-lumine`.
+To install `autocomplete-lumine` search for it in the Install pane of the Lumine settings, or run the command `lumine --install lumine-code/autocomplete-lumine`.
 
 ## Services
 
-- **autocomplete.provider** (`1.0.0`): provided to supply `lumine.` API suggestions to autocomplete.
+- `autocomplete.provider`: provided to supply `lumine.` API suggestions to autocomplete.
 
 ## Regenerating completions
 
@@ -25,10 +25,7 @@ npm install
 npm run update -- --editor /path/to/lumine
 ```
 
-`LUMINE_CORE_ROOT` may be set instead of passing `--editor`.
-Use `npm run update:check -- --editor /path/to/lumine` to verify the committed
-completion data without rewriting it. Both commands use the canonical JSDoc
-extractor from the selected editor checkout.
+`LUMINE_CORE_ROOT` may be set instead of passing `--editor`. Use `npm run update:check -- --editor /path/to/lumine` to verify the committed completion data without rewriting it. Both commands use the canonical JSDoc extractor from the selected editor checkout.
 
 ## Contributing
 
