@@ -206,6 +206,14 @@
   ],
   "ApplicationService": [
     {
+      "name": "getAccentColor",
+      "text": "getAccentColor()",
+      "snippet": null,
+      "description": "Read the operating system's accent color.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
       "name": "getFileIcon",
       "text": null,
       "snippet": "getFileIcon(${1:filePath}, ${2:options})",
@@ -291,6 +299,14 @@
       "snippet": "openWindow(${1:params})",
       "description": "Open paths in a new or reusable Lumine window.",
       "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "printToPDF",
+      "text": null,
+      "snippet": "printToPDF(${1:html}, ${2:outputPath}, ${3:options})",
+      "description": "Render a complete HTML document to a PDF file.",
+      "leftLabel": "Promise",
       "type": "method"
     },
     {
@@ -2774,6 +2790,14 @@
       "type": "method"
     },
     {
+      "name": "addHint",
+      "text": null,
+      "snippet": "addHint(${1:message}, ${2:options})",
+      "description": "Add a hint notification.",
+      "leftLabel": "Notification",
+      "type": "method"
+    },
+    {
       "name": "addInfo",
       "text": null,
       "snippet": "addInfo(${1:message}, ${2:options})",
@@ -3774,6 +3798,30 @@
       "type": "method"
     },
     {
+      "name": "getFilePathCount",
+      "text": "getFilePathCount()",
+      "snippet": null,
+      "description": "How many files are indexed.",
+      "leftLabel": "Number",
+      "type": "method"
+    },
+    {
+      "name": "getFilePaths",
+      "text": "getFilePaths()",
+      "snippet": null,
+      "description": "Every file under the project's root directories.",
+      "leftLabel": "Array",
+      "type": "method"
+    },
+    {
+      "name": "getFilePathsForRoot",
+      "text": null,
+      "snippet": "getFilePathsForRoot(${1:root})",
+      "description": "Every indexed file under one project root.",
+      "leftLabel": "Array",
+      "type": "method"
+    },
+    {
       "name": "getPaths",
       "text": "getPaths()",
       "snippet": null,
@@ -3790,10 +3838,34 @@
       "type": "method"
     },
     {
+      "name": "hasFilePath",
+      "text": null,
+      "snippet": "hasFilePath(${1:filePath})",
+      "description": "Whether a path is in the file index.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
+      "name": "isIndexing",
+      "text": "isIndexing()",
+      "snippet": null,
+      "description": "Whether the file index is crawling.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
       "name": "observeBuffers",
       "text": null,
       "snippet": "observeBuffers(${1:callback})",
       "description": "Invoke the given callback with all current and future text buffers in the project.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "observeFilePaths",
+      "text": null,
+      "snippet": "observeFilePaths(${1:callback})",
+      "description": "Invoke the given callback with the project's file paths, now and whenever they change.",
       "leftLabel": "Disposable",
       "type": "method"
     },
@@ -3819,6 +3891,14 @@
       "snippet": "onDidChangePaths(${1:callback})",
       "description": "Invoke the given callback when the project paths change.",
       "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "refreshFilePaths",
+      "text": null,
+      "snippet": "refreshFilePaths(${1:options})",
+      "description": "Crawl the project again and update the file index.",
+      "leftLabel": "Promise",
       "type": "method"
     },
     {
@@ -8064,6 +8144,14 @@
       "type": "method"
     },
     {
+      "name": "pinScrollAnchorToBlockDecoration",
+      "text": null,
+      "snippet": "pinScrollAnchorToBlockDecoration(${1:blockDecoration})",
+      "description": "Holds the viewport against a block decoration while the user drags its size, instead of against the cursor's row or the viewport midpoint.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
       "name": "pixelPositionForBufferPosition",
       "text": null,
       "snippet": "pixelPositionForBufferPosition(${1:bufferPosition})",
@@ -8942,6 +9030,22 @@
       "type": "method"
     },
     {
+      "name": "getActiveEmbeddedTextEditor",
+      "text": "getActiveEmbeddedTextEditor()",
+      "snippet": null,
+      "description": "Get the TextEditor being edited inside the active item.",
+      "leftLabel": "TextEditor",
+      "type": "method"
+    },
+    {
+      "name": "getActiveFileTextEditor",
+      "text": "getActiveFileTextEditor()",
+      "snippet": null,
+      "description": "Get the TextEditor holding the active item's file content.",
+      "leftLabel": "TextEditor",
+      "type": "method"
+    },
+    {
       "name": "getActivePane",
       "text": "getActivePane()",
       "snippet": null,
@@ -9110,6 +9214,22 @@
       "type": "method"
     },
     {
+      "name": "observeActiveEmbeddedTextEditor",
+      "text": null,
+      "snippet": "observeActiveEmbeddedTextEditor(${1:callback})",
+      "description": "Invoke the given callback with the current and all future editors being edited inside the active item. See .getActiveEmbeddedTextEditor.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "observeActiveFileTextEditor",
+      "text": null,
+      "snippet": "observeActiveFileTextEditor(${1:callback})",
+      "description": "Invoke the given callback with the current and all future editors holding the active item's file content. See .getActiveFileTextEditor.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
       "name": "observeActivePane",
       "text": null,
       "snippet": "observeActivePane(${1:callback})",
@@ -9178,6 +9298,22 @@
       "text": null,
       "snippet": "onDidAddTextEditor(${1:callback})",
       "description": "Invoke the given callback when a text editor is added to the workspace.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidChangeActiveEmbeddedTextEditor",
+      "text": null,
+      "snippet": "onDidChangeActiveEmbeddedTextEditor(${1:callback})",
+      "description": "Invoke the given callback when the editor being edited inside the active item changes. See .getActiveEmbeddedTextEditor.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidChangeActiveFileTextEditor",
+      "text": null,
+      "snippet": "onDidChangeActiveFileTextEditor(${1:callback})",
+      "description": "Invoke the given callback when the editor holding the active item's file content changes. See .getActiveFileTextEditor.",
       "leftLabel": "Disposable",
       "type": "method"
     },
