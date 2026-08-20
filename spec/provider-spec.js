@@ -1,3 +1,6 @@
+const fs = require("fs");
+const path = require("path");
+
 const temp = require("@lumine-code/temp");
 
 describe("Lumine API autocompletions", () => {
@@ -38,7 +41,6 @@ describe("Lumine API autocompletions", () => {
       .getActivePackage("autocomplete-lumine")
       .mainModule.provideAutocomplete();
     await conditionPromise(() => Object.keys(provider.completions).length > 0, "completions");
-    await conditionPromise(() => provider.packageDirectories?.length > 0, "package directories");
     await lumine.workspace.open("test.js");
     editor = lumine.workspace.getActiveTextEditor();
   });
@@ -48,7 +50,7 @@ describe("Lumine API autocompletions", () => {
     lumine.project.setPaths([emptyProjectPath]);
 
     return lumine.workspace.open("empty.js").then(() => {
-      expect(provider.packageDirectories.length).toBe(0);
+      expect(provider.isInLuminePackage(emptyProjectPath)).toBe(false);
       editor = lumine.workspace.getActiveTextEditor();
       editor.setText("lumine.");
       editor.setCursorBufferPosition([0, Infinity]);
@@ -62,7 +64,7 @@ describe("Lumine API autocompletions", () => {
     lumine.project.setPaths([emptyProjectPath]);
 
     return lumine.workspace.open(".lumine/init.js").then(() => {
-      expect(provider.packageDirectories.length).toBe(0);
+      expect(provider.isInLuminePackage(emptyProjectPath)).toBe(false);
       editor = lumine.workspace.getActiveTextEditor();
       editor.setText("lumine.");
       editor.setCursorBufferPosition([0, Infinity]);
@@ -76,11 +78,33 @@ describe("Lumine API autocompletions", () => {
     lumine.project.setPaths([emptyProjectPath]);
 
     return lumine.workspace.open().then(() => {
-      expect(provider.packageDirectories.length).toBe(0);
       editor = lumine.workspace.getActiveTextEditor();
       editor.setText("lumine.");
       editor.setCursorBufferPosition([0, Infinity]);
       expect(getCompletions()).toBeUndefined();
+    });
+  });
+
+  it("includes completions in a package that is not itself a project root", () => {
+    // The flat workspace: the root holds one repository per directory and
+    // carries no manifest of its own, so the package a file belongs to is
+    // found by walking up from that file, not by inspecting the project roots.
+    const workspacePath = temp.mkdirSync("lumine-workspace-");
+    const packagePath = path.join(workspacePath, "some-package");
+    fs.mkdirSync(path.join(packagePath, "lib"), { recursive: true });
+    fs.writeFileSync(
+      path.join(packagePath, "package.json"),
+      JSON.stringify({ name: "some-package", engines: { lumine: "^1.0.0" } }),
+    );
+    lumine.project.setPaths([workspacePath]);
+
+    return lumine.workspace.open(path.join(packagePath, "lib", "main.js")).then(() => {
+      expect(provider.isInLuminePackage(workspacePath)).toBe(false);
+      editor = lumine.workspace.getActiveTextEditor();
+      editor.setText("lumine.");
+      editor.setCursorBufferPosition([0, Infinity]);
+
+      expect(getCompletions().some(({ text }) => text === "workspace")).toBe(true);
     });
   });
 
