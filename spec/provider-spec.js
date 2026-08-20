@@ -85,6 +85,16 @@ describe("Lumine API autocompletions", () => {
     });
   });
 
+  it("ranks above the general-purpose providers that also match these files", () => {
+    // Autocomplete concatenates each provider's suggestions in provider order
+    // and never re-sorts across providers, so priority alone decides position.
+    // The language server and snippets sit at 2 and paths at 3; a `lumine.`
+    // member access is answered here, so these must come first.
+    expect(provider.suggestionPriority).toBeGreaterThan(3);
+    // Below this a provider using `excludeLowerPriority` drops this one.
+    expect(provider.inclusionPriority).toBeGreaterThan(0);
+  });
+
   it("includes completions in a package that is not itself a project root", () => {
     // The flat workspace: the root holds one repository per directory and
     // carries no manifest of its own, so the package a file belongs to is
