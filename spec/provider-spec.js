@@ -85,12 +85,12 @@ describe("Lumine API autocompletions", () => {
     });
   });
 
-  it("ranks above the general-purpose providers that also match these files", () => {
+  it("ranks in the domain-expert tier, above the general-purpose providers", () => {
     // Autocomplete concatenates each provider's suggestions in provider order
     // and never re-sorts across providers, so priority alone decides position.
-    // The language server and snippets sit at 2 and paths at 3; a `lumine.`
-    // member access is answered here, so these must come first.
-    expect(provider.suggestionPriority).toBeGreaterThan(3);
+    // The general-purpose tier is 2; see "Ranking" in autocomplete's
+    // `docs/autocomplete.provider.md` for the ladder these come from.
+    expect(provider.suggestionPriority).toBeGreaterThan(2);
     // Below this a provider using `excludeLowerPriority` drops this one.
     expect(provider.inclusionPriority).toBeGreaterThan(0);
   });
