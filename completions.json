@@ -8147,7 +8147,7 @@
       "name": "pinScrollAnchorToBlockDecoration",
       "text": null,
       "snippet": "pinScrollAnchorToBlockDecoration(${1:blockDecoration})",
-      "description": "Holds the viewport against a block decoration while the user drags its size, instead of against the cursor's row or the viewport midpoint.",
+      "description": "Holds the viewport against a block decoration while the user drags its size, instead of against the first visible row.",
       "leftLabel": "Disposable",
       "type": "method"
     },
@@ -8963,6 +8963,14 @@
       "snippet": "addTopPanel(${1:options})",
       "description": "Adds a panel item to the top of the editor window above the tabs.",
       "leftLabel": "Panel",
+      "type": "method"
+    },
+    {
+      "name": "beginLayoutDrag",
+      "text": "beginLayoutDrag()",
+      "snippet": null,
+      "description": "Declare that a drag which resizes editors has begun — a pane divider, a dock handle, a panel's own resize grip, a gutter's width handle.",
+      "leftLabel": "Disposable",
       "type": "method"
     },
     {
