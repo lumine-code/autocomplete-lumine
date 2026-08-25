@@ -358,7 +358,7 @@
       "text": "read()",
       "snippet": null,
       "description": "Read the text from the clipboard.",
-      "leftLabel": "String",
+      "leftLabel": "Promise",
       "type": "method"
     },
     {
@@ -366,7 +366,7 @@
       "text": "readFindText()",
       "snippet": null,
       "description": "Read the text from the macOS find pasteboard.",
-      "leftLabel": "String",
+      "leftLabel": "Promise",
       "type": "method"
     },
     {
@@ -374,7 +374,7 @@
       "text": "readImage()",
       "snippet": null,
       "description": "Read the image on the clipboard.",
-      "leftLabel": "NativeImage",
+      "leftLabel": "Promise",
       "type": "method"
     },
     {
@@ -390,7 +390,7 @@
       "text": "readSelectionText()",
       "snippet": null,
       "description": "Read the text from the Linux primary selection.",
-      "leftLabel": "String",
+      "leftLabel": "Promise",
       "type": "method"
     },
     {
@@ -398,7 +398,7 @@
       "text": "readWithMetadata()",
       "snippet": null,
       "description": "Read the text from the clipboard and return both the text and the associated metadata.",
-      "leftLabel": "Object",
+      "leftLabel": "Promise",
       "type": "method"
     },
     {
@@ -406,15 +406,15 @@
       "text": null,
       "snippet": "write(${1:text}, ${2:metadata})",
       "description": "Write the given text to the clipboard.",
-      "leftLabel": null,
+      "leftLabel": "Promise",
       "type": "method"
     },
     {
       "name": "writeFindText",
       "text": null,
       "snippet": "writeFindText(${1:text})",
-      "description": "Write the given text to the macOS find pasteboard",
-      "leftLabel": null,
+      "description": "Write the given text to the macOS find pasteboard.",
+      "leftLabel": "Promise",
       "type": "method"
     },
     {
@@ -422,7 +422,7 @@
       "text": null,
       "snippet": "writeImage(${1:image})",
       "description": "Write an image to the clipboard, replacing whatever it held.",
-      "leftLabel": null,
+      "leftLabel": "Promise",
       "type": "method"
     },
     {
@@ -438,7 +438,7 @@
       "text": null,
       "snippet": "writeSelectionText(${1:text})",
       "description": "Write the given text to the Linux primary selection.",
-      "leftLabel": null,
+      "leftLabel": "Promise",
       "type": "method"
     }
   ],
@@ -3612,7 +3612,7 @@
       "text": null,
       "snippet": "handlePaste(${1:context})",
       "description": "Offer a paste to each registered provider in turn.",
-      "leftLabel": "Boolean",
+      "leftLabel": "Boolean|Promise",
       "type": "method"
     }
   ],
@@ -6158,6 +6158,14 @@
       "type": "method"
     },
     {
+      "name": "bufferRangesForScreenColumnBlock",
+      "text": null,
+      "snippet": "bufferRangesForScreenColumnBlock(${1:startRow}, ${2:endRow}, ${3:startColumn}, ${4:endColumn})",
+      "description": "Convert a rectangular block of screen positions -- the same two columns across a span of screen rows -- to buffer coordinates in bulk.",
+      "leftLabel": "Array",
+      "type": "method"
+    },
+    {
       "name": "clipBufferPosition",
       "text": null,
       "snippet": "clipBufferPosition(${1:bufferPosition})",
@@ -6210,7 +6218,7 @@
       "text": null,
       "snippet": "copySelectedText(${1:clipboard})",
       "description": "For each selection, copy the selected text.",
-      "leftLabel": null,
+      "leftLabel": "Promise",
       "type": "method"
     },
     {
@@ -6226,7 +6234,7 @@
       "text": null,
       "snippet": "cutSelectedText(${1:options})",
       "description": "For each selection, cut the selected text.",
-      "leftLabel": null,
+      "leftLabel": "Promise",
       "type": "method"
     },
     {
@@ -6346,6 +6354,14 @@
       "text": null,
       "snippet": "deleteToPreviousWordBoundary(${1:options})",
       "description": "Similar to .deleteToBeginningOfWord, but deletes only back to the previous word boundary.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "destroySelections",
+      "text": null,
+      "snippet": "destroySelections(${1:selections})",
+      "description": "Destroy the given Selections as one batch.",
       "leftLabel": null,
       "type": "method"
     },
@@ -7538,7 +7554,7 @@
       "text": null,
       "snippet": "pasteText(${1:options})",
       "description": "For each selection, replace the selected text with the contents of the clipboard.",
-      "leftLabel": null,
+      "leftLabel": "Promise",
       "type": "method"
     },
     {
