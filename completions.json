@@ -9046,14 +9046,6 @@
       "type": "method"
     },
     {
-      "name": "filePathMatchesPatterns",
-      "text": null,
-      "snippet": "filePathMatchesPatterns(${1:filePath}, ${2:rawPatterns})",
-      "description": "Tests the path of a file in the project against a set of globs (using the same semantics as .scan) and reports whether the file satisfies the patterns.",
-      "leftLabel": "Boolean",
-      "type": "method"
-    },
-    {
       "name": "getActiveEmbeddedTextEditor",
       "text": "getActiveEmbeddedTextEditor()",
       "snippet": null,
@@ -9497,7 +9489,7 @@
       "name": "replace",
       "text": null,
       "snippet": "replace(${1:regex}, ${2:replacementText}, ${3:filePaths}, ${4:iterator})",
-      "description": "Performs a replace across all the specified files in the project.",
+      "description": "Performs a replace across all the specified files in the project on disk. Open text buffers observe the writes as external file changes.",
       "leftLabel": "Promise",
       "type": "method"
     },
@@ -9521,7 +9513,7 @@
       "name": "scan",
       "text": null,
       "snippet": "scan(${1:regex}, ${2:options}, ${3:iterator})",
-      "description": "Performs a search across all files in the workspace.",
+      "description": "Performs a search across all files in the workspace as they exist on disk. Open text buffers are not searched.",
       "leftLabel": "Promise",
       "type": "method"
     },
