@@ -50,6 +50,13 @@
       "type": "property"
     },
     {
+      "name": "FileState",
+      "text": "FileState",
+      "description": "The FileState enum namespace.",
+      "leftLabel": "FileState",
+      "type": "property"
+    },
+    {
       "name": "grammars",
       "text": "grammars",
       "description": "A GrammarRegistry instance",
@@ -1750,6 +1757,32 @@
       "description": "Toggle the dock's visibility without changing the Workspace's active pane container.",
       "leftLabel": null,
       "type": "method"
+    }
+  ],
+  "FileState": [
+    {
+      "name": "CONFLICTED",
+      "text": "CONFLICTED",
+      "description": "The document and its backing file diverged.",
+      "type": "property"
+    },
+    {
+      "name": "MODIFIED",
+      "text": "MODIFIED",
+      "description": "The document has local changes.",
+      "type": "property"
+    },
+    {
+      "name": "REMOVED",
+      "text": "REMOVED",
+      "description": "The document's backing file no longer exists.",
+      "type": "property"
+    },
+    {
+      "name": "UNMODIFIED",
+      "text": "UNMODIFIED",
+      "description": "The document matches its saved base.",
+      "type": "property"
     }
   ],
   "GitRepository": [
@@ -3487,7 +3520,7 @@
       "name": "saveItems",
       "text": "saveItems()",
       "snippet": null,
-      "description": "Save all modified items in this pane.",
+      "description": "Save all saveable items whose file state is not unmodified.",
       "leftLabel": "Promise",
       "type": "method"
     },
@@ -5460,6 +5493,14 @@
       "type": "method"
     },
     {
+      "name": "getFileState",
+      "text": "getFileState()",
+      "snippet": null,
+      "description": "Get the buffer's mutually exclusive persistence state.",
+      "leftLabel": "String",
+      "type": "method"
+    },
+    {
       "name": "getFileWatchStartPromise",
       "text": "getFileWatchStartPromise()",
       "snippet": null,
@@ -5644,34 +5685,10 @@
       "type": "method"
     },
     {
-      "name": "isDeleted",
-      "text": "isDeleted()",
-      "snippet": null,
-      "description": "Determine if the buffer is in a deleted state — meaning that it was previously backed by a file on disk, but is no longer.",
-      "leftLabel": null,
-      "type": "method"
-    },
-    {
       "name": "isEmpty",
       "text": "isEmpty()",
       "snippet": null,
       "description": "Determine whether the buffer is empty.",
-      "leftLabel": "Boolean",
-      "type": "method"
-    },
-    {
-      "name": "isInConflict",
-      "text": "isInConflict()",
-      "snippet": null,
-      "description": "Determine if the in-memory contents of the buffer conflict with the on-disk contents of its associated file.",
-      "leftLabel": "Boolean",
-      "type": "method"
-    },
-    {
-      "name": "isModified",
-      "text": "isModified()",
-      "snippet": null,
-      "description": "Determine if the in-memory contents of the buffer differ from its contents on disk.",
       "leftLabel": "Boolean",
       "type": "method"
     },
@@ -5748,18 +5765,18 @@
       "type": "method"
     },
     {
-      "name": "onDidChangeLanguageMode",
+      "name": "onDidChangeFileState",
       "text": null,
-      "snippet": "onDidChangeLanguageMode(${1:callback})",
-      "description": "Call the given callback whenever the buffer's language mode changes.",
+      "snippet": "onDidChangeFileState(${1:callback})",
+      "description": "Invoke the given callback when the value of .getFileState changes.",
       "leftLabel": "Disposable",
       "type": "method"
     },
     {
-      "name": "onDidChangeModified",
+      "name": "onDidChangeLanguageMode",
       "text": null,
-      "snippet": "onDidChangeModified(${1:callback})",
-      "description": "Invoke the given callback if the value of .isModified changes.",
+      "snippet": "onDidChangeLanguageMode(${1:callback})",
+      "description": "Call the given callback whenever the buffer's language mode changes.",
       "leftLabel": "Disposable",
       "type": "method"
     },
@@ -5780,26 +5797,10 @@
       "type": "method"
     },
     {
-      "name": "onDidConflict",
-      "text": null,
-      "snippet": "onDidConflict(${1:callback})",
-      "description": "Invoke the given callback when the in-memory contents of the buffer become in conflict with the contents of the file on disk.",
-      "leftLabel": "Disposable",
-      "type": "method"
-    },
-    {
       "name": "onDidCreateMarker",
       "text": null,
       "snippet": "onDidCreateMarker(${1:callback})",
       "description": "Invoke the given callback when a marker is created.",
-      "leftLabel": "Disposable",
-      "type": "method"
-    },
-    {
-      "name": "onDidDelete",
-      "text": null,
-      "snippet": "onDidDelete(${1:callback})",
-      "description": "Invoke the given callback after the file backing the buffer is deleted.",
       "leftLabel": "Disposable",
       "type": "method"
     },
@@ -6542,6 +6543,14 @@
       "type": "method"
     },
     {
+      "name": "getFileState",
+      "text": "getFileState()",
+      "snippet": null,
+      "description": "one of the values in FileState.",
+      "leftLabel": "String",
+      "type": "method"
+    },
+    {
       "name": "getGrammar",
       "text": "getGrammar()",
       "snippet": null,
@@ -6974,14 +6983,6 @@
       "type": "method"
     },
     {
-      "name": "isDeleted",
-      "text": "isDeleted()",
-      "snippet": null,
-      "description": "true if this editor's buffer previously had a file on disk that has since been deleted (and has not been recreated or saved since). The buffer may still be unmodified — see .isModified.",
-      "leftLabel": "Boolean",
-      "type": "method"
-    },
-    {
       "name": "isEmpty",
       "text": "isEmpty()",
       "snippet": null,
@@ -7026,22 +7027,6 @@
       "text": null,
       "snippet": "isFoldedAtScreenRow(${1:screenRow})",
       "description": "Determine whether the given row in screen coordinates is folded.",
-      "leftLabel": "Boolean",
-      "type": "method"
-    },
-    {
-      "name": "isInConflict",
-      "text": "isInConflict()",
-      "snippet": null,
-      "description": "This can happen if another process writes to a file after you start to edit it in Lumine, but before you're able to save those changes. It can also happen if you switch branches in version control while a certain buffer has uncommitted changes.",
-      "leftLabel": "Boolean",
-      "type": "method"
-    },
-    {
-      "name": "isModified",
-      "text": "isModified()",
-      "snippet": null,
-      "description": "true if this editor has been modified.",
       "leftLabel": "Boolean",
       "type": "method"
     },
@@ -7382,18 +7367,18 @@
       "type": "method"
     },
     {
-      "name": "onDidChangeGrammar",
+      "name": "onDidChangeFileState",
       "text": null,
-      "snippet": "onDidChangeGrammar(${1:callback})",
-      "description": "Calls your callback when the grammar that interprets and colorizes the text has been changed.",
+      "snippet": "onDidChangeFileState(${1:callback})",
+      "description": "Calls your callback when the value of .getFileState changes.",
       "leftLabel": "Disposable",
       "type": "method"
     },
     {
-      "name": "onDidChangeModified",
+      "name": "onDidChangeGrammar",
       "text": null,
-      "snippet": "onDidChangeModified(${1:callback})",
-      "description": "Calls your callback when the result of .isModified changes.",
+      "snippet": "onDidChangeGrammar(${1:callback})",
+      "description": "Calls your callback when the grammar that interprets and colorizes the text has been changed.",
       "leftLabel": "Disposable",
       "type": "method"
     },
@@ -7442,22 +7427,6 @@
       "text": null,
       "snippet": "onDidChangeTitle(${1:callback})",
       "description": "Calls your callback when the buffer's title has changed.",
-      "leftLabel": "Disposable",
-      "type": "method"
-    },
-    {
-      "name": "onDidConflict",
-      "text": null,
-      "snippet": "onDidConflict(${1:callback})",
-      "description": "Calls your callback when the buffer's underlying file changes on disk at a moment when the result of .isModified is true.",
-      "leftLabel": "Disposable",
-      "type": "method"
-    },
-    {
-      "name": "onDidDelete",
-      "text": null,
-      "snippet": "onDidDelete(${1:callback})",
-      "description": "Calls your callback when the buffer's underlying file is deleted on disk.",
       "leftLabel": "Disposable",
       "type": "method"
     },
