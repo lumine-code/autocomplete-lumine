@@ -3807,6 +3807,14 @@
       "type": "method"
     },
     {
+      "name": "compileIgnoredNames",
+      "text": null,
+      "snippet": "compileIgnoredNames(${1:additionalIgnoredNames}, ${2:options})",
+      "description": "Compile the editor's ignored-name semantics into an immutable matcher.",
+      "leftLabel": "Object",
+      "type": "method"
+    },
+    {
       "name": "contains",
       "text": null,
       "snippet": "contains(${1:pathToCheck})",
@@ -4463,6 +4471,14 @@
       "text": null,
       "snippet": "setActiveRepositoryForPath(${1:filePath}, ${2:options})",
       "description": "Resolve the repository for a path and make it the active one.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "update",
+      "text": "update()",
+      "snippet": null,
+      "description": "Discover the current repository set again, then refresh every repository's already-active caches and snapshots.",
       "leftLabel": "Promise",
       "type": "method"
     }
