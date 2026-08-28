@@ -509,6 +509,48 @@
       "type": "method"
     }
   ],
+  "CompositeDisposable": [
+    {
+      "name": "add",
+      "text": null,
+      "snippet": "add(${1:...disposables})",
+      "description": "Add disposables to be disposed when the composite is disposed.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "clear",
+      "text": "clear()",
+      "snippet": null,
+      "description": "Clear all disposables. They will not be disposed by the next call to CompositeDisposable.dispose.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "delete",
+      "text": null,
+      "snippet": "delete(${1:disposable})",
+      "description": "Alias for CompositeDisposable.remove.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "dispose",
+      "text": "dispose()",
+      "snippet": null,
+      "description": "Dispose all disposables added to this composite disposable.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "remove",
+      "text": null,
+      "snippet": "remove(${1:disposable})",
+      "description": "Remove a previously added disposable.",
+      "leftLabel": null,
+      "type": "method"
+    }
+  ],
   "Config": [
     {
       "name": "get",
@@ -1541,6 +1583,16 @@
       "type": "method"
     }
   ],
+  "Disposable": [
+    {
+      "name": "dispose",
+      "text": "dispose()",
+      "snippet": null,
+      "description": "Perform the disposal action, indicating that the resource associated with this disposable is no longer needed.",
+      "leftLabel": null,
+      "type": "method"
+    }
+  ],
   "Dock": [
     {
       "name": "activate",
@@ -1756,6 +1808,56 @@
       "snippet": null,
       "description": "Toggle the dock's visibility without changing the Workspace's active pane container.",
       "leftLabel": null,
+      "type": "method"
+    }
+  ],
+  "Emitter": [
+    {
+      "name": "clear",
+      "text": "clear()",
+      "snippet": null,
+      "description": "Clear out any existing subscribers.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "dispose",
+      "text": "dispose()",
+      "snippet": null,
+      "description": "Unsubscribe all handlers.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "emit",
+      "text": null,
+      "snippet": "emit(${1:eventName}, ${2:value})",
+      "description": "Invoke handlers registered via Emitter.on for the given event name.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "on",
+      "text": null,
+      "snippet": "on(${1:eventName}, ${2:handler}, ${3:unshift})",
+      "description": "Register the given handler function to be invoked whenever events by the given name are emitted via Emitter.emit.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "once",
+      "text": null,
+      "snippet": "once(${1:eventName}, ${2:handler}, ${3:unshift})",
+      "description": "Register the given handler function to be invoked the next time an event with the given name is emitted via Emitter.emit.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "preempt",
+      "text": null,
+      "snippet": "preempt(${1:eventName}, ${2:handler})",
+      "description": "Register the given handler function to be invoked *before* all other handlers existing at the time of subscription whenever events by the given name are emitted via Emitter.emit.",
+      "leftLabel": "Disposable",
       "type": "method"
     }
   ],
@@ -2184,6 +2286,32 @@
       "snippet": "relativize(${1:path})",
       "description": "Makes a path relative to the repository's working directory.",
       "leftLabel": null,
+      "type": "method"
+    }
+  ],
+  "Grammar": [
+    {
+      "name": "onDidUpdate",
+      "text": null,
+      "snippet": "onDidUpdate(${1:callback})",
+      "description": "Invoke the given callback when this grammar is updated due to a grammar it depends on being added or removed from the registry.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "tokenizeLine",
+      "text": null,
+      "snippet": "tokenizeLine(${1:inputLine}, ${2:ruleStack}, ${3:firstLine}, ${4:compatibilityMode}, ${5:appendNewLine})",
+      "description": "Tokenize a line of text.",
+      "leftLabel": "Object",
+      "type": "method"
+    },
+    {
+      "name": "tokenizeLines",
+      "text": null,
+      "snippet": "tokenizeLines(${1:text}, ${2:compatibilityMode})",
+      "description": "Tokenize all lines in the given text.",
+      "leftLabel": "Array<Array<Object>>",
       "type": "method"
     }
   ],

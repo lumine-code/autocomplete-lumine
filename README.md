@@ -25,7 +25,7 @@ npm install
 npm run update -- --editor /path/to/lumine
 ```
 
-`LUMINE_CORE_ROOT` may be set instead of passing `--editor`. Use `npm run update:check -- --editor /path/to/lumine` to verify the committed completion data without rewriting it. Both commands use the canonical JSDoc extractor from the selected editor checkout.
+`LUMINE_CORE_ROOT` may be set instead of passing `--editor`. Use `npm run update:check -- --editor /path/to/lumine` to verify the committed completion data without rewriting it. Both commands use the canonical JSDoc extractor and source registry from the selected editor checkout; dependency sources are resolved from sibling repositories first and the editor's `node_modules` second.
 
 ## Contributing
 
