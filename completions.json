@@ -50,6 +50,13 @@
       "type": "property"
     },
     {
+      "name": "dom",
+      "text": "dom",
+      "description": "Realm-safe DOM helpers for resolving owner Documents and Windows and loading scripts into a surface.",
+      "leftLabel": "DomContext",
+      "type": "property"
+    },
+    {
       "name": "FileState",
       "text": "FileState",
       "description": "The FileState enum namespace.",
@@ -208,6 +215,13 @@
       "text": "workspace",
       "description": "A Workspace instance",
       "leftLabel": "Workspace",
+      "type": "property"
+    },
+    {
+      "name": "workspaceDrops",
+      "text": "workspaceDrops",
+      "description": "Shared protocol and routing for drops on workspace panes and package surfaces such as tab bars.",
+      "leftLabel": "WorkspaceDropManager",
       "type": "property"
     }
   ],
@@ -1808,6 +1822,32 @@
       "snippet": null,
       "description": "Toggle the dock's visibility without changing the Workspace's active pane container.",
       "leftLabel": null,
+      "type": "method"
+    }
+  ],
+  "DomContext": [
+    {
+      "name": "documentFor",
+      "text": null,
+      "snippet": "documentFor(${1:value})",
+      "description": "Resolve the live Document that owns a Window, DOM node, or document-like object.",
+      "leftLabel": "Document|null",
+      "type": "method"
+    },
+    {
+      "name": "loadScript",
+      "text": null,
+      "snippet": "loadScript(${1:target}, ${2:source}, ${3:options})",
+      "description": "Load a script once in a specific Document and optionally return the global it defines in that Window. Filesystem paths are converted to file: URLs. A secondary realm never falls back to the primary renderer's require().",
+      "leftLabel": "Promise<*>",
+      "type": "method"
+    },
+    {
+      "name": "windowFor",
+      "text": null,
+      "snippet": "windowFor(${1:value})",
+      "description": "Resolve the live Window that owns a Window, Document, DOM node, or document-like object.",
+      "leftLabel": "Window|null",
       "type": "method"
     }
   ],
@@ -3421,6 +3461,14 @@
       "type": "method"
     },
     {
+      "name": "getSurface",
+      "text": "getSurface()",
+      "snippet": null,
+      "description": "Return the native-window surface currently presenting this pane.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
       "name": "isActive",
       "text": "isActive()",
       "snippet": null,
@@ -3433,6 +3481,14 @@
       "text": "isDestroyed()",
       "snippet": null,
       "description": "Determine whether this pane has been destroyed.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
+      "name": "isDetached",
+      "text": "isDetached()",
+      "snippet": null,
+      "description": "Determine whether this pane is presented outside the tiled pane tree.",
       "leftLabel": "Boolean",
       "type": "method"
     },
@@ -9095,6 +9151,22 @@
       "type": "method"
     },
     {
+      "name": "addWindowSurfaceTransitionObserver",
+      "text": null,
+      "snippet": "addWindowSurfaceTransitionObserver(${1:callback})",
+      "description": "Participate in every pane-item transition between native-window surfaces. The callback runs before the DOM moves and may return async commit and rollback methods. commit runs after adoption and connection in the new document; rollback runs after physical restoration to the old document.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "attachDetachedPane",
+      "text": null,
+      "snippet": "attachDetachedPane(${1:pane}, ${2:options})",
+      "description": "Move the sole item of a detached pane back into the tiled center.",
+      "leftLabel": "Promise<Pane>",
+      "type": "method"
+    },
+    {
       "name": "beginLayoutDrag",
       "text": "beginLayoutDrag()",
       "snippet": null,
@@ -9156,6 +9228,14 @@
       "snippet": null,
       "description": "Destroy (close) the active pane item.",
       "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "detachPaneItem",
+      "text": null,
+      "snippet": "detachPaneItem(${1:item}, ${2:options})",
+      "description": "Move a center pane item into a one-item pane presented in a native window. The same item and view objects are transferred; they are never serialized or reopened during the operation.",
+      "leftLabel": "Promise<DetachedPane|undefined>",
       "type": "method"
     },
     {
@@ -9327,6 +9407,14 @@
       "type": "method"
     },
     {
+      "name": "getWindowSurface",
+      "text": null,
+      "snippet": "getWindowSurface(${1:itemOrPane})",
+      "description": "Return the renderer window surface currently presenting an item or pane.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
       "name": "hide",
       "text": null,
       "snippet": "hide(${1:itemOrURI})",
@@ -9387,6 +9475,14 @@
       "text": null,
       "snippet": "observePaneItems(${1:callback})",
       "description": "Invoke the given callback with all current and future panes items in the workspace.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "observePaneItemSurface",
+      "text": null,
+      "snippet": "observePaneItemSurface(${1:item}, ${2:callback})",
+      "description": "Observe which native-window surface presents a pane item.",
       "leftLabel": "Disposable",
       "type": "method"
     },
@@ -9681,6 +9777,22 @@
       "type": "method"
     },
     {
+      "name": "getActiveTiledPane",
+      "text": "getActiveTiledPane()",
+      "snippet": null,
+      "description": "Get the last active pane in the primary tiled surface.",
+      "leftLabel": "Pane",
+      "type": "method"
+    },
+    {
+      "name": "getDetachedPanes",
+      "text": "getDetachedPanes()",
+      "snippet": null,
+      "description": "Get the one-item panes presented in detached native windows.",
+      "leftLabel": "Array",
+      "type": "method"
+    },
+    {
       "name": "getPaneItems",
       "text": "getPaneItems()",
       "snippet": null,
@@ -9692,7 +9804,7 @@
       "name": "getPanes",
       "text": "getPanes()",
       "snippet": null,
-      "description": "Get all panes in the workspace center.",
+      "description": "Get all tiled and detached panes in the workspace center.",
       "leftLabel": "Array",
       "type": "method"
     },
@@ -9701,6 +9813,14 @@
       "text": "getTextEditors()",
       "snippet": null,
       "description": "Get all text editors in the workspace center.",
+      "leftLabel": "Array",
+      "type": "method"
+    },
+    {
+      "name": "getTiledPanes",
+      "text": "getTiledPanes()",
+      "snippet": null,
+      "description": "Get the panes participating in the primary window's tiled layout.",
       "leftLabel": "Array",
       "type": "method"
     },
@@ -9822,6 +9942,80 @@
       "snippet": "onWillDestroyPaneItem(${1:callback})",
       "description": "Invoke the given callback when a pane item is about to be destroyed, before the user is prompted to save it.",
       "leftLabel": "Disposable",
+      "type": "method"
+    }
+  ],
+  "WorkspaceDropManager": [
+    {
+      "name": "addProvider",
+      "text": null,
+      "snippet": "addProvider(${1:provider}, ${2:options})",
+      "description": "Register a provider for a serializable workspace drag kind.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "addTarget",
+      "text": null,
+      "snippet": "addTarget(${1:element}, ${2:adapter}, ${3:options})",
+      "description": "Register a workspace drop surface and its visual/placement adapter.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "commit",
+      "text": null,
+      "snippet": "commit(${1:token}, ${2:result})",
+      "description": "Commit a local or cross-window drag session.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "createSession",
+      "text": null,
+      "snippet": "createSession(${1:value}, ${2:callbacks})",
+      "description": "Create an exact, expiring source session for a move between windows.",
+      "leftLabel": "Object",
+      "type": "method"
+    },
+    {
+      "name": "getSession",
+      "text": null,
+      "snippet": "getSession(${1:token})",
+      "description": "Return the exact local value retained for a drag session token.",
+      "leftLabel": "*",
+      "type": "method"
+    },
+    {
+      "name": "inspect",
+      "text": null,
+      "snippet": "inspect(${1:dataTransfer})",
+      "description": "Inspect a drag offer using only types visible in protected drag mode.",
+      "leftLabel": "Object|null",
+      "type": "method"
+    },
+    {
+      "name": "read",
+      "text": null,
+      "snippet": "read(${1:dataTransfer})",
+      "description": "Read and validate a complete Lumine descriptor during drop.",
+      "leftLabel": "Object|null",
+      "type": "method"
+    },
+    {
+      "name": "rollback",
+      "text": null,
+      "snippet": "rollback(${1:token}, ${2:reason})",
+      "description": "Roll back a local or cross-window drag session.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "write",
+      "text": null,
+      "snippet": "write(${1:dataTransfer}, ${2:descriptor})",
+      "description": "Write one versioned Lumine descriptor to a DataTransfer.",
+      "leftLabel": "Object",
       "type": "method"
     }
   ]
