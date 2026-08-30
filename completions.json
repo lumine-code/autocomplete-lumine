@@ -8346,6 +8346,14 @@
       "type": "method"
     },
     {
+      "name": "getTextEditorForElement",
+      "text": null,
+      "snippet": "getTextEditorForElement(${1:target}, ${2:options})",
+      "description": "Resolve the innermost registered text editor containing a DOM target. This is the target-specific counterpart to .getActiveTextEditor: context menus and pointer actions can use it before falling back to the active editor.",
+      "leftLabel": "TextEditor|null",
+      "type": "method"
+    },
+    {
       "name": "maintainConfig",
       "text": null,
       "snippet": "maintainConfig(${1:editor})",
@@ -8660,6 +8668,14 @@
       "type": "method"
     },
     {
+      "name": "closeApplicationMenuPopup",
+      "text": "closeApplicationMenuPopup()",
+      "snippet": null,
+      "description": "Close the current window's native application-menu popup, if any.",
+      "leftLabel": "Promise<Boolean>",
+      "type": "method"
+    },
+    {
       "name": "closeDevTools",
       "text": "closeDevTools()",
       "snippet": null,
@@ -8892,6 +8908,14 @@
       "type": "method"
     },
     {
+      "name": "onDidRequestApplicationMenuPopupSwitch",
+      "text": null,
+      "snippet": "onDidRequestApplicationMenuPopupSwitch(${1:callback})",
+      "description": "Subscribe to requests to replace an open native application-menu popup after the pointer moves over another visible top-level menu anchor.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
       "name": "onDidUnmaximize",
       "text": null,
       "snippet": "onDidUnmaximize(${1:callback})",
@@ -8977,6 +9001,14 @@
       "snippet": null,
       "description": "Show the current window and restore its focus policy.",
       "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "showApplicationMenuPopup",
+      "text": null,
+      "snippet": "showApplicationMenuPopup(${1:request})",
+      "description": "Open a native popup for the current window's application menu.",
+      "leftLabel": "Promise<Boolean>",
       "type": "method"
     },
     {
