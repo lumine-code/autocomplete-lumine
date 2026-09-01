@@ -644,9 +644,9 @@
     {
       "name": "show",
       "text": null,
-      "snippet": "show(${1:target}, ${2:menuTemplate})",
-      "description": "Show a native context menu for a DOM target.",
-      "leftLabel": "Promise",
+      "snippet": "show(${1:target}, ${2:menuTemplate}, ${3:options})",
+      "description": "Show a theme-aware HTML context menu for a DOM target.",
+      "leftLabel": "Object",
       "type": "method"
     }
   ],
@@ -2887,6 +2887,38 @@
       "snippet": "add(${1:items})",
       "description": "Adds the given items to the application menu.",
       "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "createMenuBar",
+      "text": null,
+      "snippet": "createMenuBar(${1:options})",
+      "description": "Create an HTML application-menu bar bound to this manager's live template.",
+      "leftLabel": "Object",
+      "type": "method"
+    },
+    {
+      "name": "createSelectBox",
+      "text": null,
+      "snippet": "createSelectBox(${1:options})",
+      "description": "Create a theme-aware single-choice control with an HTML listbox popup.",
+      "leftLabel": "Object",
+      "type": "method"
+    },
+    {
+      "name": "onDidChange",
+      "text": null,
+      "snippet": "onDidChange(${1:callback})",
+      "description": "Invoke callback whenever the canonical application-menu template or the key bindings displayed beside its commands change.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "showPopup",
+      "text": null,
+      "snippet": "showPopup(${1:options})",
+      "description": "Show a theme-aware HTML command menu at an element, pointer event, or rect.",
+      "leftLabel": "Object",
       "type": "method"
     },
     {
@@ -8668,14 +8700,6 @@
       "type": "method"
     },
     {
-      "name": "closeApplicationMenuPopup",
-      "text": "closeApplicationMenuPopup()",
-      "snippet": null,
-      "description": "Close the current window's native application-menu popup, if any.",
-      "leftLabel": "Promise<Boolean>",
-      "type": "method"
-    },
-    {
       "name": "closeDevTools",
       "text": "closeDevTools()",
       "snippet": null,
@@ -8908,14 +8932,6 @@
       "type": "method"
     },
     {
-      "name": "onDidRequestApplicationMenuPopupSwitch",
-      "text": null,
-      "snippet": "onDidRequestApplicationMenuPopupSwitch(${1:callback})",
-      "description": "Subscribe to requests to replace an open native application-menu popup after the pointer moves over another visible top-level menu anchor.",
-      "leftLabel": "Disposable",
-      "type": "method"
-    },
-    {
       "name": "onDidUnmaximize",
       "text": null,
       "snippet": "onDidUnmaximize(${1:callback})",
@@ -8956,14 +8972,6 @@
       "type": "method"
     },
     {
-      "name": "setAutoHideMenuBar",
-      "text": null,
-      "snippet": "setAutoHideMenuBar(${1:autoHide})",
-      "description": "Control whether the menu bar hides automatically.",
-      "leftLabel": "Promise",
-      "type": "method"
-    },
-    {
       "name": "setFullScreen",
       "text": null,
       "snippet": "setFullScreen(${1:fullScreen})",
@@ -8972,18 +8980,18 @@
       "type": "method"
     },
     {
-      "name": "setMenuBarVisibility",
-      "text": null,
-      "snippet": "setMenuBarVisibility(${1:visible})",
-      "description": "Show or hide the menu bar.",
-      "leftLabel": "Promise",
-      "type": "method"
-    },
-    {
       "name": "setPosition",
       "text": null,
       "snippet": "setPosition(${1:x}, ${2:y})",
       "description": "Set the current screen position.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "setSheetOffset",
+      "text": null,
+      "snippet": "setSheetOffset(${1:offsetY})",
+      "description": "Move native macOS sheets below HTML window chrome.",
       "leftLabel": "Promise",
       "type": "method"
     },
@@ -9001,14 +9009,6 @@
       "snippet": null,
       "description": "Show the current window and restore its focus policy.",
       "leftLabel": "Promise",
-      "type": "method"
-    },
-    {
-      "name": "showApplicationMenuPopup",
-      "text": null,
-      "snippet": "showApplicationMenuPopup(${1:request})",
-      "description": "Open a native popup for the current window's application menu.",
-      "leftLabel": "Promise<Boolean>",
       "type": "method"
     },
     {
