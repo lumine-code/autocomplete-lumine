@@ -6708,6 +6708,14 @@
       "type": "method"
     },
     {
+      "name": "getFoldableRangeAtBufferRow",
+      "text": null,
+      "snippet": "getFoldableRangeAtBufferRow(${1:bufferRow})",
+      "description": "Get the foldable range that starts at the given row in buffer coordinates without creating a fold.",
+      "leftLabel": "Range|null",
+      "type": "method"
+    },
+    {
       "name": "getGrammar",
       "text": "getGrammar()",
       "snippet": null,
@@ -6985,6 +6993,14 @@
       "snippet": null,
       "description": "How long (in milliseconds) to wait for the editor width to settle before re-wrapping soft-wrapped lines. 0 re-wraps immediately.",
       "leftLabel": "Number",
+      "type": "method"
+    },
+    {
+      "name": "getSyntaxNodeAtBufferPosition",
+      "text": null,
+      "snippet": "getSyntaxNodeAtBufferPosition(${1:bufferPosition}, ${2:where})",
+      "description": "Get the smallest Tree-sitter syntax node at the given position in buffer coordinates across all language layers.",
+      "leftLabel": "Object|null",
       "type": "method"
     },
     {
