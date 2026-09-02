@@ -2296,32 +2296,6 @@
       "type": "method"
     }
   ],
-  "Grammar": [
-    {
-      "name": "onDidUpdate",
-      "text": null,
-      "snippet": "onDidUpdate(${1:callback})",
-      "description": "Invoke the given callback when this grammar is updated due to a grammar it depends on being added or removed from the registry.",
-      "leftLabel": "Disposable",
-      "type": "method"
-    },
-    {
-      "name": "tokenizeLine",
-      "text": null,
-      "snippet": "tokenizeLine(${1:inputLine}, ${2:ruleStack}, ${3:firstLine}, ${4:compatibilityMode}, ${5:appendNewLine})",
-      "description": "Tokenize a line of text.",
-      "leftLabel": "Object",
-      "type": "method"
-    },
-    {
-      "name": "tokenizeLines",
-      "text": null,
-      "snippet": "tokenizeLines(${1:text}, ${2:compatibilityMode})",
-      "description": "Tokenize all lines in the given text.",
-      "leftLabel": "Array<Array<Object>>",
-      "type": "method"
-    }
-  ],
   "GrammarRegistry": [
     {
       "name": "addInjectionPoint",
@@ -2365,8 +2339,8 @@
     },
     {
       "name": "getGrammars",
-      "text": null,
-      "snippet": "getGrammars(${1:params})",
+      "text": "getGrammars()",
+      "snippet": null,
       "description": "Get all the grammars in this registry.",
       "leftLabel": "Array",
       "type": "method"
@@ -2392,7 +2366,7 @@
       "text": null,
       "snippet": "loadGrammarSync(${1:grammarPath})",
       "description": "Read a grammar synchronously and add it to this registry.",
-      "leftLabel": "Grammar",
+      "leftLabel": "TreeSitterGrammar",
       "type": "method"
     },
     {
@@ -2440,7 +2414,7 @@
       "text": null,
       "snippet": "readGrammarSync(${1:grammarPath})",
       "description": "Read a grammar synchronously but don't add it to the registry.",
-      "leftLabel": "Grammar",
+      "leftLabel": "TreeSitterGrammar",
       "type": "method"
     },
     {
@@ -2448,7 +2422,7 @@
       "text": null,
       "snippet": "selectGrammar(${1:filePath}, ${2:fileContents})",
       "description": "Select a grammar for the given file path and file contents.",
-      "leftLabel": "Grammar",
+      "leftLabel": "TreeSitterGrammar|Object",
       "type": "method"
     }
   ],
@@ -6737,7 +6711,7 @@
       "name": "getGrammar",
       "text": "getGrammar()",
       "snippet": null,
-      "description": "Get the current Grammar of this editor.",
+      "description": "Get the current TreeSitterGrammar, or the null grammar sentinel.",
       "leftLabel": null,
       "type": "method"
     },
@@ -8177,7 +8151,7 @@
       "name": "syntaxTreeScopeDescriptorForBufferPosition",
       "text": null,
       "snippet": "syntaxTreeScopeDescriptorForBufferPosition(${1:bufferPosition})",
-      "description": "Get the syntactic tree ScopeDescriptor for the given position in buffer coordinates or the syntactic ScopeDescriptor for TextMate language mode",
+      "description": "Get the syntactic tree ScopeDescriptor for the given position in buffer coordinates.",
       "leftLabel": "ScopeDescriptor",
       "type": "method"
     },
