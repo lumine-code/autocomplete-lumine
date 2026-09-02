@@ -2000,6 +2000,14 @@
       "type": "method"
     },
     {
+      "name": "getConfigValuesAsync",
+      "text": null,
+      "snippet": "getConfigValuesAsync(${1:keys})",
+      "description": "Read several effective Git configuration values in one native repository pass. Every requested key is present on the resolved plain object and maps to a String value or null when unset.",
+      "leftLabel": "Promise<Object>",
+      "type": "method"
+    },
+    {
       "name": "getDescription",
       "text": "getDescription()",
       "snippet": null,
@@ -2040,10 +2048,18 @@
       "type": "method"
     },
     {
+      "name": "getIndexFile",
+      "text": null,
+      "snippet": "getIndexFile(${1:filePath}, ${2:options})",
+      "description": "Read a file's staged contents directly from the repository index.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
       "name": "getLineDiffsAsync",
       "text": null,
       "snippet": "getLineDiffsAsync(${1:filePath}, ${2:text})",
-      "description": "Computes gutter line diffs off the renderer thread via the git-host worker (fetching and caching the HEAD blob, diffing in JS) instead of synchronously via libgit2.",
+      "description": "Computes gutter line diffs off the renderer thread via the git-host worker (fetching and caching the HEAD blob, then diffing with git-utils) without blocking the renderer.",
       "leftLabel": "Promise",
       "type": "method"
     },
