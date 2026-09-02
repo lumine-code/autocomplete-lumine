@@ -6724,6 +6724,14 @@
       "type": "method"
     },
     {
+      "name": "getGrammarQueryCaptureGroups",
+      "text": null,
+      "snippet": "getGrammarQueryCaptureGroups(${1:queryType}, ${2:options})",
+      "description": "Run a grammar query against the current root syntax tree and all active injected language layers.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
       "name": "getGutters",
       "text": "getGutters()",
       "snippet": null,
@@ -7081,6 +7089,14 @@
       "snippet": "gutterWithName(${1:name})",
       "description": "Get the gutter with the given name.",
       "leftLabel": "Gutter",
+      "type": "method"
+    },
+    {
+      "name": "hasGrammarQuery",
+      "text": null,
+      "snippet": "hasGrammarQuery(${1:queryType})",
+      "description": "Determine whether the current root grammar or an active injected grammar declares a query of the given type.",
+      "leftLabel": "Boolean",
       "type": "method"
     },
     {
@@ -8273,6 +8289,14 @@
       "snippet": null,
       "description": "Determine if the buffer uses hard or soft tabs.",
       "leftLabel": "Boolean|undefined",
+      "type": "method"
+    },
+    {
+      "name": "whenGrammarSettled",
+      "text": null,
+      "snippet": "whenGrammarSettled(${1:options})",
+      "description": "Wait for the current grammar to finish its initial parse and any pending transaction, including injected language layers.",
+      "leftLabel": "Promise",
       "type": "method"
     }
   ],
