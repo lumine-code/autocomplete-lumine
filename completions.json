@@ -7012,6 +7012,14 @@
       "type": "method"
     },
     {
+      "name": "getSyntaxNodeContainingBufferRange",
+      "text": null,
+      "snippet": "getSyntaxNodeContainingBufferRange(${1:bufferRange}, ${2:where})",
+      "description": "Get the smallest Tree-sitter syntax node that contains the given range in buffer coordinates across all language layers shared by both endpoints.",
+      "leftLabel": "Object|null",
+      "type": "method"
+    },
+    {
       "name": "getTabLength",
       "text": "getTabLength()",
       "snippet": null,
