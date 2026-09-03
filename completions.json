@@ -348,6 +348,24 @@
       "type": "method"
     }
   ],
+  "BufferedNodeProcess": [
+    {
+      "name": "kill",
+      "text": "kill()",
+      "snippet": null,
+      "description": "Terminate the process.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "onWillThrowError",
+      "text": null,
+      "snippet": "onWillThrowError(${1:callback})",
+      "description": "Invoke the given callback when the process raises an error. Usually this is due to the command not being available or not on the PATH. You can call handle() on the object passed to your callback to indicate that you have handled this error.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    }
+  ],
   "BufferedProcess": [
     {
       "name": "kill",
@@ -2610,14 +2628,6 @@
       "type": "method"
     },
     {
-      "name": "cancel",
-      "text": null,
-      "snippet": "cancel(${1:reason})",
-      "description": "Cancels and hides the dialog, then emits onDidCancel.",
-      "leftLabel": null,
-      "type": "method"
-    },
-    {
       "name": "clearLoadingState",
       "text": "clearLoadingState()",
       "snippet": null,
@@ -2658,14 +2668,6 @@
       "type": "method"
     },
     {
-      "name": "focus",
-      "text": "focus()",
-      "snippet": null,
-      "description": "Focuses the query editor input.",
-      "leftLabel": null,
-      "type": "method"
-    },
-    {
       "name": "getActions",
       "text": "getActions()",
       "snippet": null,
@@ -2686,14 +2688,6 @@
       "text": "getContentElement()",
       "snippet": null,
       "description": "Return the caller-owned content element.",
-      "leftLabel": null,
-      "type": "method"
-    },
-    {
-      "name": "getCrumb",
-      "text": "getCrumb()",
-      "snippet": null,
-      "description": "Return the declared modal breadcrumb label.",
       "leftLabel": null,
       "type": "method"
     },
@@ -2726,22 +2720,6 @@
       "text": "getLoadingState()",
       "snippet": null,
       "description": "Return the current loading message and badge.",
-      "leftLabel": null,
-      "type": "method"
-    },
-    {
-      "name": "getPanel",
-      "text": "getPanel()",
-      "snippet": null,
-      "description": "Returns the modal panel that hosts the dialog, creating it (hidden) on first access. The panel item is options.panelItem when one was supplied, otherwise the dialog model itself. The panel carries the dialog's crumb as its declared breadcrumb label.",
-      "leftLabel": "Panel",
-      "type": "method"
-    },
-    {
-      "name": "getPanelItem",
-      "text": "getPanelItem()",
-      "snippet": null,
-      "description": "Return the item owned by the dialog's modal panel.",
       "leftLabel": null,
       "type": "method"
     },
@@ -2802,14 +2780,6 @@
       "type": "method"
     },
     {
-      "name": "hide",
-      "text": "hide()",
-      "snippet": null,
-      "description": "Hides the dialog. Focus returns to the previously focused element via the workspace's modal panel focus restoration.",
-      "leftLabel": null,
-      "type": "method"
-    },
-    {
       "name": "isActionPending",
       "text": null,
       "snippet": "isActionPending(${1:command})",
@@ -2834,34 +2804,10 @@
       "type": "method"
     },
     {
-      "name": "isVisible",
-      "text": "isVisible()",
-      "snippet": null,
-      "description": "Returns whether the dialog is currently visible.",
-      "leftLabel": "boolean",
-      "type": "method"
-    },
-    {
-      "name": "onDidCancel",
-      "text": null,
-      "snippet": "onDidCancel(${1:callback})",
-      "description": "Invoke a callback after the dialog is cancelled.",
-      "leftLabel": null,
-      "type": "method"
-    },
-    {
       "name": "onDidChangeQuery",
       "text": null,
       "snippet": "onDidChangeQuery(${1:callback})",
       "description": "Invoke a callback when the query changes.",
-      "leftLabel": null,
-      "type": "method"
-    },
-    {
-      "name": "onDidChangeVisible",
-      "text": null,
-      "snippet": "onDidChangeVisible(${1:callback})",
-      "description": "Invoke a callback when modal visibility changes.",
       "leftLabel": null,
       "type": "method"
     },
@@ -2890,30 +2836,6 @@
       "type": "method"
     },
     {
-      "name": "onDidHide",
-      "text": null,
-      "snippet": "onDidHide(${1:callback})",
-      "description": "Invoke a callback after the dialog is hidden.",
-      "leftLabel": null,
-      "type": "method"
-    },
-    {
-      "name": "onDidOpen",
-      "text": null,
-      "snippet": "onDidOpen(${1:callback})",
-      "description": "Invoke a callback after a fresh dialog open.",
-      "leftLabel": null,
-      "type": "method"
-    },
-    {
-      "name": "onDidResume",
-      "text": null,
-      "snippet": "onDidResume(${1:callback})",
-      "description": "Invoke a callback when a modal-flow step resumes.",
-      "leftLabel": null,
-      "type": "method"
-    },
-    {
       "name": "onDidStartAction",
       "text": null,
       "snippet": "onDidStartAction(${1:callback})",
@@ -2935,14 +2857,6 @@
       "snippet": null,
       "description": "Clears the query editor text.",
       "leftLabel": null,
-      "type": "method"
-    },
-    {
-      "name": "restoreQuery",
-      "text": "restoreQuery()",
-      "snippet": null,
-      "description": "Puts back the query the dialog was last closed with, selected so the next keystroke replaces it. A fresh show clears the query; this is how it is asked for again.",
-      "leftLabel": "boolean",
       "type": "method"
     },
     {
@@ -2974,14 +2888,6 @@
       "text": null,
       "snippet": "setContentElement(${1:contentElement})",
       "description": "Replace the caller-owned content element.",
-      "leftLabel": null,
-      "type": "method"
-    },
-    {
-      "name": "setCrumb",
-      "text": null,
-      "snippet": "setCrumb(${1:crumb})",
-      "description": "Set the modal breadcrumb label.",
       "leftLabel": null,
       "type": "method"
     },
@@ -3050,35 +2956,157 @@
       "type": "method"
     },
     {
+      "name": "update",
+      "text": null,
+      "snippet": "update(${1:props})",
+      "description": "Update one or more documented dialog options.",
+      "leftLabel": null,
+      "type": "method"
+    }
+  ],
+  "InputDialogHost": [
+    {
+      "name": "cancel",
+      "text": null,
+      "snippet": "cancel(${1:reason})",
+      "description": "Dismiss the modal and emit a cancellation event.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "destroy",
+      "text": "destroy()",
+      "snippet": null,
+      "description": "Destroy the host and its panel. A model created from options is destroyed with it; a model passed to the factory remains alive.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "focus",
+      "text": "focus()",
+      "snippet": null,
+      "description": "Focus the model's query editor.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "getModel",
+      "text": "getModel()",
+      "snippet": null,
+      "description": "Return the complete detached dialog model.",
+      "leftLabel": "InputDialog",
+      "type": "method"
+    },
+    {
+      "name": "getPanel",
+      "text": "getPanel()",
+      "snippet": null,
+      "description": "Materialize and return the underlying modal Panel. Calling this method is the first point at which the host registers UI with the workspace.",
+      "leftLabel": "Panel",
+      "type": "method"
+    },
+    {
+      "name": "hide",
+      "text": "hide()",
+      "snippet": null,
+      "description": "Hide the modal without emitting cancellation.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "isDestroyed",
+      "text": "isDestroyed()",
+      "snippet": null,
+      "description": "Return whether this host has been destroyed.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
+      "name": "isVisible",
+      "text": "isVisible()",
+      "snippet": null,
+      "description": "Return whether this host's modal panel is visible.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
+      "name": "onDidCancel",
+      "text": null,
+      "snippet": "onDidCancel(${1:callback})",
+      "description": "Invoke a callback when the host is cancelled.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidChangeVisible",
+      "text": null,
+      "snippet": "onDidChangeVisible(${1:callback})",
+      "description": "Invoke a callback when the host's visibility changes.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidDestroy",
+      "text": null,
+      "snippet": "onDidDestroy(${1:callback})",
+      "description": "Invoke a callback when the host is destroyed.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidHide",
+      "text": null,
+      "snippet": "onDidHide(${1:callback})",
+      "description": "Invoke a callback when a modal session fully hides.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidOpen",
+      "text": null,
+      "snippet": "onDidOpen(${1:callback})",
+      "description": "Invoke a callback when a fresh modal session opens.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidResume",
+      "text": null,
+      "snippet": "onDidResume(${1:callback})",
+      "description": "Invoke a callback when a suspended modal-flow session resumes.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "restoreQuery",
+      "text": "restoreQuery()",
+      "snippet": null,
+      "description": "Restore and select the query remembered from the previous session.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
       "name": "show",
       "text": null,
       "snippet": "show(${1:options})",
-      "description": "Shows the dialog as a modal panel.",
-      "leftLabel": null,
+      "description": "Show the modal host and begin a model session.",
+      "leftLabel": "Promise",
       "type": "method"
     },
     {
       "name": "showActions",
       "text": "showActions()",
       "snippet": null,
-      "description": "Opens the explicitly declared actions in the workspace's shared action picker, preserving this dialog as the previous modal-flow step.",
-      "leftLabel": "Promise<boolean>",
+      "description": "Open the shared picker for actions available on the model.",
+      "leftLabel": "Promise",
       "type": "method"
     },
     {
       "name": "toggle",
-      "text": "toggle()",
-      "snippet": null,
-      "description": "Toggles the visibility of the dialog.",
-      "leftLabel": null,
-      "type": "method"
-    },
-    {
-      "name": "update",
       "text": null,
-      "snippet": "update(${1:props})",
-      "description": "Update one or more documented dialog options.",
-      "leftLabel": null,
+      "snippet": "toggle(${1:options})",
+      "description": "Hide a visible host or show a hidden one.",
+      "leftLabel": "Promise|undefined",
       "type": "method"
     }
   ],
@@ -5772,10 +5800,26 @@
   ],
   "SelectList": [
     {
-      "name": "cancelSelection",
+      "name": "addAction",
       "text": null,
-      "snippet": "cancelSelection(${1:reason})",
-      "description": "Cancels the selection, hides the list, and emits onDidCancel.",
+      "snippet": "addAction(${1:action})",
+      "description": "Add an action and return a Disposable that removes it.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "clearLoadingState",
+      "text": "clearLoadingState()",
+      "snippet": null,
+      "description": "Clear the current loading state.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "clearQuery",
+      "text": "clearQuery()",
+      "snippet": null,
+      "description": "Clear the query text.",
       "leftLabel": null,
       "type": "method"
     },
@@ -5784,6 +5828,22 @@
       "text": "clearRecentItems()",
       "snippet": null,
       "description": "Clear the recent section.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "clearStatus",
+      "text": "clearStatus()",
+      "snippet": null,
+      "description": "Clear the episodic status.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "confirm",
+      "text": "confirm()",
+      "snippet": null,
+      "description": "Confirms the dialog with the current query through its primary action, or emits onDidConfirm when no primary action is declared.",
       "leftLabel": null,
       "type": "method"
     },
@@ -5799,8 +5859,40 @@
       "name": "destroy",
       "text": "destroy()",
       "snippet": null,
+      "description": "Destroys the dialog and cleans up resources.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "destroyNow",
+      "text": "destroyNow()",
+      "snippet": null,
       "description": "Destroys the select list and cleans up resources.",
       "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "getActions",
+      "text": "getActions()",
+      "snippet": null,
+      "description": "Return the complete declared action catalogue.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "getAvailableActions",
+      "text": null,
+      "snippet": "getAvailableActions(${1:context})",
+      "description": "Return evaluated actions for the current context.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "getContentElement",
+      "text": "getContentElement()",
+      "snippet": null,
+      "description": "Return the caller-owned content element.",
+      "leftLabel": null,
       "type": "method"
     },
     {
@@ -5809,6 +5901,14 @@
       "snippet": null,
       "description": "Return the currently displayed page without UI rows.",
       "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "getElement",
+      "text": "getElement()",
+      "snippet": null,
+      "description": "Return the root element rendered for this dialog.",
+      "leftLabel": "HTMLElement",
       "type": "method"
     },
     {
@@ -5825,6 +5925,22 @@
       "snippet": "getFilterKey(${1:item})",
       "description": "Returns the filter key for an item.",
       "leftLabel": "string|null",
+      "type": "method"
+    },
+    {
+      "name": "getHeaderElement",
+      "text": "getHeaderElement()",
+      "snippet": null,
+      "description": "Return the caller-owned header element.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "getInfoMessage",
+      "text": "getInfoMessage()",
+      "snippet": null,
+      "description": "Return the resting information message.",
+      "leftLabel": null,
       "type": "method"
     },
     {
@@ -5852,6 +5968,14 @@
       "type": "method"
     },
     {
+      "name": "getLoadingState",
+      "text": "getLoadingState()",
+      "snippet": null,
+      "description": "Return the current loading message and badge.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
       "name": "getMatchCount",
       "text": "getMatchCount()",
       "snippet": null,
@@ -5872,6 +5996,30 @@
       "text": "getParsedQuery()",
       "snippet": null,
       "description": "Return the parsed search text and package metadata.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "getPlaceholderText",
+      "text": "getPlaceholderText()",
+      "snippet": null,
+      "description": "Return the query editor placeholder.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "getQuery",
+      "text": "getQuery()",
+      "snippet": null,
+      "description": "Return the raw query editor text.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "getQueryEditor",
+      "text": "getQueryEditor()",
+      "snippet": null,
+      "description": "Return the full TextEditor model used for the query.",
       "leftLabel": null,
       "type": "method"
     },
@@ -5932,10 +6080,58 @@
       "type": "method"
     },
     {
+      "name": "getSource",
+      "text": "getSource()",
+      "snippet": null,
+      "description": "Return the configured asynchronous source, or null.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "getStatus",
+      "text": "getStatus()",
+      "snippet": null,
+      "description": "Return the current episodic status.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "hasAvailableActions",
+      "text": null,
+      "snippet": "hasAvailableActions(${1:context})",
+      "description": "Return whether an action applies to the current context.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
       "name": "hasMoreItems",
       "text": "hasMoreItems()",
       "snippet": null,
       "description": "Return whether another result page remains.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "isActionPending",
+      "text": null,
+      "snippet": "isActionPending(${1:command})",
+      "description": "Return whether any action, or one named action, is currently running.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "isDestroyed",
+      "text": "isDestroyed()",
+      "snippet": null,
+      "description": "Return whether this dialog has been destroyed.",
+      "leftLabel": "boolean",
+      "type": "method"
+    },
+    {
+      "name": "isLoading",
+      "text": "isLoading()",
+      "snippet": null,
+      "description": "Return whether source work or its debounce is pending.",
       "leftLabel": null,
       "type": "method"
     },
@@ -5956,6 +6152,14 @@
       "type": "method"
     },
     {
+      "name": "onDidChangeQuery",
+      "text": null,
+      "snippet": "onDidChangeQuery(${1:callback})",
+      "description": "Invoke a callback when the query changes.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
       "name": "onDidChangeRecentItemIds",
       "text": null,
       "snippet": "onDidChangeRecentItemIds(${1:callback})",
@@ -5968,6 +6172,14 @@
       "text": null,
       "snippet": "onDidChangeSelection(${1:callback})",
       "description": "Invoke a callback when the logical selection changes.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "onDidConfirm",
+      "text": null,
+      "snippet": "onDidConfirm(${1:callback})",
+      "description": "Invoke a callback when confirmation has no primary action.",
       "leftLabel": null,
       "type": "method"
     },
@@ -5988,6 +6200,30 @@
       "type": "method"
     },
     {
+      "name": "onDidDestroy",
+      "text": null,
+      "snippet": "onDidDestroy(${1:callback})",
+      "description": "Invoke a callback immediately before the dialog is destroyed.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "onDidFinishAction",
+      "text": null,
+      "snippet": "onDidFinishAction(${1:callback})",
+      "description": "Invoke a callback when an action finishes.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "onDidStartAction",
+      "text": null,
+      "snippet": "onDidStartAction(${1:callback})",
+      "description": "Invoke a callback when an action starts.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
       "name": "recordRecentItem",
       "text": null,
       "snippet": "recordRecentItem(${1:item})",
@@ -6004,6 +6240,14 @@
       "type": "method"
     },
     {
+      "name": "reload",
+      "text": "reload()",
+      "snippet": null,
+      "description": "Reload the configured source immediately.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
       "name": "removeRecentItem",
       "text": null,
       "snippet": "removeRecentItem(${1:itemOrId})",
@@ -6012,10 +6256,26 @@
       "type": "method"
     },
     {
+      "name": "reset",
+      "text": "reset()",
+      "snippet": null,
+      "description": "Clears the query editor text.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
       "name": "resetDisplayedItemLimit",
       "text": "resetDisplayedItemLimit()",
       "snippet": null,
       "description": "Collapse displayed results to the first page.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "runAction",
+      "text": null,
+      "snippet": "runAction(${1:command})",
+      "description": "Run a declared action through the shared action runner.",
       "leftLabel": null,
       "type": "method"
     },
@@ -6100,10 +6360,82 @@
       "type": "method"
     },
     {
+      "name": "selectQuery",
+      "text": "selectQuery()",
+      "snippet": null,
+      "description": "Select the complete query.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "setActions",
+      "text": null,
+      "snippet": "setActions(${1:actions})",
+      "description": "Replace the action catalogue.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "setContentElement",
+      "text": null,
+      "snippet": "setContentElement(${1:contentElement})",
+      "description": "Replace the caller-owned content element.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "setHeaderElement",
+      "text": null,
+      "snippet": "setHeaderElement(${1:headerElement})",
+      "description": "Replace the caller-owned header element.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "setInfoMessage",
+      "text": null,
+      "snippet": "setInfoMessage(${1:infoMessage})",
+      "description": "Set the resting information message.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
       "name": "setItems",
       "text": null,
       "snippet": "setItems(${1:items}, ${2:options})",
       "description": "Replace a flat item source while preserving selection by default.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "setLoadingState",
+      "text": null,
+      "snippet": "setLoadingState(${1:loading})",
+      "description": "Set the current loading message and badge.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "setPlaceholderText",
+      "text": null,
+      "snippet": "setPlaceholderText(${1:placeholderText})",
+      "description": "Set the query editor placeholder.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "setQuery",
+      "text": null,
+      "snippet": "setQuery(${1:query})",
+      "description": "Set the query text and optionally select it.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "setQueryFromSelection",
+      "text": "setQueryFromSelection()",
+      "snippet": null,
+      "description": "Use the active editor's single-line selection as the query.",
       "leftLabel": null,
       "type": "method"
     },
@@ -6148,11 +6480,173 @@
       "type": "method"
     },
     {
+      "name": "setStatus",
+      "text": null,
+      "snippet": "setStatus(${1:status})",
+      "description": "Set the episodic status.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
       "name": "showMore",
       "text": null,
       "snippet": "showMore(${1:options})",
       "description": "Reveals the next batch of matches in place of the \"Show more…\" row. The first newly revealed item takes the selection — it sits exactly where the row was.",
       "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "update",
+      "text": null,
+      "snippet": "update(${1:props})",
+      "description": "Update one or more documented dialog options.",
+      "leftLabel": null,
+      "type": "method"
+    }
+  ],
+  "SelectListHost": [
+    {
+      "name": "cancel",
+      "text": null,
+      "snippet": "cancel(${1:reason})",
+      "description": "Dismiss the modal and emit a cancellation event.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "destroy",
+      "text": "destroy()",
+      "snippet": null,
+      "description": "Destroy the host and its panel. A model created from options is destroyed with it; a model passed to the factory remains alive.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "focus",
+      "text": "focus()",
+      "snippet": null,
+      "description": "Focus the model's query editor.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "getModel",
+      "text": "getModel()",
+      "snippet": null,
+      "description": "Return the complete detached select-list model.",
+      "leftLabel": "SelectList",
+      "type": "method"
+    },
+    {
+      "name": "getPanel",
+      "text": "getPanel()",
+      "snippet": null,
+      "description": "Materialize and return the underlying modal Panel. Calling this method is the first point at which the host registers UI with the workspace.",
+      "leftLabel": "Panel",
+      "type": "method"
+    },
+    {
+      "name": "hide",
+      "text": "hide()",
+      "snippet": null,
+      "description": "Hide the modal without emitting cancellation.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "isDestroyed",
+      "text": "isDestroyed()",
+      "snippet": null,
+      "description": "Return whether this host has been destroyed.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
+      "name": "isVisible",
+      "text": "isVisible()",
+      "snippet": null,
+      "description": "Return whether this host's modal panel is visible.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
+      "name": "onDidCancel",
+      "text": null,
+      "snippet": "onDidCancel(${1:callback})",
+      "description": "Invoke a callback when the host is cancelled.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidChangeVisible",
+      "text": null,
+      "snippet": "onDidChangeVisible(${1:callback})",
+      "description": "Invoke a callback when the host's visibility changes.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidDestroy",
+      "text": null,
+      "snippet": "onDidDestroy(${1:callback})",
+      "description": "Invoke a callback when the host is destroyed.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidHide",
+      "text": null,
+      "snippet": "onDidHide(${1:callback})",
+      "description": "Invoke a callback when a modal session fully hides.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidOpen",
+      "text": null,
+      "snippet": "onDidOpen(${1:callback})",
+      "description": "Invoke a callback when a fresh modal session opens.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidResume",
+      "text": null,
+      "snippet": "onDidResume(${1:callback})",
+      "description": "Invoke a callback when a suspended modal-flow session resumes.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "restoreQuery",
+      "text": "restoreQuery()",
+      "snippet": null,
+      "description": "Restore and select the query remembered from the previous session.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
+      "name": "show",
+      "text": null,
+      "snippet": "show(${1:options})",
+      "description": "Show the modal host and begin a model session.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "showActions",
+      "text": "showActions()",
+      "snippet": null,
+      "description": "Open the shared picker for actions available on the model.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "toggle",
+      "text": null,
+      "snippet": "toggle(${1:options})",
+      "description": "Hide a visible host or show a hidden one.",
+      "leftLabel": "Promise|undefined",
       "type": "method"
     }
   ],
@@ -10016,6 +10510,14 @@
       "type": "method"
     },
     {
+      "name": "addInputDialog",
+      "text": null,
+      "snippet": "addInputDialog(${1:modelOrOptions}, ${2:hostOptions})",
+      "description": "Create a lazy InputDialogHost. Passing options creates an owned model; passing a model from .buildInputDialog borrows it. Ownership, one-host enforcement and lazy Panel/DOM materialization match .addSelectList.",
+      "leftLabel": "InputDialogHost",
+      "type": "method"
+    },
+    {
       "name": "addLeftPanel",
       "text": null,
       "snippet": "addLeftPanel(${1:options})",
@@ -10048,6 +10550,14 @@
       "type": "method"
     },
     {
+      "name": "addSelectList",
+      "text": null,
+      "snippet": "addSelectList(${1:modelOrOptions}, ${2:hostOptions})",
+      "description": "Create a lazy SelectListHost. Passing model options creates a model owned by the host; passing a model from .buildSelectList borrows it. Destroying an owned host destroys its model, while a borrowed model remains available and may be hosted again. A model can have only one live host.",
+      "leftLabel": "SelectListHost",
+      "type": "method"
+    },
+    {
       "name": "addTopPanel",
       "text": null,
       "snippet": "addTopPanel(${1:options})",
@@ -10067,7 +10577,7 @@
       "name": "buildInputDialog",
       "text": null,
       "snippet": "buildInputDialog(${1:options})",
-      "description": "Create a full InputDialog model whose query editor is the value.",
+      "description": "Create a detached InputDialog model whose query editor is the value.",
       "leftLabel": "InputDialog",
       "type": "method"
     },
@@ -10075,7 +10585,7 @@
       "name": "buildSelectList",
       "text": null,
       "snippet": "buildSelectList(${1:options})",
-      "description": "Create a full fuzzy-searchable SelectList model.",
+      "description": "Create a detached fuzzy-searchable SelectList model.",
       "leftLabel": "SelectList",
       "type": "method"
     },

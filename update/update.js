@@ -86,12 +86,31 @@ function methodSuggestion(member) {
   return suggestion;
 }
 
+function instanceMembersFor(cls, classesByName, visiting = new Set()) {
+  if (visiting.has(cls.name)) return [];
+  const nextVisiting = new Set(visiting).add(cls.name);
+  const inherited = cls.superClass ? classesByName.get(cls.superClass) : null;
+  const members = inherited ? instanceMembersFor(inherited, classesByName, nextVisiting) : [];
+  const byApiSlot = new Map(
+    members.map((member) => [
+      `${["property", "get", "set"].includes(member.kind) ? "property" : member.kind}:${member.name}`,
+      member,
+    ]),
+  );
+  for (const member of cls.members.filter(
+    (candidate) => !candidate.static && candidate.kind !== "constructor",
+  )) {
+    const slot = `${["property", "get", "set"].includes(member.kind) ? "property" : member.kind}:${member.name}`;
+    byApiSlot.set(slot, member);
+  }
+  return [...byApiSlot.values()];
+}
+
 function completionsFromApi(api) {
   const completions = {};
+  const classesByName = new Map(api.classes.map((cls) => [cls.name, cls]));
   for (const cls of api.classes) {
-    const instanceMembers = cls.members.filter(
-      (member) => !member.static && member.kind !== "constructor",
-    );
+    const instanceMembers = instanceMembersFor(cls, classesByName);
     // A documented namespace such as FileState has only static accessors, but
     // the global `lumine.FileState` property is typed as that namespace. Feed
     // those constants to the same type-based completion path as instance

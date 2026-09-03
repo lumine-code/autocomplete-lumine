@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 const temp = require("@lumine-code/temp");
+const completions = require("../completions.json");
 
 describe("Lumine API autocompletions", () => {
   let [editor, provider] = [];
@@ -171,5 +172,17 @@ describe("Lumine API autocompletions", () => {
     editor.setText("lumine.runtime.");
     editor.setCursorBufferPosition([0, Infinity]);
     expect(completionNamed("whenShellEnvironmentLoaded").text).toBe("whenShellEnvironmentLoaded()");
+  });
+
+  it("includes dialog host factories and inherited host methods", () => {
+    const workspaceNames = completions.Workspace.map(({ name }) => name);
+    expect(workspaceNames).toContain("addInputDialog");
+    expect(workspaceNames).toContain("addSelectList");
+
+    const selectListHostNames = completions.SelectListHost.map(({ name }) => name);
+    expect(selectListHostNames).toContain("getModel");
+    expect(selectListHostNames).toContain("show");
+    expect(selectListHostNames).toContain("showActions");
+    expect(selectListHostNames).toContain("destroy");
   });
 });
