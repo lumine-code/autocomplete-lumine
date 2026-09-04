@@ -2029,7 +2029,7 @@
       "name": "getConfigValueAsync",
       "text": null,
       "snippet": "getConfigValueAsync(${1:key})",
-      "description": "Asynchronously read a git configuration value via the git-host worker (git config --get), the off-thread replacement for the synchronous libgit2 config lookup. Resolves to the value or null when unset.",
+      "description": "Asynchronously read a git configuration value via the git-host worker, without exposing the selected backend. Resolves to the value or null when unset.",
       "leftLabel": "Promise<String|null>",
       "type": "method"
     },
@@ -2037,7 +2037,7 @@
       "name": "getConfigValuesAsync",
       "text": null,
       "snippet": "getConfigValuesAsync(${1:keys})",
-      "description": "Read several effective Git configuration values in one native repository pass. Every requested key is present on the resolved plain object and maps to a String value or null when unset.",
+      "description": "Read several effective Git configuration values in one repository pass. Every requested key is present on the resolved plain object and maps to a String value or null when unset.",
       "leftLabel": "Promise<Object>",
       "type": "method"
     },
@@ -2093,7 +2093,7 @@
       "name": "getLineDiffsAsync",
       "text": null,
       "snippet": "getLineDiffsAsync(${1:filePath}, ${2:text})",
-      "description": "Computes gutter line diffs off the renderer thread via the git-host worker (fetching and caching the HEAD blob, then diffing with git-utils) without blocking the renderer.",
+      "description": "Computes gutter line diffs off the renderer thread via the git-host worker (fetching and caching the HEAD blob, then diffing with the selected backend) without blocking the renderer.",
       "leftLabel": "Promise",
       "type": "method"
     },
@@ -10425,6 +10425,14 @@
       "snippet": null,
       "description": "Show the current window and restore its focus policy.",
       "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "showOpenDialog",
+      "text": null,
+      "snippet": "showOpenDialog(${1:options})",
+      "description": "Show an open dialog owned by the current window.",
+      "leftLabel": "Promise<Object>",
       "type": "method"
     },
     {
