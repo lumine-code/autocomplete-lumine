@@ -2029,7 +2029,7 @@
       "name": "getConfigValueAsync",
       "text": null,
       "snippet": "getConfigValueAsync(${1:key})",
-      "description": "Asynchronously read a git configuration value via the git-host worker, without exposing the selected backend. Resolves to the value or null when unset.",
+      "description": "Asynchronously read a git configuration value via the git-host worker. Resolves to the value or null when unset.",
       "leftLabel": "Promise<String|null>",
       "type": "method"
     },
@@ -2093,7 +2093,7 @@
       "name": "getLineDiffsAsync",
       "text": null,
       "snippet": "getLineDiffsAsync(${1:filePath}, ${2:text})",
-      "description": "Computes gutter line diffs off the renderer thread via the git-host worker (fetching and caching the HEAD blob, then diffing with the selected backend) without blocking the renderer.",
+      "description": "Computes gutter line diffs off the renderer thread via the git-host worker, fetching and caching the HEAD blob before comparing it with the buffer.",
       "leftLabel": "Promise",
       "type": "method"
     },
