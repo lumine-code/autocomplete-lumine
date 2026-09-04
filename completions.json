@@ -2092,7 +2092,7 @@
     {
       "name": "getLineDiffsAsync",
       "text": null,
-      "snippet": "getLineDiffsAsync(${1:filePath}, ${2:text})",
+      "snippet": "getLineDiffsAsync(${1:filePath}, ${2:text}, ${3:options})",
       "description": "Computes gutter line diffs off the renderer thread via the git-host worker, fetching and caching the HEAD blob before comparing it with the buffer.",
       "leftLabel": "Promise",
       "type": "method"
@@ -2173,14 +2173,14 @@
       "name": "getStatusSnapshot",
       "text": "getStatusSnapshot()",
       "snippet": null,
-      "description": "latest immutable detailed status snapshot. It contains head, upstream, per-file staged/unstaged/conflict state, aggregate counts, and a monotonic generation. The initial snapshot has initialized: false; subscribe with .onDidChangeStatusSnapshot or call .ensureStatusSnapshot to load it.",
+      "description": "latest immutable detailed status snapshot. It contains head, upstream, submodulePaths, per-file staged/unstaged/conflict state, aggregate counts, and a monotonic generation. The initial snapshot has initialized: false; subscribe with .onDidChangeStatusSnapshot or call .ensureStatusSnapshot to load it.",
       "leftLabel": "Object",
       "type": "method"
     },
     {
       "name": "getSubmodulePaths",
-      "text": "getSubmodulePaths()",
-      "snippet": null,
+      "text": null,
+      "snippet": "getSubmodulePaths(${1:options})",
       "description": "The repository-relative paths declared in .gitmodules.",
       "leftLabel": "Promise",
       "type": "method"
@@ -2258,22 +2258,6 @@
       "type": "method"
     },
     {
-      "name": "isPresent",
-      "text": "isPresent()",
-      "snippet": null,
-      "description": "whether this repository's Git directory still exists.",
-      "leftLabel": "Boolean",
-      "type": "method"
-    },
-    {
-      "name": "isProjectAtRoot",
-      "text": "isProjectAtRoot()",
-      "snippet": null,
-      "description": "true if at the root, false if in a subfolder of the repository.",
-      "leftLabel": "Boolean",
-      "type": "method"
-    },
-    {
       "name": "isSubmodule",
       "text": null,
       "snippet": "isSubmodule(${1:filePath})",
@@ -2286,22 +2270,6 @@
       "text": null,
       "snippet": "onDidChangeRefsSnapshot(${1:callback})",
       "description": "Invoke the given callback when the repository refs snapshot changes. Subscribing declares interest exactly like .onDidChangeStatusSnapshot: the first subscriber triggers a lazy load and refs stay fresh with debounced background refreshes.",
-      "leftLabel": "Disposable",
-      "type": "method"
-    },
-    {
-      "name": "onDidChangeStatus",
-      "text": null,
-      "snippet": "onDidChangeStatus(${1:callback})",
-      "description": "Invoke the given callback when a specific file's status has changed. When a file is updated, reloaded, etc, and the status changes, this will be fired.",
-      "leftLabel": "Disposable",
-      "type": "method"
-    },
-    {
-      "name": "onDidChangeStatuses",
-      "text": null,
-      "snippet": "onDidChangeStatuses(${1:callback})",
-      "description": "Invoke the given callback when multiple files' statuses have changed. Prefer .onDidChangeStatusSnapshot; this legacy event is retained for API compatibility.",
       "leftLabel": "Disposable",
       "type": "method"
     },
@@ -2325,7 +2293,7 @@
       "name": "refreshRefsSnapshot",
       "text": null,
       "snippet": "refreshRefsSnapshot(${1:options})",
-      "description": "Refresh the refs snapshot with Git. Concurrent calls coalesce into at most one in-flight and one trailing refresh; see coalesceSnapshotRefresh.",
+      "description": "Refresh the refs snapshot with Git. Concurrent calls coalesce into at most one in-flight and one trailing worker request.",
       "leftLabel": null,
       "type": "method"
     },
@@ -2333,7 +2301,7 @@
       "name": "refreshStatusSnapshot",
       "text": null,
       "snippet": "refreshStatusSnapshot(${1:options})",
-      "description": "Refresh the detailed branch and file status snapshot with Git. Concurrent calls coalesce into at most one in-flight and one trailing subprocess; see coalesceSnapshotRefresh.",
+      "description": "Refresh the detailed branch and file status snapshot with Git. Concurrent calls coalesce into at most one in-flight and one trailing worker request.",
       "leftLabel": null,
       "type": "method"
     },
@@ -4652,7 +4620,7 @@
     {
       "name": "repositoryForPath",
       "text": null,
-      "snippet": "repositoryForPath(${1:filePath})",
+      "snippet": "repositoryForPath(${1:filePath}, ${2:options})",
       "description": "Get the repository that contains a given file or directory path asynchronously.",
       "leftLabel": "Promise",
       "type": "method"
@@ -4934,14 +4902,6 @@
       "type": "method"
     },
     {
-      "name": "getGitExecutablePath",
-      "text": "getGitExecutablePath()",
-      "snippet": null,
-      "description": "The Git binary the active provider runs.",
-      "leftLabel": "String",
-      "type": "method"
-    },
-    {
       "name": "getOperationCapabilities",
       "text": null,
       "snippet": "getOperationCapabilities(${1:repository})",
@@ -5094,35 +5054,11 @@
       "type": "method"
     },
     {
-      "name": "resolveDirectory",
-      "text": null,
-      "snippet": "resolveDirectory(${1:directory})",
-      "description": "The repository for a Directory, discovering and registering one if it is not known yet.",
-      "leftLabel": "Promise",
-      "type": "method"
-    },
-    {
-      "name": "resolveDirectorySync",
-      "text": null,
-      "snippet": "resolveDirectorySync(${1:directory})",
-      "description": ".resolveDirectory, synchronously. Reads the filesystem.",
-      "leftLabel": "GitRepository",
-      "type": "method"
-    },
-    {
       "name": "resolveForPath",
       "text": null,
       "snippet": "resolveForPath(${1:filePath})",
       "description": "The repository a path belongs to, discovering and registering one if it is not known yet.",
       "leftLabel": "Promise",
-      "type": "method"
-    },
-    {
-      "name": "resolveForPathSync",
-      "text": null,
-      "snippet": "resolveForPathSync(${1:filePath})",
-      "description": ".resolveForPath, synchronously.",
-      "leftLabel": "GitRepository",
       "type": "method"
     },
     {
