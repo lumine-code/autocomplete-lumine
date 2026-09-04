@@ -2181,7 +2181,7 @@
       "name": "getSubmodulePaths",
       "text": "getSubmodulePaths()",
       "snippet": null,
-      "description": "The repository-relative paths of the repository's submodules (git submodule status).",
+      "description": "The repository-relative paths declared in .gitmodules.",
       "leftLabel": "Promise",
       "type": "method"
     },
