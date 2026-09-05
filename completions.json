@@ -9709,47 +9709,23 @@
       "name": "add",
       "text": null,
       "snippet": "add(${1:editor}, ${2:options})",
-      "description": "Register a TextEditor, so that features written against the registry reach it.",
+      "description": "Register a TextEditor as part of the window.",
       "leftLabel": "Disposable",
-      "type": "method"
-    },
-    {
-      "name": "getActiveTextEditor",
-      "text": "getActiveTextEditor()",
-      "snippet": null,
-      "description": "Get the editor the user is typing in, wherever it is.",
-      "leftLabel": "TextEditor",
       "type": "method"
     },
     {
       "name": "getEditors",
       "text": "getEditors()",
       "snippet": null,
-      "description": "Get every registered editor.",
+      "description": "Get a snapshot of every registered editor in registration order.",
       "leftLabel": "Array",
-      "type": "method"
-    },
-    {
-      "name": "getTextEditorForElement",
-      "text": null,
-      "snippet": "getTextEditorForElement(${1:target}, ${2:options})",
-      "description": "Resolve the innermost registered text editor containing a DOM target. This is the target-specific counterpart to .getActiveTextEditor: context menus and pointer actions can use it before falling back to the active editor.",
-      "leftLabel": "TextEditor|null",
-      "type": "method"
-    },
-    {
-      "name": "maintainConfig",
-      "text": null,
-      "snippet": "maintainConfig(${1:editor})",
-      "description": "Keep a TextEditor's settings in sync with the user's.",
-      "leftLabel": "Disposable",
       "type": "method"
     },
     {
       "name": "observe",
       "text": null,
       "snippet": "observe(${1:callback})",
-      "description": "Invoke the given callback with every registered editor, now and in the future.",
+      "description": "Invoke the callback with every editor registered now and in the future. Repeated leases for one editor do not invoke the callback again.",
       "leftLabel": "Disposable",
       "type": "method"
     },
@@ -9757,23 +9733,15 @@
       "name": "onDidRemoveEditor",
       "text": null,
       "snippet": "onDidRemoveEditor(${1:callback})",
-      "description": "Invoke the given callback when an editor is removed from the registry.",
+      "description": "Invoke the callback after the last lease for an editor is released.",
       "leftLabel": "Disposable",
-      "type": "method"
-    },
-    {
-      "name": "remove",
-      "text": null,
-      "snippet": "remove(${1:editor})",
-      "description": "Remove a TextEditor from the registry.",
-      "leftLabel": "Boolean",
       "type": "method"
     },
     {
       "name": "roleFor",
       "text": null,
       "snippet": "roleFor(${1:editor})",
-      "description": "Get the role a TextEditor was registered with.",
+      "description": "Get the role under which a TextEditor is registered.",
       "leftLabel": "String",
       "type": "method"
     }
@@ -10646,6 +10614,14 @@
       "type": "method"
     },
     {
+      "name": "getFocusedTextEditor",
+      "text": null,
+      "snippet": "getFocusedTextEditor(${1:options})",
+      "description": "Get the text editor containing DOM focus, including embedded editors.",
+      "leftLabel": "TextEditor|null",
+      "type": "method"
+    },
+    {
       "name": "getFooterPanels",
       "text": "getFooterPanels()",
       "snippet": null,
@@ -10723,6 +10699,14 @@
       "snippet": null,
       "description": "Get an Array of all the panel items to the right of the editor window.",
       "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "getTextEditorForElement",
+      "text": null,
+      "snippet": "getTextEditorForElement(${1:target}, ${2:options})",
+      "description": "Resolve the innermost text editor containing a DOM target.",
+      "leftLabel": "TextEditor|null",
       "type": "method"
     },
     {
