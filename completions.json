@@ -1928,6 +1928,58 @@
       "type": "property"
     }
   ],
+  "FileWatchHandle": [
+    {
+      "name": "closed",
+      "text": "closed",
+      "description": "Resolves after this handle's ownership and resources are released.",
+      "type": "property"
+    },
+    {
+      "name": "path",
+      "text": "path",
+      "description": "The absolute path in the subscriber's spelling.",
+      "type": "property"
+    },
+    {
+      "name": "ready",
+      "text": "ready",
+      "description": "Resolves when observation is armed; rejects on failure or cancellation.",
+      "type": "property"
+    },
+    {
+      "name": "dispose",
+      "text": "dispose()",
+      "snippet": null,
+      "description": "Suppress further callbacks immediately and release this observation. Await closed to confirm release. Cancelling before ready rejects ready with an AbortError. Repeated disposal has no effect.",
+      "leftLabel": "void",
+      "type": "method"
+    },
+    {
+      "name": "onDidChange",
+      "text": null,
+      "snippet": "onDidChange(${1:callback})",
+      "description": "Removes the callback when disposed.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidError",
+      "text": null,
+      "snippet": "onDidError(${1:callback})",
+      "description": "Removes the callback when disposed.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidInvalidate",
+      "text": null,
+      "snippet": "onDidInvalidate(${1:callback})",
+      "description": "Removes the callback when disposed.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    }
+  ],
   "GitRepository": [
     {
       "name": "checkoutHead",
@@ -4300,32 +4352,6 @@
       "type": "method"
     }
   ],
-  "PathWatcher": [
-    {
-      "name": "dispose",
-      "text": "dispose()",
-      "snippet": null,
-      "description": "Unsubscribe all subscribers from filesystem events. Native resources will be released asynchronously, but this watcher will stop broadcasting events immediately.",
-      "leftLabel": null,
-      "type": "method"
-    },
-    {
-      "name": "getStartPromise",
-      "text": "getStartPromise()",
-      "snippet": null,
-      "description": "PathWatchers acquired through watchPath are already started.",
-      "leftLabel": "Promise",
-      "type": "method"
-    },
-    {
-      "name": "onDidError",
-      "text": null,
-      "snippet": "onDidError(${1:callback})",
-      "description": "Invoke a Function when any errors related to this watcher are reported.",
-      "leftLabel": "Disposable",
-      "type": "method"
-    }
-  ],
   "Point": [
     {
       "name": "compare",
@@ -4582,6 +4608,14 @@
       "text": null,
       "snippet": "onDidChangePaths(${1:callback})",
       "description": "Invoke the given callback when the project paths change.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidInvalidateFiles",
+      "text": null,
+      "snippet": "onDidInvalidateFiles(${1:callback})",
+      "description": "Observe restored filesystem observation after a gap. Consumers must reread the affected roots; changes made during the gap are not replayed.",
       "leftLabel": "Disposable",
       "type": "method"
     },
@@ -10478,6 +10512,14 @@
       "type": "method"
     },
     {
+      "name": "beginFileMove",
+      "text": null,
+      "snippet": "beginFileMove(${1:plannedRenames})",
+      "description": "Suspend affected documents before moving files. Complete the returned transaction with confirmed moves, including partial results on failure.",
+      "leftLabel": "Object",
+      "type": "method"
+    },
+    {
       "name": "beginLayoutDrag",
       "text": "beginLayoutDrag()",
       "snippet": null,
@@ -10987,6 +11029,14 @@
       "snippet": "popModalTo(${1:index})",
       "description": "Jump back to an earlier step of the modal breadcrumb trail.",
       "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
+      "name": "registerFileDocument",
+      "text": null,
+      "snippet": "registerFileDocument(${1:descriptor})",
+      "description": "Register a shared document for explicit filesystem moves in this workspace.",
+      "leftLabel": "Disposable",
       "type": "method"
     },
     {
