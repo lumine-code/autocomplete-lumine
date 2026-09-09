@@ -1932,19 +1932,19 @@
     {
       "name": "closed",
       "text": "closed",
-      "description": "Resolves after this handle's ownership and resources are released.",
+      "description": "Wait for disposal to release ownership and native resources.",
       "type": "property"
     },
     {
       "name": "path",
       "text": "path",
-      "description": "The absolute path in the subscriber's spelling.",
+      "description": "Get the fixed absolute path requested by the subscriber.",
       "type": "property"
     },
     {
       "name": "ready",
       "text": "ready",
-      "description": "Resolves when observation is armed; rejects on failure or cancellation.",
+      "description": "Wait for the underlying observation to be armed.",
       "type": "property"
     },
     {
@@ -1959,7 +1959,7 @@
       "name": "onDidChange",
       "text": null,
       "snippet": "onDidChange(${1:callback})",
-      "description": "Removes the callback when disposed.",
+      "description": "Subscribe to batches of created, updated and deleted paths.",
       "leftLabel": "Disposable",
       "type": "method"
     },
@@ -1967,7 +1967,7 @@
       "name": "onDidError",
       "text": null,
       "snippet": "onDidError(${1:callback})",
-      "description": "Removes the callback when disposed.",
+      "description": "Subscribe to structured observation errors.",
       "leftLabel": "Disposable",
       "type": "method"
     },
@@ -1975,7 +1975,7 @@
       "name": "onDidInvalidate",
       "text": null,
       "snippet": "onDidInvalidate(${1:callback})",
-      "description": "Removes the callback when disposed.",
+      "description": "Subscribe to restored observation after changes may have been lost.",
       "leftLabel": "Disposable",
       "type": "method"
     }
