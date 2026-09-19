@@ -6632,7 +6632,7 @@
     {
       "name": "consume",
       "text": null,
-      "snippet": "consume(${1:keyPath}, ${2:versionRange}, ${3:callback})",
+      "snippet": "consume(${1:keyPath}, ${2:versionRange}, ${3:callback}, ${4:options})",
       "description": "Consume a service by invoking the given callback for all current and future provided services matching the given service name and version range.",
       "leftLabel": "Disposable",
       "type": "method"
@@ -9096,6 +9096,14 @@
       "type": "method"
     },
     {
+      "name": "restoreViewState",
+      "text": null,
+      "snippet": "restoreViewState(${1:state})",
+      "description": "Restore state produced by .serializeViewState. Invalid portions of the state are ignored.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
       "name": "revertToCheckpoint",
       "text": null,
       "snippet": "revertToCheckpoint(${1:checkpoint})",
@@ -9413,6 +9421,14 @@
       "snippet": null,
       "description": "Select the word surrounding each cursor.",
       "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "serializeViewState",
+      "text": "serializeViewState()",
+      "snippet": null,
+      "description": "Capture the cursor, selection, and viewport state without references to this editor's buffer or marker layers. The returned object can be passed through JSON and restored on another editor for the same text.",
+      "leftLabel": "Object",
       "type": "method"
     },
     {
