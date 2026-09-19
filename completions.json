@@ -6659,7 +6659,7 @@
       "name": "openExternal",
       "text": null,
       "snippet": "openExternal(${1:url})",
-      "description": "Open a URL with its operating system default handler.",
+      "description": "Open an HTTP, HTTPS, or mailto URL with its operating system default handler.",
       "leftLabel": "Promise",
       "type": "method"
     },
