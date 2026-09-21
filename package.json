@@ -47,9 +47,5 @@
     "eslint-plugin-n": "^18.3.0",
     "globals": "^17.11.0",
     "prettier": "^3.9.6"
-  },
-  "activationHooks": [
-    "language-coffee-script:grammar-used",
-    "language-javascript:grammar-used"
-  ]
+  }
 }
