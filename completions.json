@@ -71,6 +71,13 @@
       "type": "property"
     },
     {
+      "name": "hooks",
+      "text": "hooks",
+      "description": "Sticky hooks emitted by core and consumed by package-owned lazy features. Hooks are independent of package lifecycle and last for this environment generation only.",
+      "leftLabel": "Object",
+      "type": "property"
+    },
+    {
       "name": "icons",
       "text": "icons",
       "description": "An IconRegistry instance",
@@ -2443,7 +2450,7 @@
       "name": "maintainLanguageMode",
       "text": null,
       "snippet": "maintainLanguageMode(${1:buffer})",
-      "description": "set a TextBuffer's language mode based on its path and content, and continue to update its language mode as grammars are added or updated, or the buffer's file path changes.",
+      "description": "set a TextBuffer's language mode based on its path and content, and continue to update its language mode as grammars are added or updated, or the buffer's file path changes. Repeated calls share one maintenance setup; each returned disposable releases one lease.",
       "leftLabel": "Disposable",
       "type": "method"
     },
@@ -3642,11 +3649,27 @@
   ],
   "PackageManager": [
     {
+      "name": "activatePackage",
+      "text": null,
+      "snippet": "activatePackage(${1:name})",
+      "description": "Fully activate a package and wait for its main module and services to be ready. Concurrent requests share one activation. Deactivation while activating rejects with an error whose code is PACKAGE_ACTIVATION_CANCELLED.",
+      "leftLabel": "Promise<Package>",
+      "type": "method"
+    },
+    {
+      "name": "deactivatePackage",
+      "text": null,
+      "snippet": "deactivatePackage(${1:name}, ${2:options})",
+      "description": "Deactivate a loaded package and await its teardown before it reaches the loaded state again.",
+      "leftLabel": "Promise<void>",
+      "type": "method"
+    },
+    {
       "name": "disablePackage",
       "text": null,
       "snippet": "disablePackage(${1:name})",
       "description": "Disable the package with the given name.",
-      "leftLabel": "Package",
+      "leftLabel": "Promise<Package|null>",
       "type": "method"
     },
     {
@@ -3654,7 +3677,7 @@
       "text": null,
       "snippet": "enablePackage(${1:name})",
       "description": "Enable the package with the given name.",
-      "leftLabel": "Package",
+      "leftLabel": "Promise<Package|null>",
       "type": "method"
     },
     {
@@ -3738,10 +3761,26 @@
       "type": "method"
     },
     {
+      "name": "getPackageLifecycleState",
+      "text": null,
+      "snippet": "getPackageLifecycleState(${1:name})",
+      "description": "Return the package's explicit lifecycle state.",
+      "leftLabel": "String|undefined",
+      "type": "method"
+    },
+    {
       "name": "hasActivatedInitialPackages",
       "text": "hasActivatedInitialPackages()",
       "snippet": null,
       "description": "indicating whether package activation has occurred.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
+      "name": "hasInitializedInitialPackages",
+      "text": "hasInitializedInitialPackages()",
+      "snippet": null,
+      "description": "indicating whether the initial package bootstrap has completed.",
       "leftLabel": "Boolean",
       "type": "method"
     },
@@ -3751,6 +3790,14 @@
       "snippet": null,
       "description": "indicating whether package loading has occurred.",
       "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
+      "name": "initializePackages",
+      "text": "initializePackages()",
+      "snippet": null,
+      "description": "Initialize every enabled package before workspace state is restored.",
+      "leftLabel": null,
       "type": "method"
     },
     {
@@ -3810,6 +3857,14 @@
       "type": "method"
     },
     {
+      "name": "onDidInitializeInitialPackages",
+      "text": null,
+      "snippet": "onDidInitializeInitialPackages(${1:callback})",
+      "description": "Invoke the given callback after all initial package facades have been initialized, before workspace restore begins.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
       "name": "onDidLoadInitialPackages",
       "text": null,
       "snippet": "onDidLoadInitialPackages(${1:callback})",
@@ -3842,11 +3897,35 @@
       "type": "method"
     },
     {
+      "name": "requestService",
+      "text": null,
+      "snippet": "requestService(${1:keyPath}, ${2:versionRange})",
+      "description": "Check whether a compatible service has already been published. Service lookup never activates a provider; providers are ordinary active packages.",
+      "leftLabel": "Promise<Boolean>",
+      "type": "method"
+    },
+    {
       "name": "resolvePackagePath",
       "text": null,
       "snippet": "resolvePackagePath(${1:name})",
       "description": "Resolve the given package name to a path on disk.",
       "leftLabel": "String",
+      "type": "method"
+    },
+    {
+      "name": "startPackage",
+      "text": null,
+      "snippet": "startPackage(${1:name})",
+      "description": "Start a package according to its manifest. The synchronous facade is published during the call; the returned promise also settles after core grammar/settings resources finish loading. Expensive feature work remains package-owned and lazy.",
+      "leftLabel": "Promise<Package>",
+      "type": "method"
+    },
+    {
+      "name": "unloadPackage",
+      "text": null,
+      "snippet": "unloadPackage(${1:name}, ${2:options})",
+      "description": "Atomically deactivate and unload a package in any lifecycle state. The current generation is stopped before the loaded instance is removed.",
+      "leftLabel": "Promise<Package>",
       "type": "method"
     }
   ],
@@ -6632,7 +6711,7 @@
     {
       "name": "consume",
       "text": null,
-      "snippet": "consume(${1:keyPath}, ${2:versionRange}, ${3:callback}, ${4:options})",
+      "snippet": "consume(${1:keyPath}, ${2:versionRange}, ${3:callback})",
       "description": "Consume a service by invoking the given callback for all current and future provided services matching the given service name and version range.",
       "leftLabel": "Disposable",
       "type": "method"
