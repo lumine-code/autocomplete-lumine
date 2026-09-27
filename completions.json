@@ -50,6 +50,13 @@
       "type": "property"
     },
     {
+      "name": "externalURIs",
+      "text": "externalURIs",
+      "description": "Routes HTTP and HTTPS links through package-provided openers before falling back to the operating system.",
+      "leftLabel": "ExternalURIRegistry",
+      "type": "property"
+    },
+    {
       "name": "FileState",
       "text": "FileState",
       "description": "The FileState enum namespace.",
@@ -1909,6 +1916,24 @@
       "type": "method"
     }
   ],
+  "ExternalURIRegistry": [
+    {
+      "name": "addOpener",
+      "text": null,
+      "snippet": "addOpener(${1:opener}, ${2:priority})",
+      "description": "Register an opener. It returns true after handling a URI and false or undefined to let the next opener try it.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "open",
+      "text": null,
+      "snippet": "open(${1:uri}, ${2:context})",
+      "description": "Ask registered openers to handle an HTTP or HTTPS URI.",
+      "leftLabel": "Promise<Boolean>",
+      "type": "method"
+    }
+  ],
   "FileState": [
     {
       "name": "CONFLICTED",
@@ -3224,6 +3249,14 @@
       "snippet": "loadKeymap(${1:bindingsPath}, ${2:options})",
       "description": "Load the key bindings from the given path.",
       "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "onDidChangeKeyBindings",
+      "text": null,
+      "snippet": "onDidChangeKeyBindings(${1:callback})",
+      "description": "Invoke the given callback whenever bindings are added or removed.",
+      "leftLabel": "Disposable",
       "type": "method"
     },
     {
@@ -10123,6 +10156,16 @@
       "type": "method"
     }
   ],
+  "WebContentsViewHandle": [
+    {
+      "name": "onDidDestroy",
+      "text": null,
+      "snippet": "onDidDestroy(${1:callback})",
+      "description": "Invoke callback once this surface has been destroyed, whether destruction was requested by the renderer or initiated by the native web contents.",
+      "leftLabel": null,
+      "type": "method"
+    }
+  ],
   "WindowService": [
     {
       "name": "broadcast",
@@ -10162,6 +10205,14 @@
       "snippet": "confirm(${1:options})",
       "description": "Show a non-blocking confirmation dialog owned by the current window.",
       "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "createWebContentsView",
+      "text": null,
+      "snippet": "createWebContentsView(${1:options})",
+      "description": "Create an isolated native browser surface owned by the current window.",
+      "leftLabel": "Promise<WebContentsViewHandle>",
       "type": "method"
     },
     {
@@ -10410,6 +10461,14 @@
       "snippet": null,
       "description": "Ask the user to select one or more folders.",
       "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "registerWebContentsViewOverlay",
+      "text": null,
+      "snippet": "registerWebContentsViewOverlay(${1:element})",
+      "description": "Mark a DOM overlay which must cover native browser surfaces.",
+      "leftLabel": "Disposable",
       "type": "method"
     },
     {
