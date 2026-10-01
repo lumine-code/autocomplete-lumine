@@ -50,13 +50,6 @@
       "type": "property"
     },
     {
-      "name": "FileState",
-      "text": "FileState",
-      "description": "The FileState enum namespace.",
-      "leftLabel": "FileState",
-      "type": "property"
-    },
-    {
       "name": "grammars",
       "text": "grammars",
       "description": "A GrammarRegistry instance",
@@ -633,6 +626,14 @@
       "type": "method"
     },
     {
+      "name": "inspect",
+      "text": null,
+      "snippet": "inspect(${1:keyPath}, ${2:options})",
+      "description": "Inspect the stored layers for a key at an exact selector. Complex selectors describe several possible scope chains, so only their exact entries are reported; simple chains also receive inherited/effective values.",
+      "leftLabel": "Object",
+      "type": "method"
+    },
+    {
       "name": "observe",
       "text": null,
       "snippet": "observe(${1:keyPath}, ${2:options}, ${3:callback})",
@@ -668,7 +669,7 @@
       "name": "unset",
       "text": null,
       "snippet": "unset(${1:keyPath}, ${2:options})",
-      "description": "Restore the setting at keyPath to its default value.",
+      "description": "Restore the setting at keyPath to its default value. With local: true, remove only the selected local override and inherit the current user value.",
       "leftLabel": null,
       "type": "method"
     }
@@ -1909,32 +1910,6 @@
       "type": "method"
     }
   ],
-  "FileState": [
-    {
-      "name": "CONFLICTED",
-      "text": "CONFLICTED",
-      "description": "The document and its backing file diverged.",
-      "type": "property"
-    },
-    {
-      "name": "MODIFIED",
-      "text": "MODIFIED",
-      "description": "The document has local changes.",
-      "type": "property"
-    },
-    {
-      "name": "REMOVED",
-      "text": "REMOVED",
-      "description": "The document's backing file no longer exists.",
-      "type": "property"
-    },
-    {
-      "name": "UNMODIFIED",
-      "text": "UNMODIFIED",
-      "description": "The document matches its saved base.",
-      "type": "property"
-    }
-  ],
   "FileWatchHandle": [
     {
       "name": "closed",
@@ -2500,6 +2475,14 @@
       "snippet": "selectGrammar(${1:filePath}, ${2:fileContents})",
       "description": "Select a grammar for the given file path and file contents.",
       "leftLabel": "TreeSitterGrammar|Object",
+      "type": "method"
+    },
+    {
+      "name": "setRootLanguageRanges",
+      "text": null,
+      "snippet": "setRootLanguageRanges(${1:buffer}, ${2:provider})",
+      "description": "Limit a buffer's root language to source ranges without changing its text. The policy follows the buffer across grammar changes and is not serialized. The provider runs before each parse; return null to parse the whole buffer, or an empty array to parse no source. Ranges use buffer coordinates.",
+      "leftLabel": "Disposable",
       "type": "method"
     }
   ],
@@ -8146,7 +8129,7 @@
       "name": "getFileState",
       "text": "getFileState()",
       "snippet": null,
-      "description": "one of the values in FileState.",
+      "description": "Get the editor's mutually exclusive persistence state, as described by TextBuffer.getFileState.",
       "leftLabel": "String",
       "type": "method"
     },

@@ -111,18 +111,11 @@ function completionsFromApi(api) {
   const classesByName = new Map(api.classes.map((cls) => [cls.name, cls]));
   for (const cls of api.classes) {
     const instanceMembers = instanceMembersFor(cls, classesByName);
-    // A documented namespace such as FileState has only static accessors, but
-    // the global `lumine.FileState` property is typed as that namespace. Feed
-    // those constants to the same type-based completion path as instance
-    // members without mixing static and instance APIs on ordinary classes.
-    const completionMembers = instanceMembers.length
-      ? instanceMembers
-      : cls.members.filter((member) => member.static && member.kind !== "constructor");
-    const properties = completionMembers
+    const properties = instanceMembers
       .filter((member) => member.kind === "property" || member.kind === "get")
       .map(propertySuggestion)
       .sort(compareNames);
-    const methods = completionMembers
+    const methods = instanceMembers
       .filter((member) => member.kind === "method")
       .map(methodSuggestion)
       .sort(compareNames);
