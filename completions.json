@@ -2063,6 +2063,14 @@
       "type": "method"
     },
     {
+      "name": "getCommonDirectory",
+      "text": "getCommonDirectory()",
+      "snippet": null,
+      "description": "directory shared by linked worktrees for refs and configuration.",
+      "leftLabel": "String",
+      "type": "method"
+    },
+    {
       "name": "getConfigValueAsync",
       "text": null,
       "snippet": "getConfigValueAsync(${1:key}, ${2:options})",
