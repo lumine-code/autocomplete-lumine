@@ -185,4 +185,26 @@ describe("Lumine API autocompletions", () => {
     expect(selectListHostNames).toContain("showActions");
     expect(selectListHostNames).toContain("destroy");
   });
+
+  it("includes public object methods and the callable names of tool functions", () => {
+    editor.setText("lumine.tools.");
+    editor.setCursorBufferPosition([0, Infinity]);
+    expect(completionNamed("fuzzyMatcher").type).toBe("property");
+    expect(completionNamed("markdown").type).toBe("property");
+    expect(completionNamed("removeDiacritics").snippet).toMatch(/^removeDiacritics\(/);
+
+    editor.setText("lumine.tools.fuzzyMatcher.");
+    editor.setCursorBufferPosition([0, Infinity]);
+    expect(completionNamed("setCandidates").snippet).toMatch(/^setCandidates\(/);
+    expect(completionNamed("score").snippet).toMatch(/^score\(/);
+    expect(completionNamed("match").snippet).toMatch(/^match\(/);
+
+    editor.setText("lumine.tools.markdown.");
+    editor.setCursorBufferPosition([0, Infinity]);
+    expect(completionNamed("render").snippet).toMatch(/^render\(/);
+    expect(completionNamed("renderMarkdown")).toBeUndefined();
+    expect(completionNamed("applySyntaxHighlighting").snippet).toMatch(
+      /^applySyntaxHighlighting\(/,
+    );
+  });
 });

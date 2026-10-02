@@ -20,19 +20,6 @@ function optionValue(name) {
   return value;
 }
 
-const editorOption = optionValue("--editor") || process.env.LUMINE_CORE_ROOT;
-if (!editorOption) {
-  throw new Error("Pass --editor <path> or set LUMINE_CORE_ROOT to a Lumine editor checkout.");
-}
-
-const editorRoot = path.resolve(editorOption);
-const outputPath = path.join(__dirname, "..", "completions.json");
-const extractorPath = path.join(editorRoot, "script", "api-extractor.js");
-if (!fs.existsSync(extractorPath)) {
-  throw new Error(`The editor checkout has no canonical API extractor: ${extractorPath}`);
-}
-const { SCHEMA_VERSION, extractApi } = require(extractorPath);
-
 function compareNames(left, right) {
   return left.name.localeCompare(right.name);
 }
@@ -56,7 +43,8 @@ function propertySuggestion(member) {
         member.propertyType ||
         "Documented API property.",
     ),
-    leftLabel: member.propertyType || member.summary?.match(/\{([^}]+)\}/)?.[1],
+    leftLabel:
+      member.propertyType || member.returnType || member.summary?.match(/\{([^}]+)\}/)?.[1],
     type: "property",
   };
 }
@@ -86,6 +74,12 @@ function methodSuggestion(member) {
   return suggestion;
 }
 
+function memberSuggestion(member) {
+  if (["property", "get"].includes(member.kind)) return propertySuggestion(member);
+  if (member.kind === "method") return methodSuggestion(member);
+  return null;
+}
+
 function instanceMembersFor(cls, classesByName, visiting = new Set()) {
   if (visiting.has(cls.name)) return [];
   const nextVisiting = new Set(visiting).add(cls.name);
@@ -111,47 +105,109 @@ function completionsFromApi(api) {
   const classesByName = new Map(api.classes.map((cls) => [cls.name, cls]));
   for (const cls of api.classes) {
     const instanceMembers = instanceMembersFor(cls, classesByName);
-    const properties = instanceMembers
-      .filter((member) => member.kind === "property" || member.kind === "get")
-      .map(propertySuggestion)
-      .sort(compareNames);
-    const methods = instanceMembers
-      .filter((member) => member.kind === "method")
-      .map(methodSuggestion)
-      .sort(compareNames);
-    if (properties.length || methods.length) completions[cls.name] = properties.concat(methods);
+    const suggestions = instanceMembers.map(memberSuggestion).filter(Boolean);
+    if (suggestions.length) completions[cls.name] = suggestions;
+  }
+
+  const addSuggestion = (accessPath, suggestion) => {
+    if (!accessPath.startsWith("lumine.")) return;
+    const segments = accessPath.split(".");
+    for (let index = 1; index < segments.length; index++) {
+      const parent = segments.slice(0, index).join(".");
+      const key = parent === "lumine" ? "Environment" : parent;
+      const suggestions = (completions[key] ||= []);
+      const name = segments[index];
+      const existing = suggestions.findIndex((entry) => entry.name === name);
+      const entry =
+        index === segments.length - 1
+          ? suggestion
+          : {
+              name,
+              text: name,
+              description: "Documented API namespace.",
+              type: "property",
+            };
+      if (existing < 0) suggestions.push(entry);
+      else if (index === segments.length - 1) suggestions[existing] = entry;
+    }
+  };
+
+  for (const object of api.objects || []) {
+    completions[object.name] = object.members.map(memberSuggestion).filter(Boolean);
+    if (!object.accessPath?.startsWith("lumine.")) continue;
+    const name = object.accessPath.split(".").at(-1);
+    addSuggestion(object.accessPath, {
+      name,
+      text: name,
+      description: plainDocumentationText(object.summary),
+      leftLabel: object.name,
+      type: "property",
+    });
+    for (const member of object.members) {
+      const suggestion = memberSuggestion(member);
+      if (suggestion) addSuggestion(`${object.accessPath}.${member.name}`, suggestion);
+    }
+  }
+  for (const fn of api.functions) {
+    if (fn.accessPath?.startsWith("lumine.")) {
+      addSuggestion(fn.accessPath, methodSuggestion(fn));
+    }
+  }
+  for (const suggestions of Object.values(completions)) {
+    suggestions.sort(
+      (left, right) =>
+        Number(left.type !== "property") - Number(right.type !== "property") ||
+        compareNames(left, right),
+    );
   }
   return completions;
 }
 
 function update() {
+  const editorOption = optionValue("--editor") || process.env.LUMINE_CORE_ROOT;
+  if (!editorOption) {
+    throw new Error("Pass --editor <path> or set LUMINE_CORE_ROOT to a Lumine editor checkout.");
+  }
+  const editorRoot = path.resolve(editorOption);
+  const outputPath = path.join(__dirname, "..", "completions.json");
+  const extractorPath = path.join(editorRoot, "script", "api-extractor.js");
+  if (!fs.existsSync(extractorPath)) {
+    throw new Error(`The editor checkout has no canonical API extractor: ${extractorPath}`);
+  }
+  const { SCHEMA_VERSION, extractApi } = require(extractorPath);
   const api = extractApi({ editorRoot, parser });
   if (api.schemaVersion !== SCHEMA_VERSION) {
     throw new Error(`Unsupported API schema ${api.schemaVersion}; expected ${SCHEMA_VERSION}.`);
   }
   const completions = completionsFromApi(api);
   const generated = `${JSON.stringify(completions, null, "  ")}\n`;
-  const classCount = Object.keys(completions).length;
+  const groupCount = Object.keys(completions).length;
   const itemCount = Object.values(completions).reduce((count, items) => count + items.length, 0);
 
   if (process.argv.includes("--check")) {
     const committed = fs.existsSync(outputPath) ? fs.readFileSync(outputPath, "utf8") : null;
     if (committed !== generated) {
       throw new Error(
-        `completions.json is out of date (${classCount} classes and ${itemCount} suggestions generated).`,
+        `completions.json is out of date (${groupCount} API groups and ${itemCount} suggestions generated).`,
       );
     }
-    console.log(`completions.json is current: ${classCount} classes and ${itemCount} suggestions`);
+    console.log(
+      `completions.json is current: ${groupCount} API groups and ${itemCount} suggestions`,
+    );
     return;
   }
 
   fs.writeFileSync(outputPath, generated);
-  console.log(`Updated ${classCount} classes and ${itemCount} suggestions in completions.json`);
+  console.log(`Updated ${groupCount} API groups and ${itemCount} suggestions in completions.json`);
 }
 
-try {
-  update();
-} catch (error) {
-  console.error(error.stack || error.message);
-  process.exitCode = 1;
+if (require.main === module) {
+  try {
+    update();
+  } catch (error) {
+    console.error(error.stack || error.message);
+    process.exitCode = 1;
+  }
 }
+
+module.exports = { completionsFromApi };

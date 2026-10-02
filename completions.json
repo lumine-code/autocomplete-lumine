@@ -506,7 +506,7 @@
       "text": null,
       "snippet": "dispatch(${1:target}, ${2:commandName}, ${3:detail})",
       "description": "Simulate the dispatch of a command on a DOM node.",
-      "leftLabel": null,
+      "leftLabel": "Promise<Array>|null",
       "type": "method"
     },
     {
@@ -538,7 +538,7 @@
       "text": null,
       "snippet": "onDidDispatch(${1:callback})",
       "description": "Invoke the given callback after dispatching a command event.",
-      "leftLabel": null,
+      "leftLabel": "Disposable",
       "type": "method"
     },
     {
@@ -546,7 +546,7 @@
       "text": null,
       "snippet": "onWillDispatch(${1:callback})",
       "description": "Invoke the given callback before dispatching a command event.",
-      "leftLabel": null,
+      "leftLabel": "Disposable",
       "type": "method"
     }
   ],
@@ -680,7 +680,7 @@
       "text": null,
       "snippet": "add(${1:itemsBySelector}, ${2:throwOnInvalidSelector})",
       "description": "Add context menu items scoped by CSS selectors.",
-      "leftLabel": null,
+      "leftLabel": "Disposable",
       "type": "method"
     },
     {
@@ -714,7 +714,7 @@
       "text": null,
       "snippet": "getBeginningOfCurrentWordBufferPosition(${1:options})",
       "description": "Retrieves the buffer position of where the current word starts.",
-      "leftLabel": "Range",
+      "leftLabel": "Point",
       "type": "method"
     },
     {
@@ -722,7 +722,7 @@
       "text": null,
       "snippet": "getBeginningOfNextWordBufferPosition(${1:options})",
       "description": "Retrieves the buffer position of where the next word starts.",
-      "leftLabel": "Range",
+      "leftLabel": "Point",
       "type": "method"
     },
     {
@@ -737,8 +737,8 @@
       "name": "getBufferPosition",
       "text": "getBufferPosition()",
       "snippet": null,
-      "description": "current buffer position as an Array.",
-      "leftLabel": "Array",
+      "description": "The current buffer position.",
+      "leftLabel": "Point",
       "type": "method"
     },
     {
@@ -753,8 +753,8 @@
       "name": "getCurrentBufferLine",
       "text": "getCurrentBufferLine()",
       "snippet": null,
-      "description": "cursor's current buffer row of text excluding its line ending.",
-      "leftLabel": "Number",
+      "description": "The text of the cursor's current buffer row, excluding its line ending.",
+      "leftLabel": "String",
       "type": "method"
     },
     {
@@ -794,7 +794,7 @@
       "text": null,
       "snippet": "getEndOfCurrentWordBufferPosition(${1:options})",
       "description": "Retrieves the buffer position of where the current word ends.",
-      "leftLabel": "Range",
+      "leftLabel": "Point",
       "type": "method"
     },
     {
@@ -873,7 +873,7 @@
       "name": "hasPrecedingCharactersOnLine",
       "text": "hasPrecedingCharactersOnLine()",
       "snippet": null,
-      "description": "true if this cursor has no non-whitespace characters before its current position.",
+      "description": "true if this cursor has non-whitespace characters before its current position.",
       "leftLabel": "Boolean",
       "type": "method"
     },
@@ -1627,7 +1627,7 @@
       "name": "onDidUpdate",
       "text": null,
       "snippet": "onDidUpdate(${1:callback})",
-      "description": "Subscribe to be notified asynchronously whenever markers are created, updated, or destroyed on this layer. *Prefer this method for optimal performance when interacting with layers that could contain large numbers of markers.*",
+      "description": "Subscribe to be notified whenever markers are created, updated, or destroyed on this layer. *Prefer this method for optimal performance when interacting with layers that could contain large numbers of markers.*",
       "leftLabel": "Disposable",
       "type": "method"
     }
@@ -1915,18 +1915,21 @@
       "name": "closed",
       "text": "closed",
       "description": "Wait for disposal to release ownership and native resources.",
+      "leftLabel": "Promise<void>",
       "type": "property"
     },
     {
       "name": "path",
       "text": "path",
       "description": "Get the fixed absolute path requested by the subscriber.",
+      "leftLabel": "String",
       "type": "property"
     },
     {
       "name": "ready",
       "text": "ready",
       "description": "Wait for the underlying observation to be armed.",
+      "leftLabel": "Promise<void>",
       "type": "property"
     },
     {
@@ -2062,7 +2065,7 @@
     {
       "name": "getConfigValueAsync",
       "text": null,
-      "snippet": "getConfigValueAsync(${1:key})",
+      "snippet": "getConfigValueAsync(${1:key}, ${2:options})",
       "description": "Asynchronously read a git configuration value via the git-host worker. Resolves to the value or null when unset.",
       "leftLabel": "Promise<String|null>",
       "type": "method"
@@ -2070,7 +2073,7 @@
     {
       "name": "getConfigValuesAsync",
       "text": null,
-      "snippet": "getConfigValuesAsync(${1:keys})",
+      "snippet": "getConfigValuesAsync(${1:keys}, ${2:options})",
       "description": "Read several effective Git configuration values in one repository pass. Every requested key is present on the resolved plain object and maps to a String value or null when unset.",
       "leftLabel": "Promise<Object>",
       "type": "method"
@@ -3292,6 +3295,224 @@
       "type": "method"
     }
   ],
+  "Marker": [
+    {
+      "name": "clearTail",
+      "text": "clearTail()",
+      "snippet": null,
+      "description": "Removes the marker's tail. After calling the marker's head position will be reported as its current tail position until the tail is planted again.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "compare",
+      "text": null,
+      "snippet": "compare(${1:other})",
+      "description": "Compares this marker to another based on their ranges.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "containsPoint",
+      "text": null,
+      "snippet": "containsPoint(${1:point})",
+      "description": "indicating whether the marker's range contains the given point.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
+      "name": "containsRange",
+      "text": null,
+      "snippet": "containsRange(${1:range})",
+      "description": "indicating whether the marker's range contains the given range.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
+      "name": "copy",
+      "text": null,
+      "snippet": "copy(${1:options})",
+      "description": "Creates and returns a new Marker with the same properties as this marker.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "destroy",
+      "text": null,
+      "snippet": "destroy(${1:suppressMarkerLayerUpdateEvents})",
+      "description": "Destroys the marker, causing it to emit the 'destroyed' event.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "getEndPosition",
+      "text": "getEndPosition()",
+      "snippet": null,
+      "description": "representing the end position of the marker, which could be the head or tail position, depending on its orientation.",
+      "leftLabel": "Point",
+      "type": "method"
+    },
+    {
+      "name": "getHeadPosition",
+      "text": "getHeadPosition()",
+      "snippet": null,
+      "description": "representing the marker's current head position.",
+      "leftLabel": "Point",
+      "type": "method"
+    },
+    {
+      "name": "getInvalidationStrategy",
+      "text": "getInvalidationStrategy()",
+      "snippet": null,
+      "description": "Get the invalidation strategy for this marker.",
+      "leftLabel": "String",
+      "type": "method"
+    },
+    {
+      "name": "getProperties",
+      "text": "getProperties()",
+      "snippet": null,
+      "description": "containing any custom properties associated with the marker.",
+      "leftLabel": "Object",
+      "type": "method"
+    },
+    {
+      "name": "getRange",
+      "text": "getRange()",
+      "snippet": null,
+      "description": "current Range of the marker. The range is immutable.",
+      "leftLabel": "Range",
+      "type": "method"
+    },
+    {
+      "name": "getStartPosition",
+      "text": "getStartPosition()",
+      "snippet": null,
+      "description": "representing the start position of the marker, which could be the head or tail position, depending on its orientation.",
+      "leftLabel": "Point",
+      "type": "method"
+    },
+    {
+      "name": "getTailPosition",
+      "text": "getTailPosition()",
+      "snippet": null,
+      "description": "representing the marker's current tail position. If the marker has no tail, the head position will be returned instead.",
+      "leftLabel": "Point",
+      "type": "method"
+    },
+    {
+      "name": "hasTail",
+      "text": "hasTail()",
+      "snippet": null,
+      "description": "indicating whether the marker has a tail.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
+      "name": "intersectsRow",
+      "text": null,
+      "snippet": "intersectsRow(${1:row})",
+      "description": "indicating whether the marker's range intersects the given row.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
+      "name": "isDestroyed",
+      "text": "isDestroyed()",
+      "snippet": null,
+      "description": "Is the marker destroyed?",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
+      "name": "isEqual",
+      "text": null,
+      "snippet": "isEqual(${1:other})",
+      "description": "indicating whether this marker is equivalent to another marker, meaning they have the same range and options.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
+      "name": "isExclusive",
+      "text": "isExclusive()",
+      "snippet": null,
+      "description": "indicating whether changes that occur exactly at the marker's head or tail cause it to move.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
+      "name": "isReversed",
+      "text": "isReversed()",
+      "snippet": null,
+      "description": "indicating whether the head precedes the tail.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
+      "name": "isValid",
+      "text": "isValid()",
+      "snippet": null,
+      "description": "Is the marker valid?",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
+      "name": "onDidChange",
+      "text": null,
+      "snippet": "onDidChange(${1:callback})",
+      "description": "Invoke the given callback when the state of the marker changes.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidDestroy",
+      "text": null,
+      "snippet": "onDidDestroy(${1:callback})",
+      "description": "Invoke the given callback when the marker is destroyed.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "plantTail",
+      "text": "plantTail()",
+      "snippet": null,
+      "description": "Plants the marker's tail at the current head position. After calling the marker's tail position will be its head position at the time of the call, regardless of where the marker's head is moved.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "setHeadPosition",
+      "text": null,
+      "snippet": "setHeadPosition(${1:position})",
+      "description": "Sets the head position of the marker.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "setProperties",
+      "text": null,
+      "snippet": "setProperties(${1:properties})",
+      "description": "Merges an Object containing new properties into the marker's existing properties.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "setRange",
+      "text": null,
+      "snippet": "setRange(${1:range}, ${2:params})",
+      "description": "Sets the range of the marker.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "setTailPosition",
+      "text": null,
+      "snippet": "setTailPosition(${1:position})",
+      "description": "Sets the tail position of the marker. If the marker doesn't have a tail, it will after calling this method.",
+      "leftLabel": null,
+      "type": "method"
+    }
+  ],
   "MarkerLayer": [
     {
       "name": "clear",
@@ -3403,6 +3624,24 @@
       "snippet": "onDidUpdate(${1:callback})",
       "description": "Subscribe to be notified whenever markers are created, updated, or destroyed on this layer. *Prefer this method for optimal performance when interacting with layers that could contain large numbers of markers.*",
       "leftLabel": null,
+      "type": "method"
+    }
+  ],
+  "Matcher": [
+    {
+      "name": "match",
+      "text": null,
+      "snippet": "match(${1:query}, ${2:options})",
+      "description": "Matches the current candidates to a string query.",
+      "leftLabel": "Array<Object>",
+      "type": "method"
+    },
+    {
+      "name": "setCandidates",
+      "text": null,
+      "snippet": "setCandidates(${1:candidates})",
+      "description": "Replaces this matcher's candidates.",
+      "leftLabel": "Matcher",
       "type": "method"
     }
   ],
@@ -3617,7 +3856,7 @@
       "name": "onDidDeactivate",
       "text": null,
       "snippet": "onDidDeactivate(${1:callback})",
-      "description": "Invoke the given callback when all packages have been activated.",
+      "description": "Invoke the given callback when this package has been deactivated.",
       "leftLabel": "Disposable",
       "type": "method"
     },
@@ -3691,7 +3930,7 @@
       "name": "getAvailablePackageMetadata",
       "text": "getAvailablePackageMetadata()",
       "snippet": null,
-      "description": "of Strings of all the available package metadata.",
+      "description": "of manifest metadata objects for all available packages.",
       "leftLabel": "Array",
       "type": "method"
     },
@@ -3892,7 +4131,7 @@
       "text": null,
       "snippet": "resolvePackagePath(${1:name})",
       "description": "Resolve the given package name to a path on disk.",
-      "leftLabel": "String",
+      "leftLabel": "String|null",
       "type": "method"
     },
     {
@@ -5650,7 +5889,7 @@
       "text": null,
       "snippet": "selectSubword(${1:options})",
       "description": "Modifies the selection to encompass the current subword.",
-      "leftLabel": "Range",
+      "leftLabel": null,
       "type": "method"
     },
     {
@@ -5802,7 +6041,7 @@
       "text": null,
       "snippet": "selectWord(${1:options})",
       "description": "Modifies the selection to encompass the current word.",
-      "leftLabel": "Range",
+      "leftLabel": null,
       "type": "method"
     },
     {
@@ -7032,7 +7271,7 @@
       "text": null,
       "snippet": "findWordsWithSubsequence(${1:query}, ${2:extraWordCharacters}, ${3:maxCount})",
       "description": "Find fuzzy match suggestions in the buffer",
-      "leftLabel": "Array",
+      "leftLabel": "Promise<Array>",
       "type": "method"
     },
     {
@@ -7040,7 +7279,7 @@
       "text": null,
       "snippet": "findWordsWithSubsequenceInRange(${1:query}, ${2:extraWordCharacters}, ${3:maxCount}, ${4:range})",
       "description": "Find fuzzy match suggestions in the buffer in a given range",
-      "leftLabel": "Array",
+      "leftLabel": "Promise<Array>",
       "type": "method"
     },
     {
@@ -7049,6 +7288,14 @@
       "snippet": "getChangesSinceCheckpoint(${1:checkpoint})",
       "description": "If the given checkpoint is no longer present in the undo history, this method will return an empty Array.",
       "leftLabel": "Array<Object>",
+      "type": "method"
+    },
+    {
+      "name": "getChangesToText",
+      "text": null,
+      "snippet": "getChangesToText(${1:text})",
+      "description": "Compute native diff changes to target text without modifying this buffer, its history, markers or observers. Ranges use UTF-16 buffer coordinates.",
+      "leftLabel": "Array",
       "type": "method"
     },
     {
@@ -8098,7 +8345,7 @@
       "text": "getCursorsOrderedByBufferPosition()",
       "snippet": null,
       "description": "Get all Cursors, ordered by their position in the buffer instead of the order in which they were added.",
-      "leftLabel": "Array",
+      "leftLabel": "Array<Cursor>",
       "type": "method"
     },
     {
@@ -10593,7 +10840,7 @@
       "name": "beginFileMove",
       "text": null,
       "snippet": "beginFileMove(${1:plannedRenames})",
-      "description": "Suspend affected documents before moving files. Complete the returned transaction with confirmed moves, including partial results on failure.",
+      "description": "Suspend affected documents and defer repository discovery before moving files. Complete the returned transaction with confirmed moves, including partial results on failure.",
       "leftLabel": "Object",
       "type": "method"
     },
@@ -10849,7 +11096,7 @@
       "name": "hide",
       "text": null,
       "snippet": "hide(${1:itemOrURI})",
-      "description": "Search the workspace for items matching the given URI and hide them.",
+      "description": "Search the workspace for items matching the given URI and hide them. Center items are closed asynchronously and can remain open if closing is prevented or cancelled. Use .toggle to await the closing result.",
       "leftLabel": "Boolean",
       "type": "method"
     },
@@ -11423,6 +11670,173 @@
       "snippet": "write(${1:dataTransfer}, ${2:descriptor})",
       "description": "Write one versioned Lumine descriptor to a DataTransfer.",
       "leftLabel": "Object",
+      "type": "method"
+    }
+  ],
+  "fuzzyMatcher": [
+    {
+      "name": "match",
+      "text": null,
+      "snippet": "match(${1:candidate}, ${2:query}, ${3:opts})",
+      "description": "Match a single candidate against a query. Accent-insensitive matching reports character indexes against the original candidate.",
+      "leftLabel": "Object|undefined",
+      "type": "method"
+    },
+    {
+      "name": "score",
+      "text": null,
+      "snippet": "score(${1:candidate}, ${2:query}, ${3:opts})",
+      "description": "Score a single candidate against a query.",
+      "leftLabel": "Number",
+      "type": "method"
+    },
+    {
+      "name": "setCandidates",
+      "text": null,
+      "snippet": "setCandidates(${1:matcherOrCandidates}, ${2:candidates}, ${3:_options})",
+      "description": "Create a matcher for string candidates, or replace the candidates of an existing Matcher. The replacement preserves its construction options.",
+      "leftLabel": "Matcher",
+      "type": "method"
+    }
+  ],
+  "lumine.tools": [
+    {
+      "name": "fuzzyMatcher",
+      "text": "fuzzyMatcher",
+      "description": "Fuzzy matching utilities used by autocomplete, file search and the command palette. Available as lumine.tools.fuzzyMatcher.",
+      "leftLabel": "fuzzyMatcher",
+      "type": "property"
+    },
+    {
+      "name": "markdown",
+      "text": "markdown",
+      "description": "Documented API namespace.",
+      "type": "property"
+    },
+    {
+      "name": "removeDiacritics",
+      "text": null,
+      "snippet": "removeDiacritics(${1:text})",
+      "description": "Removes diacritical marks from a string, so that \"café\" can be matched by typing \"cafe\".",
+      "leftLabel": "string",
+      "type": "method"
+    }
+  ],
+  "lumine.tools.fuzzyMatcher": [
+    {
+      "name": "match",
+      "text": null,
+      "snippet": "match(${1:candidate}, ${2:query}, ${3:opts})",
+      "description": "Match a single candidate against a query. Accent-insensitive matching reports character indexes against the original candidate.",
+      "leftLabel": "Object|undefined",
+      "type": "method"
+    },
+    {
+      "name": "score",
+      "text": null,
+      "snippet": "score(${1:candidate}, ${2:query}, ${3:opts})",
+      "description": "Score a single candidate against a query.",
+      "leftLabel": "Number",
+      "type": "method"
+    },
+    {
+      "name": "setCandidates",
+      "text": null,
+      "snippet": "setCandidates(${1:matcherOrCandidates}, ${2:candidates}, ${3:_options})",
+      "description": "Create a matcher for string candidates, or replace the candidates of an existing Matcher. The replacement preserves its construction options.",
+      "leftLabel": "Matcher",
+      "type": "method"
+    }
+  ],
+  "Icon": [
+    {
+      "name": "classes",
+      "text": null,
+      "snippet": "classes(${1:value}, ${2:options})",
+      "description": "Create a glyph-font icon. The provider supplies the CSS for the given classes; the editor applies them unchanged.",
+      "leftLabel": "Object",
+      "type": "method"
+    },
+    {
+      "name": "coerce",
+      "text": null,
+      "snippet": "coerce(${1:value}, ${2:options})",
+      "description": "Rebuild a provider's descriptor with its structural classes and provider identity. Throws a TypeError for values that are not descriptors.",
+      "leftLabel": "Object|null",
+      "type": "method"
+    },
+    {
+      "name": "equal",
+      "text": null,
+      "snippet": "equal(${1:left}, ${2:right})",
+      "description": "Compare descriptors by their rendered fields. Provider identity is ignored; two identical absent values also compare equal.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
+      "name": "image",
+      "text": null,
+      "snippet": "image(${1:source}, ${2:options})",
+      "description": "Create an image icon addressed by URL, such as a data: URL from the OS or a file: URL from an icon theme. The editor paints it in its icon box.",
+      "leftLabel": "Object",
+      "type": "method"
+    },
+    {
+      "name": "isDescriptor",
+      "text": null,
+      "snippet": "isDescriptor(${1:value})",
+      "description": "Test whether a value was created by these descriptor factories.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
+      "name": "letter",
+      "text": null,
+      "snippet": "letter(${1:character}, ${2:options})",
+      "description": "Create a badge from the first Unicode code point of a string.",
+      "leftLabel": "Object",
+      "type": "method"
+    },
+    {
+      "name": "none",
+      "text": "none()",
+      "snippet": null,
+      "description": "Explicitly suppress an icon. This stops provider resolution; returning null instead lets the next provider answer.",
+      "leftLabel": "Object",
+      "type": "method"
+    },
+    {
+      "name": "svg",
+      "text": null,
+      "snippet": "svg(${1:markup}, ${2:options})",
+      "description": "Create an inline SVG icon rendered into a child element. Markup is supplied by the provider and is not sanitized.",
+      "leftLabel": "Object",
+      "type": "method"
+    }
+  ],
+  "lumine.tools.markdown": [
+    {
+      "name": "applySyntaxHighlighting",
+      "text": null,
+      "snippet": "applySyntaxHighlighting(${1:content}, ${2:givenOpts})",
+      "description": "Uses Lumine's built-in Syntax Highlighting system to apply the same syntax highlighting to code blocks within markdown. Modifies the existing object passed.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "convertToDOM",
+      "text": null,
+      "snippet": "convertToDOM(${1:content})",
+      "description": "Takes a raw HTML string of data and returns a proper HTMLFragment. This should be done if you need access to APIs available on the DOM itself.",
+      "leftLabel": "HTMLFragment",
+      "type": "method"
+    },
+    {
+      "name": "render",
+      "text": null,
+      "snippet": "render(${1:content}, ${2:givenOpts})",
+      "description": "Takes a Markdown document and renders it as HTML.",
+      "leftLabel": "string",
       "type": "method"
     }
   ]
