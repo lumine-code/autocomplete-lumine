@@ -10815,7 +10815,7 @@
     {
       "name": "addOpener",
       "text": null,
-      "snippet": "addOpener(${1:opener})",
+      "snippet": "addOpener(${1:opener}, ${2:options})",
       "description": "Register an opener for a uri.",
       "leftLabel": "Disposable",
       "type": "method"
@@ -10903,7 +10903,7 @@
     {
       "name": "createItemForURI",
       "text": null,
-      "snippet": "createItemForURI(${1:uri}, ${2:options})",
+      "snippet": "createItemForURI(${1:uri}, ${2:options}, ${3:reuseRequest})",
       "description": "Creates a new item that corresponds to the provided URI.",
       "leftLabel": "Promise",
       "type": "method"
@@ -11249,6 +11249,14 @@
       "text": null,
       "snippet": "onDidChangeModalTrail(${1:callback})",
       "description": "Invoke the given callback whenever the modal breadcrumb trail changes — a step is entered, the flow goes back, or the trail ends.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidChangePaneItemURI",
+      "text": null,
+      "snippet": "onDidChangePaneItemURI(${1:callback})",
+      "description": "Invoke the callback when an existing pane item changes its document URI. The item and pane identities are unchanged. This includes preview reuse and navigation performed by the item itself.",
       "leftLabel": "Disposable",
       "type": "method"
     },
