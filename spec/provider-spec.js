@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const temp = require("@lumine-code/temp");
+const temp = require("@lumine-code/fs-temp");
 const completions = require("../completions.json");
 
 describe("Lumine API autocompletions", () => {
