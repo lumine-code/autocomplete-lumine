@@ -119,6 +119,143 @@ describe("Lumine API autocompletions", () => {
     });
   });
 
+  describe("manifest changes", () => {
+    let packagePath, manifestPath;
+    const metadata = { name: "new-package", engines: { lumine: "^1.0.0" } };
+
+    const writeManifest = (value) => fs.writeFileSync(manifestPath, JSON.stringify(value));
+    const changeManifest = async (change) => {
+      let changed = false;
+      const subscription = lumine.project.onDidChangeFiles((events) => {
+        if (events.some((event) => event.path === manifestPath)) changed = true;
+      });
+      try {
+        change();
+        await conditionPromise(() => changed, "manifest filesystem event");
+      } finally {
+        subscription.dispose();
+      }
+    };
+
+    beforeEach(async () => {
+      packagePath = temp.mkdirSync("lumine-manifest-");
+      manifestPath = path.join(packagePath, "package.json");
+      fs.mkdirSync(path.join(packagePath, "lib"));
+      lumine.project.setPaths([packagePath]);
+      await lumine.project.getWatcherPromise(packagePath);
+      editor = await lumine.workspace.open(path.join(packagePath, "lib", "main.js"));
+      editor.setText("lumine.");
+      editor.setCursorBufferPosition([0, Infinity]);
+    });
+
+    it("enables completions after a missing manifest is created", async () => {
+      expect(getCompletions()).toBeUndefined();
+      await changeManifest(() => writeManifest(metadata));
+      expect(getCompletions().some(({ text }) => text === "workspace")).toBe(true);
+    });
+
+    it("updates both classifications when engines change", async () => {
+      await changeManifest(() => writeManifest(metadata));
+      expect(getCompletions()).not.toBeUndefined();
+      await changeManifest(() => writeManifest({ name: "new-package", engines: { node: ">=24" } }));
+      expect(getCompletions()).toBeUndefined();
+      await changeManifest(() => writeManifest(metadata));
+      expect(getCompletions()).not.toBeUndefined();
+    });
+
+    it("disables completions after the manifest is deleted", async () => {
+      await changeManifest(() => writeManifest(metadata));
+      expect(getCompletions()).not.toBeUndefined();
+      await changeManifest(() => fs.unlinkSync(manifestPath));
+      expect(getCompletions()).toBeUndefined();
+    });
+
+    it("rereads a malformed manifest after it is repaired", async () => {
+      await changeManifest(() => fs.writeFileSync(manifestPath, "{"));
+      expect(getCompletions()).toBeUndefined();
+      await changeManifest(() => writeManifest(metadata));
+      expect(getCompletions()).not.toBeUndefined();
+    });
+
+    it("refreshes Lumine core classification when its name changes", async () => {
+      await changeManifest(() => writeManifest({ name: "lumine" }));
+      expect(getCompletions()).not.toBeUndefined();
+      await changeManifest(() => writeManifest({ name: "unrelated" }));
+      expect(getCompletions()).toBeUndefined();
+    });
+
+    it("expires cached classification for files outside project roots", () => {
+      lumine.project.setPaths([]);
+      const clock = spyOn(Date, "now").and.returnValue(100);
+      expect(getCompletions()).toBeUndefined();
+      writeManifest(metadata);
+      expect(getCompletions()).toBeUndefined();
+      clock.and.returnValue(1100);
+      expect(getCompletions()).not.toBeUndefined();
+      fs.unlinkSync(manifestPath);
+      clock.and.returnValue(2100);
+      expect(getCompletions()).toBeUndefined();
+    });
+
+    it("refreshes classification after project roots change", () => {
+      spyOn(Date, "now").and.returnValue(100);
+      expect(getCompletions()).toBeUndefined();
+      writeManifest(metadata);
+      lumine.project.setPaths([]);
+      expect(getCompletions()).not.toBeUndefined();
+    });
+
+    it("rereads manifests after filesystem observation is invalidated", () => {
+      spyOn(Date, "now").and.returnValue(100);
+      expect(getCompletions()).toBeUndefined();
+      writeManifest(metadata);
+      lumine.project.emitter.emit("did-invalidate-files", {
+        rootPaths: [packagePath],
+        reason: "watcher-reconnected",
+        generation: 2,
+      });
+      expect(getCompletions()).not.toBeUndefined();
+    });
+
+    it("reuses the cache and skips filesystem work for unrelated prefixes", () => {
+      writeManifest(metadata);
+      const clock = spyOn(Date, "now").and.returnValue(100);
+      const read = spyOn(provider, "readMetadata").and.callThrough();
+      expect(getCompletions()).not.toBeUndefined();
+      const reads = read.calls.count();
+      expect(reads).toBeGreaterThan(0);
+      getCompletions();
+      expect(read.calls.count()).toBe(reads);
+      clock.and.returnValue(2100);
+      editor.setText("unrelated.");
+      editor.setCursorBufferPosition([0, Infinity]);
+      expect(getCompletions()).toEqual([]);
+      expect(read.calls.count()).toBe(reads);
+    });
+
+    it("releases subscriptions and cached paths when the package unloads", async () => {
+      expect(getCompletions()).toBeUndefined();
+      const previousProvider = provider;
+      const events = ["did-change-files", "did-change-paths", "did-invalidate-files"];
+      const listenerCounts = events.map((event) =>
+        lumine.project.emitter.listenerCountForEventName(event),
+      );
+      await lumine.packages.deactivatePackage("autocomplete-lumine");
+      expect(previousProvider.packageDirectoryCache.size).toBe(0);
+      events.forEach((event, index) => {
+        expect(lumine.project.emitter.listenerCountForEventName(event)).toBe(
+          listenerCounts[index] - 1,
+        );
+      });
+      writeManifest(metadata);
+      await lumine.packages.activatePackage("autocomplete-lumine");
+      provider = lumine.packages
+        .getActivePackage("autocomplete-lumine")
+        .mainModule.provideAutocomplete();
+      expect(getCompletions()).not.toBeUndefined();
+    });
+  });
+
   it("includes properties and functions on the lumine global", () => {
     editor.setText("lumine.");
     editor.setCursorBufferPosition([0, Infinity]);
