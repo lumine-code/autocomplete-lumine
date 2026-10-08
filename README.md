@@ -2,6 +2,8 @@
 
 Autocompletions for the Lumine API.
 
+Fork of [pulsar-edit/pulsar](https://github.com/pulsar-edit/pulsar) (`packages/autocomplete-atom-api`).
+
 ## Features
 
 - **API completions**: suggests properties and methods available on the `lumine.` global.
