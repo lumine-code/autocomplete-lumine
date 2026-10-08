@@ -106,6 +106,13 @@
       "type": "property"
     },
     {
+      "name": "paneItemTransfers",
+      "text": "paneItemTransfers",
+      "description": "Staged moves of pane items within this window or into another window.",
+      "leftLabel": "PaneItemTransferService",
+      "type": "property"
+    },
+    {
       "name": "pasteProviders",
       "text": "pasteProviders",
       "description": "A PasteProviderRegistry instance",
@@ -1568,6 +1575,14 @@
       "type": "method"
     },
     {
+      "name": "getRangeTracker",
+      "text": "getRangeTracker()",
+      "snippet": null,
+      "description": "The custom range tracker, or null.",
+      "leftLabel": "Function",
+      "type": "method"
+    },
+    {
       "name": "isDestroyed",
       "text": "isDestroyed()",
       "snippet": null,
@@ -1629,6 +1644,14 @@
       "snippet": "onDidUpdate(${1:callback})",
       "description": "Subscribe to be notified whenever markers are created, updated, or destroyed on this layer. *Prefer this method for optimal performance when interacting with layers that could contain large numbers of markers.*",
       "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "setRangeTracker",
+      "text": null,
+      "snippet": "setRangeTracker(${1:callback})",
+      "description": "Set this layer's custom range tracker in buffer coordinates. See MarkerLayer.setRangeTracker for the callback contract.",
+      "leftLabel": null,
       "type": "method"
     }
   ],
@@ -2486,6 +2509,14 @@
       "snippet": "selectGrammar(${1:filePath}, ${2:fileContents})",
       "description": "Select a grammar for the given file path and file contents.",
       "leftLabel": "TreeSitterGrammar|Object",
+      "type": "method"
+    },
+    {
+      "name": "selectGrammarAsync",
+      "text": null,
+      "snippet": "selectGrammarAsync(${1:filePath}, ${2:options})",
+      "description": "Select a grammar for a file on disk without synchronously reading it. Scoring yields between grammars when its current slice exceeds 5 ms. Missing files are scored by path alone. Cancellation rejects with an AbortError and can be used to discard work when its consumer unloads.",
+      "leftLabel": "Promise",
       "type": "method"
     },
     {
@@ -3579,6 +3610,14 @@
       "type": "method"
     },
     {
+      "name": "getRangeTracker",
+      "text": "getRangeTracker()",
+      "snippet": null,
+      "description": "The layer's custom range tracker, or null.",
+      "leftLabel": "Function",
+      "type": "method"
+    },
+    {
       "name": "getRole",
       "text": "getRole()",
       "snippet": null,
@@ -3631,6 +3670,14 @@
       "text": null,
       "snippet": "onDidUpdate(${1:callback})",
       "description": "Subscribe to be notified whenever markers are created, updated, or destroyed on this layer. *Prefer this method for optimal performance when interacting with layers that could contain large numbers of markers.*",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "setRangeTracker",
+      "text": null,
+      "snippet": "setRangeTracker(${1:callback})",
+      "description": "Set custom range tracking for this layer, or pass null to restore native tracking. The callback receives sorted {id, range} entries for markers touching an edit, with their pre-edit ranges, and {oldRange, newRange, newText} describing the edit. It returns {id, range} entries in the new coordinate space; omitted entries and null ranges invalidate markers. Normal marker invalidation strategies still apply independently.",
       "leftLabel": null,
       "type": "method"
     }
@@ -4228,7 +4275,7 @@
       "name": "addItem",
       "text": null,
       "snippet": "addItem(${1:item}, ${2:options})",
-      "description": "Add the given item to the pane.",
+      "description": "Add the given item to the pane. Non-mini text editors with no explicit autoHeight setting adopt the pane's height so their content can scroll. Explicit sizing and editors embedded within another item are preserved.",
       "leftLabel": "*",
       "type": "method"
     },
@@ -4267,7 +4314,7 @@
     {
       "name": "destroyItem",
       "text": null,
-      "snippet": "destroyItem(${1:item}, ${2:force})",
+      "snippet": "destroyItem(${1:item}, ${2:force}, ${3:options})",
       "description": "Destroy the given item.",
       "leftLabel": "Promise",
       "type": "method"
@@ -4574,6 +4621,74 @@
       "snippet": null,
       "description": "Toggle the pending state of the active item.",
       "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "transactActiveState",
+      "text": null,
+      "snippet": "transactActiveState(${1:callback})",
+      "description": "Apply a synchronous group of pane changes and notify workspace observers once with the final active pane and item. Changes and pane-local view events remain synchronous. Nested transactions and other containers touched by the callback share the outer operation. Only its final activation request is published, before the other containers report their final items.",
+      "leftLabel": "*",
+      "type": "method"
+    }
+  ],
+  "PaneItemTransferScope": [
+    {
+      "name": "createTransfer",
+      "text": null,
+      "snippet": "createTransfer(${1:pane}, ${2:item})",
+      "description": "Capture a pane item and retain its exact source identity until settlement.",
+      "leftLabel": "Object",
+      "type": "method"
+    },
+    {
+      "name": "dispose",
+      "text": "dispose()",
+      "snippet": null,
+      "description": "Cancel outstanding source sessions and prevent destination work from committing.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "openInNewWindow",
+      "text": null,
+      "snippet": "openInNewWindow(${1:pane}, ${2:item})",
+      "description": "Move an item into a freshly opened window using the same staged transfer. The source remains intact until the destination acknowledges its content.",
+      "leftLabel": "Promise<Object>",
+      "type": "method"
+    },
+    {
+      "name": "performDrop",
+      "text": null,
+      "snippet": "performDrop(${1:context}, ${2:prepared})",
+      "description": "Complete a prepared drop, staging remote content before source commit.",
+      "leftLabel": "Promise<Object>",
+      "type": "method"
+    },
+    {
+      "name": "prepareDrop",
+      "text": null,
+      "snippet": "prepareDrop(${1:descriptor}, ${2:pane})",
+      "description": "Validate a complete descriptor before resolving or creating a destination.",
+      "leftLabel": "Object|null",
+      "type": "method"
+    },
+    {
+      "name": "release",
+      "text": null,
+      "snippet": "release(${1:token}, ${2:reason})",
+      "description": "Abandon a retained source session without destroying its item.",
+      "leftLabel": null,
+      "type": "method"
+    }
+  ],
+  "PaneItemTransferService": [
+    {
+      "name": "createScope",
+      "text": "createScope()",
+      "snippet": null,
+      "description": "Own a group of source sessions and destination operations.",
+      "leftLabel": "PaneItemTransferScope",
       "type": "method"
     }
   ],
@@ -5237,6 +5352,14 @@
       "type": "method"
     },
     {
+      "name": "getCommandContext",
+      "text": null,
+      "snippet": "getCommandContext(${1:event}, ${2:options})",
+      "description": "Resolve the context of a repository or file command. Repository commands honor the selected/pinned repository; file commands honor their target editor.",
+      "leftLabel": "Object",
+      "type": "method"
+    },
+    {
       "name": "getForPath",
       "text": null,
       "snippet": "getForPath(${1:filePath})",
@@ -5313,6 +5436,14 @@
       "text": null,
       "snippet": "observeActiveRepository(${1:callback})",
       "description": "Invoke the callback with the current context immediately, and again on every change.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "observeForPath",
+      "text": null,
+      "snippet": "observeForPath(${1:getPath}, ${2:callback}, ${3:options})",
+      "description": "Observe the current repository of a changing file path, including discovery, routing changes, repository destruction and initial snapshot readiness.",
       "leftLabel": "Disposable",
       "type": "method"
     },
@@ -5394,6 +5525,22 @@
       "snippet": "onDidStartRescan(${1:callback})",
       "description": "Invoke the callback when a rescan of the project roots begins.",
       "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "performRemoteOperation",
+      "text": null,
+      "snippet": "performRemoteOperation(${1:repository}, ${2:name}, ${3:options})",
+      "description": "Fetch, pull or push the selected repository's current branch using a fresh remote/upstream snapshot inside the same serialized workflow.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "performWorkflow",
+      "text": null,
+      "snippet": "performWorkflow(${1:repository}, ${2:name}, ${3:callback}, ${4:options})",
+      "description": "Execute a complete workflow in one repository write turn. The callback gets direct operations that share the turn and never enqueue behind themselves.",
+      "leftLabel": "Promise",
       "type": "method"
     },
     {
@@ -6965,6 +7112,14 @@
   ],
   "ShellService": [
     {
+      "name": "openApplication",
+      "text": null,
+      "snippet": "openApplication(${1:executablePath}, ${2:args}, ${3:options})",
+      "description": "Launch a GUI application directly from the main process, independently of the editor's lifetime. Arguments are passed literally without a shell.",
+      "leftLabel": "Promise<Number>",
+      "type": "method"
+    },
+    {
       "name": "openExternal",
       "text": null,
       "snippet": "openExternal(${1:url})",
@@ -7584,6 +7739,14 @@
       "snippet": "nextNonBlankRow(${1:startRow})",
       "description": "Given a row, find the next row that's not blank.",
       "leftLabel": "Number",
+      "type": "method"
+    },
+    {
+      "name": "onDidApplyChanges",
+      "text": null,
+      "snippet": "onDidApplyChanges(${1:callback})",
+      "description": "Invoke the callback synchronously at the end of a transaction with its individual edits in application order, before the consolidated change event. Each edit uses the coordinates of the buffer immediately before and after that edit. Edits that cancel each other still appear, allowing external external range snapshots to follow every applied edit.",
+      "leftLabel": "Disposable",
       "type": "method"
     },
     {
@@ -10171,6 +10334,14 @@
       "type": "method"
     },
     {
+      "name": "getVariables",
+      "text": "getVariables()",
+      "snippet": null,
+      "description": "Get the immutable definitions of the editor's public CSS variables. Each definition specifies its bare name, type, role, owner, scope, default, documentation group and description. Runtime variables have a null default.",
+      "leftLabel": "Array<Object>",
+      "type": "method"
+    },
+    {
       "name": "isThemePackActive",
       "text": null,
       "snippet": "isThemePackActive(${1:themePack})",
@@ -10191,6 +10362,14 @@
       "text": null,
       "snippet": "onDidChangeThemePacks(${1:callback})",
       "description": "Invoke callback when a theme pack is registered or removed.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidChangeVariables",
+      "text": null,
+      "snippet": "onDidChangeVariables(${1:callback})",
+      "description": "Observe changes to the CSS variable cascade, including theme switches, system accents, user styles and runtime editor typography. Synchronous stylesheet updates are combined into one notification in a microtask.",
       "leftLabel": "Disposable",
       "type": "method"
     },
@@ -10887,7 +11066,7 @@
     {
       "name": "clear",
       "text": null,
-      "snippet": "clear(${1:options})",
+      "snippet": "clear(${1:options}, ${2:assertCurrent})",
       "description": "Destroy every item in the given pane container locations, leaving each of them with a single empty pane.",
       "leftLabel": "Promise",
       "type": "method"
@@ -10903,7 +11082,7 @@
     {
       "name": "createItemForURI",
       "text": null,
-      "snippet": "createItemForURI(${1:uri}, ${2:options}, ${3:reuseRequest})",
+      "snippet": "createItemForURI(${1:uri}, ${2:options}, ${3:reuseRequest}, ${4:openRequest})",
       "description": "Creates a new item that corresponds to the provided URI.",
       "leftLabel": "Promise",
       "type": "method"
@@ -11312,7 +11491,7 @@
       "name": "open",
       "text": null,
       "snippet": "open(${1:itemOrURI}, ${2:options})",
-      "description": "Opens the given URI in Lumine asynchronously. If the URI is already open, the existing item for that URI will be activated. If no URI is given, or no registered opener can open the URI, a new empty TextEditor will be created.",
+      "description": "Opens the given URI in Lumine asynchronously. If the URI is already open, the existing item for that URI will be activated. If no URI is given, or no registered opener can open the URI, a new empty TextEditor will be created. Resetting or destroying the workspace, or closing an explicit destination pane, cancels an unfinished open and resolves it to undefined. A late opener-owned item is disposed if it remains unattached; an item supplied by the caller stays caller-owned.",
       "leftLabel": "Promise",
       "type": "method"
     },
@@ -11675,7 +11854,7 @@
     {
       "name": "rollback",
       "text": null,
-      "snippet": "rollback(${1:token}, ${2:reason})",
+      "snippet": "rollback(${1:token}, ${2:reason}, ${3:options})",
       "description": "Roll back a local or cross-window drag session.",
       "leftLabel": "Promise",
       "type": "method"
