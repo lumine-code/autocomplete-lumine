@@ -8424,10 +8424,10 @@
       "type": "method"
     },
     {
-      "name": "getAltWheelMultiplier",
-      "text": "getAltWheelMultiplier()",
+      "name": "getAltWheelScrollMultiplier",
+      "text": "getAltWheelScrollMultiplier()",
       "snippet": null,
-      "description": "Speed multiplier applied to wheel scrolling while holding alt.",
+      "description": "Additional distance multiplier applied to wheel scrolling while holding alt. This gain does not change the ordinary wheel animation duration.",
       "leftLabel": "Number",
       "type": "method"
     },
@@ -8440,10 +8440,18 @@
       "type": "method"
     },
     {
-      "name": "getCommandSmoothness",
-      "text": "getCommandSmoothness()",
+      "name": "getCommandScrollDistance",
+      "text": "getCommandScrollDistance()",
       "snippet": null,
-      "description": "How gradually does the editor glide when scrolling via the scroll commands?",
+      "description": "Distance scrolled by editor:scroll-up and editor:scroll-down, measured in editor heights. Seeded from config; the increase/decrease scroll distance commands adjust it per editor.",
+      "leftLabel": "Number",
+      "type": "method"
+    },
+    {
+      "name": "getCommandScrollDuration",
+      "text": "getCommandScrollDuration()",
+      "snippet": null,
+      "description": "Maximum animation duration in milliseconds for editor:scroll-up and editor:scroll-down. Long movements and existing velocity can shorten it. A duration of zero scrolls without a glide.",
       "leftLabel": "Number",
       "type": "method"
     },
@@ -8736,27 +8744,11 @@
       "type": "method"
     },
     {
-      "name": "getScrollCommandDistance",
-      "text": "getScrollCommandDistance()",
-      "snippet": null,
-      "description": "Distance scrolled by the scroll commands, as a fraction of the editor height. Seeded from config; the increase/decrease scroll distance commands adjust it per editor.",
-      "leftLabel": "Number",
-      "type": "method"
-    },
-    {
       "name": "getScrollPastEnd",
       "text": "getScrollPastEnd()",
       "snippet": null,
       "description": "Does this editor allow scrolling past the last line?",
       "leftLabel": "Boolean",
-      "type": "method"
-    },
-    {
-      "name": "getScrollSensitivity",
-      "text": "getScrollSensitivity()",
-      "snippet": null,
-      "description": "How fast does the editor scroll in response to mouse wheel movements?",
-      "leftLabel": "Number",
       "type": "method"
     },
     {
@@ -8912,10 +8904,18 @@
       "type": "method"
     },
     {
-      "name": "getWheelSmoothness",
-      "text": "getWheelSmoothness()",
+      "name": "getWheelScrollDuration",
+      "text": "getWheelScrollDuration()",
       "snippet": null,
-      "description": "How gradually does the editor glide toward the target position when scrolling with the mouse wheel?",
+      "description": "Maximum animation duration in milliseconds for ordinary mouse wheel scrolling. Long movements and existing velocity can shorten the duration. A duration of zero scrolls without a glide.",
+      "leftLabel": "Number",
+      "type": "method"
+    },
+    {
+      "name": "getWheelScrollMultiplier",
+      "text": "getWheelScrollMultiplier()",
+      "snippet": null,
+      "description": "Multiplier applied to mouse wheel and trackpad scroll distances.",
       "leftLabel": "Number",
       "type": "method"
     },
