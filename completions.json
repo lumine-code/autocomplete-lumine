@@ -1038,8 +1038,8 @@
     },
     {
       "name": "moveToFirstCharacterOfLine",
-      "text": "moveToFirstCharacterOfLine()",
-      "snippet": null,
+      "text": null,
+      "snippet": "moveToFirstCharacterOfLine(${1:options})",
       "description": "Moves the cursor to the beginning of the first character in the line.",
       "leftLabel": null,
       "type": "method"
@@ -8752,6 +8752,14 @@
       "type": "method"
     },
     {
+      "name": "getScrollZone",
+      "text": "getScrollZone()",
+      "snippet": null,
+      "description": "Get the current navigation scroll zone for this editor's root grammar scope.",
+      "leftLabel": "Array<Number>",
+      "type": "method"
+    },
+    {
       "name": "getSelectedBufferRange",
       "text": "getSelectedBufferRange()",
       "snippet": null,
@@ -9249,8 +9257,8 @@
     },
     {
       "name": "moveToFirstCharacterOfLine",
-      "text": "moveToFirstCharacterOfLine()",
-      "snippet": null,
+      "text": null,
+      "snippet": "moveToFirstCharacterOfLine(${1:options})",
       "description": "Move every cursor to the first non-whitespace character of its line.",
       "leftLabel": null,
       "type": "method"
@@ -9676,6 +9684,14 @@
       "text": null,
       "snippet": "scrollToScreenRange(${1:screenRange}, ${2:options})",
       "description": "Scrolls the editor to the given screen range.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "scrollToZone",
+      "text": "scrollToZone()",
+      "snippet": null,
+      "description": "Reveal the most recently added cursor using editor.scrollZone for this editor.",
       "leftLabel": null,
       "type": "method"
     },
@@ -11571,7 +11587,7 @@
       "name": "replace",
       "text": null,
       "snippet": "replace(${1:regex}, ${2:replacementText}, ${3:filePaths}, ${4:iterator})",
-      "description": "Performs a replace across all the specified files in the project on disk. Open text buffers observe the writes as external file changes.",
+      "description": "Performs a replace across all the specified files in the project on disk. Open text buffers receive the disk edits and retain nonoverlapping unsaved changes. Different overlapping edits leave the buffer conflicted. Buffer-only matches are not replaced, and unsaved changes are not written to disk.",
       "leftLabel": "Promise",
       "type": "method"
     },
