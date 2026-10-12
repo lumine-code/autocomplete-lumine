@@ -11454,6 +11454,14 @@
       "type": "method"
     },
     {
+      "name": "detachItem",
+      "text": null,
+      "snippet": "detachItem(${1:item})",
+      "description": "Move one exact document tab into a new editor window sharing this workspace.",
+      "leftLabel": "Promise<EditorWindow>",
+      "type": "method"
+    },
+    {
       "name": "detachPane",
       "text": null,
       "snippet": "detachPane(${1:pane})",
