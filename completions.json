@@ -2161,7 +2161,7 @@
       "name": "getLineDiffsAsync",
       "text": null,
       "snippet": "getLineDiffsAsync(${1:filePath}, ${2:text}, ${3:options})",
-      "description": "Computes gutter line diffs off the renderer thread via the git-host worker, fetching and caching the HEAD blob before comparing it with the buffer.",
+      "description": "Computes gutter line diffs off the renderer thread via the git-host worker, fetching and caching the selected baseline blob before comparing it with the buffer. A path absent from that baseline is compared as empty text.",
       "leftLabel": "Promise",
       "type": "method"
     },
@@ -11096,6 +11096,14 @@
       "type": "method"
     },
     {
+      "name": "copyPaneItem",
+      "text": null,
+      "snippet": "copyPaneItem(${1:item}, ${2:options})",
+      "description": "Copy an exact item before creating its destination. Singleton items refuse copying.",
+      "leftLabel": "Promise<Object>",
+      "type": "method"
+    },
+    {
       "name": "createItemForURI",
       "text": null,
       "snippet": "createItemForURI(${1:uri}, ${2:options}, ${3:reuseRequest}, ${4:openRequest})",
@@ -11109,6 +11117,14 @@
       "snippet": null,
       "description": "Destroy (close) the active pane item.",
       "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "focusPaneInDirection",
+      "text": null,
+      "snippet": "focusPaneInDirection(${1:direction}, ${2:options})",
+      "description": "Focus the nearest visible pane in a direction, including visible docks.",
+      "leftLabel": "Pane|undefined",
       "type": "method"
     },
     {
@@ -11309,6 +11325,14 @@
       "snippet": "isTextEditor(${1:object})",
       "description": "that is true if object is a TextEditor.",
       "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
+      "name": "movePaneItem",
+      "text": null,
+      "snippet": "movePaneItem(${1:item}, ${2:options})",
+      "description": "Move an exact item to an existing pane or a new split, preserving its live view.",
+      "leftLabel": "Promise<Object>",
       "type": "method"
     },
     {
