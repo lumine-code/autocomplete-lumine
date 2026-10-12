@@ -1883,6 +1883,232 @@
       "type": "method"
     }
   ],
+  "EditorWindow": [
+    {
+      "name": "addFooterPanel",
+      "text": null,
+      "snippet": "addFooterPanel(${1:options})",
+      "description": "Add a panel to this window's status bar region.",
+      "leftLabel": "Panel",
+      "type": "method"
+    },
+    {
+      "name": "addHeaderPanel",
+      "text": null,
+      "snippet": "addHeaderPanel(${1:options})",
+      "description": "Add a panel to this window's title bar region.",
+      "leftLabel": "Panel",
+      "type": "method"
+    },
+    {
+      "name": "close",
+      "text": "close()",
+      "snippet": null,
+      "description": "Request a coordinated close of this window.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "confirm",
+      "text": null,
+      "snippet": "confirm(${1:options})",
+      "description": "Ask for a decision in a native dialog attached to this window.",
+      "leftLabel": "Promise<Number>",
+      "type": "method"
+    },
+    {
+      "name": "focus",
+      "text": "focus()",
+      "snippet": null,
+      "description": "Focus this window.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "getDocument",
+      "text": "getDocument()",
+      "snippet": null,
+      "description": "Get the DOM document used by this presentation.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "getDOMWindow",
+      "text": "getDOMWindow()",
+      "snippet": null,
+      "description": "Get the DOM window used by this presentation.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "getEditorContainer",
+      "text": "getEditorContainer()",
+      "snippet": null,
+      "description": "Get this window's local document pane container.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "getElement",
+      "text": "getElement()",
+      "snippet": null,
+      "description": "Get this window's workspace command root.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "getId",
+      "text": "getId()",
+      "snippet": null,
+      "description": "Get the native identity of this window.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "getState",
+      "text": "getState()",
+      "snippet": null,
+      "description": "Read the native window's state.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "getWorkspace",
+      "text": "getWorkspace()",
+      "snippet": null,
+      "description": "Get the shared workspace owning this window.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "isDestroyed",
+      "text": "isDestroyed()",
+      "snippet": null,
+      "description": "Determine whether this presentation has been destroyed.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "isMain",
+      "text": "isMain()",
+      "snippet": null,
+      "description": "Determine whether this is the workspace's main window.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "maximize",
+      "text": "maximize()",
+      "snippet": null,
+      "description": "Maximize this window.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "minimize",
+      "text": "minimize()",
+      "snippet": null,
+      "description": "Minimize this window.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "onDidBlur",
+      "text": null,
+      "snippet": "onDidBlur(${1:callback})",
+      "description": "Subscribe when the native window loses focus.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "onDidDestroy",
+      "text": null,
+      "snippet": "onDidDestroy(${1:callback})",
+      "description": "Subscribe after the window's presentation is released.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "onDidEnterFullScreen",
+      "text": null,
+      "snippet": "onDidEnterFullScreen(${1:callback})",
+      "description": "Subscribe when this native window enters fullscreen.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidFocus",
+      "text": null,
+      "snippet": "onDidFocus(${1:callback})",
+      "description": "Subscribe when the native window gains focus.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "onDidLeaveFullScreen",
+      "text": null,
+      "snippet": "onDidLeaveFullScreen(${1:callback})",
+      "description": "Subscribe when this native window leaves fullscreen.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidMaximize",
+      "text": null,
+      "snippet": "onDidMaximize(${1:callback})",
+      "description": "Subscribe when this native window is maximized.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidUnmaximize",
+      "text": null,
+      "snippet": "onDidUnmaximize(${1:callback})",
+      "description": "Subscribe when this native window leaves maximization.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onWillDestroy",
+      "text": null,
+      "snippet": "onWillDestroy(${1:callback})",
+      "description": "Subscribe before the window's presentation is released.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "setBounds",
+      "text": null,
+      "snippet": "setBounds(${1:bounds})",
+      "description": "Set the native bounds of this presentation.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "setSheetOffset",
+      "text": null,
+      "snippet": "setSheetOffset(${1:offset})",
+      "description": "Set the attachment offset of native sheets in this window.",
+      "leftLabel": "Promise|undefined",
+      "type": "method"
+    },
+    {
+      "name": "showSaveDialog",
+      "text": null,
+      "snippet": "showSaveDialog(${1:options})",
+      "description": "Choose a save path in a native dialog attached to this window.",
+      "leftLabel": "Promise<Object>",
+      "type": "method"
+    },
+    {
+      "name": "unmaximize",
+      "text": "unmaximize()",
+      "snippet": null,
+      "description": "Restore this window from maximization.",
+      "leftLabel": null,
+      "type": "method"
+    }
+  ],
   "Emitter": [
     {
       "name": "clear",
@@ -4512,6 +4738,14 @@
       "type": "method"
     },
     {
+      "name": "onDidChangeWindow",
+      "text": null,
+      "snippet": "onDidChangeWindow(${1:callback})",
+      "description": "Observe a change of presentation window while retaining this pane.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
       "name": "onDidDestroy",
       "text": null,
       "snippet": "onDidDestroy(${1:callback})",
@@ -4645,6 +4879,48 @@
       "snippet": "transactActiveState(${1:callback})",
       "description": "Apply a synchronous group of pane changes and notify workspace observers once with the final active pane and item. Changes and pane-local view events remain synchronous. Nested transactions and other containers touched by the callback share the outer operation. Only its final activation request is published, before the other containers report their final items.",
       "leftLabel": "*",
+      "type": "method"
+    }
+  ],
+  "PaneContainer": [
+    {
+      "name": "getActiveEmbeddedTextEditor",
+      "text": "getActiveEmbeddedTextEditor()",
+      "snippet": null,
+      "description": "Get the editor being edited inside this container's active item.",
+      "leftLabel": "TextEditor|undefined",
+      "type": "method"
+    },
+    {
+      "name": "getActiveFileTextEditor",
+      "text": "getActiveFileTextEditor()",
+      "snippet": null,
+      "description": "Get the file-content editor of this container's active item.",
+      "leftLabel": "TextEditor|undefined",
+      "type": "method"
+    },
+    {
+      "name": "getWindow",
+      "text": "getWindow()",
+      "snippet": null,
+      "description": "Get the editor window presenting this container.",
+      "leftLabel": "EditorWindow|null",
+      "type": "method"
+    },
+    {
+      "name": "observeActiveEmbeddedTextEditor",
+      "text": null,
+      "snippet": "observeActiveEmbeddedTextEditor(${1:callback})",
+      "description": "Observe the active editable editor inside this container's active item.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "observeActiveFileTextEditor",
+      "text": null,
+      "snippet": "observeActiveFileTextEditor(${1:callback})",
+      "description": "Observe this window-local active file-content editor.",
+      "leftLabel": "Disposable",
       "type": "method"
     }
   ],
@@ -10572,6 +10848,32 @@
       "type": "method"
     }
   ],
+  "WindowContributionRegistry": [
+    {
+      "name": "add",
+      "text": null,
+      "snippet": "add(${1:options})",
+      "description": "Register a factory for independent presentation instances.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "dispose",
+      "text": "dispose()",
+      "snippet": null,
+      "description": "Release the service and all its current and future presentation instances.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "observe",
+      "text": null,
+      "snippet": "observe(${1:options})",
+      "description": "Own the lifetime of a service client's window-local controller.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    }
+  ],
   "WindowService": [
     {
       "name": "broadcast",
@@ -11056,6 +11358,14 @@
       "type": "method"
     },
     {
+      "name": "attachWindow",
+      "text": null,
+      "snippet": "attachWindow(${1:editorWindow})",
+      "description": "Reattach an additional window's complete pane layout to the main window.",
+      "leftLabel": "Promise<EditorWindow>",
+      "type": "method"
+    },
+    {
       "name": "beginFileMove",
       "text": null,
       "snippet": "beginFileMove(${1:plannedRenames})",
@@ -11105,10 +11415,18 @@
     },
     {
       "name": "closeActivePaneItemOrEmptyPaneOrWindow",
-      "text": "closeActivePaneItemOrEmptyPaneOrWindow()",
-      "snippet": null,
+      "text": null,
+      "snippet": "closeActivePaneItemOrEmptyPaneOrWindow(${1:context})",
       "description": "Close the workspace center's active pane item, or its active pane if that pane is empty, or the window if only the empty root pane is left.",
       "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "closeEditorWindow",
+      "text": null,
+      "snippet": "closeEditorWindow(${1:editorWindow})",
+      "description": "Close one presentation after its document panes have accepted closing.",
+      "leftLabel": "Promise<Boolean>",
       "type": "method"
     },
     {
@@ -11116,7 +11434,7 @@
       "text": null,
       "snippet": "copyPaneItem(${1:item}, ${2:options})",
       "description": "Copy an exact item before creating its destination. Singleton items refuse copying.",
-      "leftLabel": "Promise<Object>",
+      "leftLabel": "Promise<Object|null>",
       "type": "method"
     },
     {
@@ -11133,6 +11451,14 @@
       "snippet": null,
       "description": "Destroy (close) the active pane item.",
       "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "detachPane",
+      "text": null,
+      "snippet": "detachPane(${1:pane})",
+      "description": "Present an existing document pane in a new window without reopening its items.",
+      "leftLabel": "Promise<EditorWindow>",
       "type": "method"
     },
     {
@@ -11224,6 +11550,14 @@
       "type": "method"
     },
     {
+      "name": "getFocusedWindow",
+      "text": "getFocusedWindow()",
+      "snippet": null,
+      "description": "Get the presentation window whose document currently has focus.",
+      "leftLabel": "EditorWindow|null",
+      "type": "method"
+    },
+    {
       "name": "getFooterPanels",
       "text": "getFooterPanels()",
       "snippet": null,
@@ -11253,6 +11587,14 @@
       "snippet": null,
       "description": "Get an Array of all the panel items to the left of the editor window.",
       "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "getMainWindow",
+      "text": "getMainWindow()",
+      "snippet": null,
+      "description": "Get this workspace's main presentation window.",
+      "leftLabel": "EditorWindow|null",
       "type": "method"
     },
     {
@@ -11325,6 +11667,22 @@
       "snippet": null,
       "description": "Get an Array of all the panel items at the top of the editor window.",
       "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "getWindowForElement",
+      "text": null,
+      "snippet": "getWindowForElement(${1:element})",
+      "description": "Get the presentation containing a DOM element, including embedded frames.",
+      "leftLabel": "EditorWindow|null",
+      "type": "method"
+    },
+    {
+      "name": "getWindows",
+      "text": "getWindows()",
+      "snippet": null,
+      "description": "Get all presentation windows belonging to this workspace.",
+      "leftLabel": "Array<EditorWindow>",
       "type": "method"
     },
     {
@@ -11412,6 +11770,14 @@
       "text": null,
       "snippet": "observeTextEditors(${1:callback})",
       "description": "Invoke the given callback with all current and future text editors in the workspace.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "observeWindows",
+      "text": null,
+      "snippet": "observeWindows(${1:callback})",
+      "description": "Observe current and future presentation windows of this workspace.",
       "leftLabel": "Disposable",
       "type": "method"
     },
@@ -11552,6 +11918,14 @@
       "type": "method"
     },
     {
+      "name": "openEditorWindow",
+      "text": null,
+      "snippet": "openEditorWindow(${1:options})",
+      "description": "Create an additional editor window sharing this workspace's documents and packages.",
+      "leftLabel": "Promise<EditorWindow>",
+      "type": "method"
+    },
+    {
       "name": "paneContainerForItem",
       "text": null,
       "snippet": "paneContainerForItem(${1:item})",
@@ -11632,17 +12006,25 @@
       "type": "method"
     },
     {
+      "name": "resolveCommandContext",
+      "text": null,
+      "snippet": "resolveCommandContext(${1:eventOrElement})",
+      "description": "Capture a command's presentation and document targets before asynchronous work.",
+      "leftLabel": "Object",
+      "type": "method"
+    },
+    {
       "name": "saveActivePaneItem",
-      "text": "saveActivePaneItem()",
-      "snippet": null,
+      "text": null,
+      "snippet": "saveActivePaneItem(${1:context})",
       "description": "Save the workspace center's active pane item.",
       "leftLabel": null,
       "type": "method"
     },
     {
       "name": "saveActivePaneItemAs",
-      "text": "saveActivePaneItemAs()",
-      "snippet": null,
+      "text": null,
+      "snippet": "saveActivePaneItemAs(${1:context})",
       "description": "Prompt for a path and save the workspace center's active pane item to it.",
       "leftLabel": null,
       "type": "method"
@@ -11706,6 +12088,14 @@
       "type": "method"
     },
     {
+      "name": "getPaneContainers",
+      "text": "getPaneContainers()",
+      "snippet": null,
+      "description": "Get all document containers in this center.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
       "name": "getPaneItems",
       "text": "getPaneItems()",
       "snippet": null,
@@ -11743,6 +12133,14 @@
       "snippet": "observeActivePaneItem(${1:callback})",
       "description": "Invoke the given callback with the current active pane item and with all future active pane items in the workspace center.",
       "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "observePaneContainers",
+      "text": null,
+      "snippet": "observePaneContainers(${1:callback})",
+      "description": "Observe current and future document containers.",
+      "leftLabel": null,
       "type": "method"
     },
     {
