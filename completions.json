@@ -3,224 +3,224 @@
     {
       "name": "application",
       "text": "application",
-      "description": "An ApplicationService instance",
+      "description": "ApplicationService",
       "leftLabel": "ApplicationService",
       "type": "property"
     },
     {
       "name": "clipboard",
       "text": "clipboard",
-      "description": "A Clipboard instance",
+      "description": "Clipboard",
       "leftLabel": "Clipboard",
       "type": "property"
     },
     {
       "name": "commands",
       "text": "commands",
-      "description": "A CommandRegistry instance",
+      "description": "CommandRegistry",
       "leftLabel": "CommandRegistry",
       "type": "property"
     },
     {
       "name": "config",
       "text": "config",
-      "description": "A Config instance",
+      "description": "Config",
       "leftLabel": "Config",
       "type": "property"
     },
     {
       "name": "contextMenu",
       "text": "contextMenu",
-      "description": "A ContextMenuManager instance",
+      "description": "ContextMenuManager",
       "leftLabel": "ContextMenuManager",
       "type": "property"
     },
     {
       "name": "deserializers",
       "text": "deserializers",
-      "description": "A DeserializerManager instance",
+      "description": "DeserializerManager",
       "leftLabel": "DeserializerManager",
       "type": "property"
     },
     {
       "name": "deserializeTimings",
       "text": "deserializeTimings",
-      "description": "How long each deserialized top-level object took to restore, in milliseconds, keyed by name (project, workspace). The timecop package reads this to report window load cost, and resets it to {}.",
+      "description": "Object<string, number>",
       "leftLabel": "Object<string, number>",
       "type": "property"
     },
     {
       "name": "grammars",
       "text": "grammars",
-      "description": "A GrammarRegistry instance",
+      "description": "GrammarRegistry",
       "leftLabel": "GrammarRegistry",
       "type": "property"
     },
     {
       "name": "history",
       "text": "history",
-      "description": "A HistoryManager instance",
+      "description": "HistoryManager",
       "leftLabel": "HistoryManager",
       "type": "property"
     },
     {
       "name": "hooks",
       "text": "hooks",
-      "description": "Sticky hooks emitted by core and consumed by package-owned lazy features. Hooks are independent of package lifecycle and last for this environment generation only.",
+      "description": "Object",
       "leftLabel": "Object",
       "type": "property"
     },
     {
       "name": "icons",
       "text": "icons",
-      "description": "An IconRegistry instance",
+      "description": "IconRegistry",
       "leftLabel": "IconRegistry",
       "type": "property"
     },
     {
       "name": "keymaps",
       "text": "keymaps",
-      "description": "A KeymapManager instance",
+      "description": "KeymapManager",
       "leftLabel": "KeymapManager",
       "type": "property"
     },
     {
       "name": "menu",
       "text": "menu",
-      "description": "A MenuManager instance",
+      "description": "MenuManager",
       "leftLabel": "MenuManager",
       "type": "property"
     },
     {
       "name": "notifications",
       "text": "notifications",
-      "description": "A NotificationManager instance",
+      "description": "NotificationManager",
       "leftLabel": "NotificationManager",
       "type": "property"
     },
     {
       "name": "packages",
       "text": "packages",
-      "description": "A PackageManager instance",
+      "description": "PackageManager",
       "leftLabel": "PackageManager",
       "type": "property"
     },
     {
       "name": "paneItemTransfers",
       "text": "paneItemTransfers",
-      "description": "Staged moves of pane items within this window or into another window.",
+      "description": "PaneItemTransferService",
       "leftLabel": "PaneItemTransferService",
       "type": "property"
     },
     {
       "name": "pasteProviders",
       "text": "pasteProviders",
-      "description": "A PasteProviderRegistry instance",
+      "description": "PasteProviderRegistry",
       "leftLabel": "PasteProviderRegistry",
       "type": "property"
     },
     {
       "name": "project",
       "text": "project",
-      "description": "A Project instance",
+      "description": "Project",
       "leftLabel": "Project",
       "type": "property"
     },
     {
       "name": "repositories",
       "text": "repositories",
-      "description": "A RepositoryRegistry instance",
+      "description": "RepositoryRegistry",
       "leftLabel": "RepositoryRegistry",
       "type": "property"
     },
     {
       "name": "runtime",
       "text": "runtime",
-      "description": "A RuntimeService instance",
+      "description": "RuntimeService",
       "leftLabel": "RuntimeService",
       "type": "property"
     },
     {
       "name": "secrets",
       "text": "secrets",
-      "description": "A SecretStore instance",
+      "description": "SecretStore",
       "leftLabel": "SecretStore",
       "type": "property"
     },
     {
       "name": "shell",
       "text": "shell",
-      "description": "A ShellService instance",
+      "description": "ShellService",
       "leftLabel": "ShellService",
       "type": "property"
     },
     {
       "name": "styles",
       "text": "styles",
-      "description": "A StyleManager instance",
+      "description": "StyleManager",
       "leftLabel": "StyleManager",
       "type": "property"
     },
     {
       "name": "textEditors",
       "text": "textEditors",
-      "description": "A TextEditorRegistry instance",
+      "description": "TextEditorRegistry",
       "leftLabel": "TextEditorRegistry",
       "type": "property"
     },
     {
       "name": "themes",
       "text": "themes",
-      "description": "A ThemeManager instance",
+      "description": "ThemeManager",
       "leftLabel": "ThemeManager",
       "type": "property"
     },
     {
       "name": "tools",
       "text": "tools",
-      "description": "Editor utilities a package can reuse instead of vendoring its own: markdown, fuzzyMatcher, and removeDiacritics.",
+      "description": "Object",
       "leftLabel": "Object",
       "type": "property"
     },
     {
       "name": "tooltips",
       "text": "tooltips",
-      "description": "A TooltipManager instance",
+      "description": "TooltipManager",
       "leftLabel": "TooltipManager",
       "type": "property"
     },
     {
       "name": "uriHandlers",
       "text": "uriHandlers",
-      "description": "A URIHandlerRegistry instance",
+      "description": "URIHandlerRegistry",
       "leftLabel": "URIHandlerRegistry",
       "type": "property"
     },
     {
       "name": "views",
       "text": "views",
-      "description": "A ViewRegistry instance",
+      "description": "ViewRegistry",
       "leftLabel": "ViewRegistry",
       "type": "property"
     },
     {
       "name": "window",
       "text": "window",
-      "description": "A WindowService instance",
+      "description": "WindowService",
       "leftLabel": "WindowService",
       "type": "property"
     },
     {
       "name": "workspace",
       "text": "workspace",
-      "description": "A Workspace instance",
+      "description": "Workspace",
       "leftLabel": "Workspace",
       "type": "property"
     },
     {
       "name": "workspaceDrops",
       "text": "workspaceDrops",
-      "description": "Shared protocol and routing for drops on workspace panes and package surfaces such as tab bars.",
+      "description": "WorkspaceDropManager",
       "leftLabel": "WorkspaceDropManager",
       "type": "property"
     }
@@ -1901,6 +1901,14 @@
       "type": "method"
     },
     {
+      "name": "addModalPanel",
+      "text": null,
+      "snippet": "addModalPanel(${1:options})",
+      "description": "Add a modal panel to this presentation's own document.",
+      "leftLabel": "Panel",
+      "type": "method"
+    },
+    {
       "name": "close",
       "text": "close()",
       "snippet": null,
@@ -2077,10 +2085,26 @@
       "type": "method"
     },
     {
+      "name": "postMessageToFrame",
+      "text": null,
+      "snippet": "postMessageToFrame(${1:frame}, ${2:message}, ${3:origin}, ${4:ports})",
+      "description": "Send a message to an embedded frame from its physical parent window.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
       "name": "setBounds",
       "text": null,
       "snippet": "setBounds(${1:bounds})",
       "description": "Set the native bounds of this presentation.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
+      "name": "setRepresentedFilename",
+      "text": null,
+      "snippet": "setRepresentedFilename(${1:filename})",
+      "description": "Set the document path represented by this native window.",
       "leftLabel": "Promise",
       "type": "method"
     },
@@ -10840,6 +10864,14 @@
       "type": "method"
     },
     {
+      "name": "addWindowParticipant",
+      "text": null,
+      "snippet": "addWindowParticipant(${1:root}, ${2:participant})",
+      "description": "Register a presentation component that needs state preparation across documents.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
       "name": "getView",
       "text": null,
       "snippet": "getView(${1:object})",
@@ -11188,6 +11220,14 @@
       "type": "method"
     },
     {
+      "name": "setRepresentedFilename",
+      "text": null,
+      "snippet": "setRepresentedFilename(${1:filename})",
+      "description": "Set the filename represented by the native window.",
+      "leftLabel": "Promise",
+      "type": "method"
+    },
+    {
       "name": "setSheetOffset",
       "text": null,
       "snippet": "setSheetOffset(${1:offsetY})",
@@ -11433,7 +11473,7 @@
       "name": "copyPaneItem",
       "text": null,
       "snippet": "copyPaneItem(${1:item}, ${2:options})",
-      "description": "Copy an exact item before creating its destination. Singleton items refuse copying.",
+      "description": "Copy an exact item before creating its destination, if the item supports copying.",
       "leftLabel": "Promise<Object|null>",
       "type": "method"
     },
@@ -11975,8 +12015,8 @@
     },
     {
       "name": "popModal",
-      "text": "popModal()",
-      "snippet": null,
+      "text": null,
+      "snippet": "popModal(${1:window})",
       "description": "Go back one step in the modal breadcrumb trail.",
       "leftLabel": "Boolean",
       "type": "method"
