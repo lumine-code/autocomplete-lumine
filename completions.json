@@ -3284,6 +3284,22 @@
       "type": "method"
     },
     {
+      "name": "registerFrameHost",
+      "text": null,
+      "snippet": "registerFrameHost(${1:root})",
+      "description": "Register iframe descendants of a pane item host for native directional pane shortcuts. The parent iframe element supplies the keymap scope; child scripts do not send commands or keyboard messages. Dispose before retaining a retired frame outside its host. Custom keystroke resolvers disable native routing because their functions cannot cross processes.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "shouldContinuePendingKeyboardEvent",
+      "text": null,
+      "snippet": "shouldContinuePendingKeyboardEvent(${1:event}, ${2:options})",
+      "description": "Determine whether an iframe bridge should relay a pending chord event for its host target. This query does not dispatch, prevent default or advance matching state. Relay wrong suffixes too so they can end a pending chord; ordinary editable input stays native when this returns false. A retained keyup rule only requests its next matching keyup, even after a timeout.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
       "name": "watchKeymap",
       "text": null,
       "snippet": "watchKeymap(${1:filePath}, ${2:options})",
