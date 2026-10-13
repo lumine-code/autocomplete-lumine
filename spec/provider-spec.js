@@ -41,7 +41,8 @@ describe("Lumine API autocompletions", () => {
     provider = lumine.packages
       .getActivePackage("autocomplete-lumine")
       .mainModule.provideAutocomplete();
-    await conditionPromise(() => Object.keys(provider.completions).length > 0, "completions");
+    await provider.ensureCompletions();
+    expect(Object.keys(provider.completions).length).toBeGreaterThan(0);
     await lumine.workspace.open("test.js");
     editor = lumine.workspace.getActiveTextEditor();
   });

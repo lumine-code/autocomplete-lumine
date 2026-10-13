@@ -14,6 +14,8 @@ describe("Lumine API completions in the configured home", () => {
       editor.setText("lumine.workspace.");
       editor.setCursorBufferPosition([0, Infinity]);
 
+      await provider.ensureCompletions();
+
       const suggestions = provider.getSuggestions({
         editor,
         bufferPosition: editor.getCursorBufferPosition(),
