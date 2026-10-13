@@ -1,1 +1,2 @@
 spec/fixtures/** -text
+completions.json text eol=lf
