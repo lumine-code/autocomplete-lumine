@@ -10,6 +10,8 @@ Fork of [pulsar-edit/pulsar](https://github.com/pulsar-edit/pulsar) (`packages/a
 - **Package-aware**: activates only while editing files inside a Lumine package.
 - **Language support**: works in JavaScript and CoffeeScript source.
 
+![Complete Lumine workspace API methods while authoring a package.](.github/demo.png)
+
 ## Installation
 
 To install `autocomplete-lumine` search for it in the Install pane of the Lumine settings, or run the command `lumine --install lumine-code/autocomplete-lumine`.
