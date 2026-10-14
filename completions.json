@@ -7602,6 +7602,14 @@
       "type": "method"
     },
     {
+      "name": "canSaveAutomatically",
+      "text": "canSaveAutomatically()",
+      "snippet": null,
+      "description": "Determine whether the current path can be saved automatically without asking for confirmation. Ordinary buffers and paths approved for this buffer's session return true; policies awaiting approval return false.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
       "name": "characterIndexForPosition",
       "text": null,
       "snippet": "characterIndexForPosition(${1:position})",
@@ -7938,6 +7946,14 @@
       "type": "method"
     },
     {
+      "name": "getSaveConfirmation",
+      "text": "getSaveConfirmation()",
+      "snippet": null,
+      "description": "Return a copy of the current backing path's save-confirmation policy.",
+      "leftLabel": "Object|null",
+      "type": "method"
+    },
+    {
       "name": "getStoppedChangingDelay",
       "text": "getStoppedChangingDelay()",
       "snippet": null,
@@ -8267,8 +8283,8 @@
     },
     {
       "name": "save",
-      "text": "save()",
-      "snippet": null,
+      "text": null,
+      "snippet": "save(${1:options})",
       "description": "Save the buffer.",
       "leftLabel": "Promise<TextBuffer>",
       "type": "method"
@@ -8276,7 +8292,7 @@
     {
       "name": "saveAs",
       "text": null,
-      "snippet": "saveAs(${1:filePath})",
+      "snippet": "saveAs(${1:filePath}, ${2:options})",
       "description": "Save the buffer at a specific path.",
       "leftLabel": "Promise<TextBuffer>",
       "type": "method"
@@ -8334,6 +8350,14 @@
       "text": null,
       "snippet": "setPath(${1:filePath})",
       "description": "Set the path for the buffer's associated file.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "setSaveConfirmation",
+      "text": null,
+      "snippet": "setSaveConfirmation(${1:confirmation})",
+      "description": "Require confirmation before saving to the current backing path. The serializable policy is shared by all editors of this buffer. The warning offers approval once, approval for this buffer's session, or cancellation. Session approval is not serialized. Setting the same policy again preserves its pending warning and session approval.",
       "leftLabel": null,
       "type": "method"
     },
@@ -8505,6 +8529,14 @@
       "snippet": "bufferRangesForScreenColumnBlock(${1:startRow}, ${2:endRow}, ${3:startColumn}, ${4:endColumn})",
       "description": "Convert a rectangular block of screen positions -- the same two columns across a span of screen rows -- to buffer coordinates in bulk.",
       "leftLabel": "Array",
+      "type": "method"
+    },
+    {
+      "name": "canSaveAutomatically",
+      "text": "canSaveAutomatically()",
+      "snippet": null,
+      "description": "Determine whether this editor's current path can be saved automatically. Editors without a policy and paths approved for the shared buffer's session return true; policies awaiting approval return false.",
+      "leftLabel": "Boolean",
       "type": "method"
     },
     {
@@ -9089,6 +9121,14 @@
       "snippet": null,
       "description": "Get the scope descriptor for this editor's root grammar.",
       "leftLabel": "ScopeDescriptor",
+      "type": "method"
+    },
+    {
+      "name": "getSaveConfirmation",
+      "text": "getSaveConfirmation()",
+      "snippet": null,
+      "description": "Return a copy of this editor's shared save-confirmation policy.",
+      "leftLabel": "Object|null",
       "type": "method"
     },
     {
@@ -10356,6 +10396,14 @@
       "type": "method"
     },
     {
+      "name": "setSaveConfirmation",
+      "text": null,
+      "snippet": "setSaveConfirmation(${1:confirmation})",
+      "description": "Require an explicit decision before saving to this editor's current path. The policy belongs to the shared buffer, survives session restoration, and is cleared after a successful Save As to another path. Approval for the session is shared with split editors and resets after restoration. Setting an identical policy preserves its pending warning and decision.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
       "name": "setSelectedBufferRange",
       "text": null,
       "snippet": "setSelectedBufferRange(${1:bufferRange}, ${2:options})",
@@ -11441,7 +11489,15 @@
       "name": "addOpener",
       "text": null,
       "snippet": "addOpener(${1:opener}, ${2:options})",
-      "description": "Register an opener for a uri.",
+      "description": "Register an opener for an internal workspace URI.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "addPathOpener",
+      "text": null,
+      "snippet": "addPathOpener(${1:descriptor})",
+      "description": "Register a named path opener for automatic opening and Open With. Availability is checked without constructing a view or opening a path.",
       "leftLabel": "Disposable",
       "type": "method"
     },
@@ -11635,6 +11691,14 @@
       "snippet": null,
       "description": "Get the workspace center's active item if it is a TextEditor.",
       "leftLabel": "TextEditor|undefined",
+      "type": "method"
+    },
+    {
+      "name": "getAvailablePathOpeners",
+      "text": null,
+      "snippet": "getAvailablePathOpeners(${1:uri}, ${2:options})",
+      "description": "List path openers without invoking their opening callbacks. The automatic default is first, followed by the other available openers. Text Editor is always included for file paths. Project Folder is included for directory paths.",
+      "leftLabel": "Array<Object>",
       "type": "method"
     },
     {
@@ -12043,6 +12107,14 @@
       "snippet": "openEditorWindow(${1:options})",
       "description": "Create an additional editor window sharing this workspace's documents and packages.",
       "leftLabel": "Promise<EditorWindow>",
+      "type": "method"
+    },
+    {
+      "name": "openPathInNewWindow",
+      "text": null,
+      "snippet": "openPathInNewWindow(${1:uri}, ${2:options})",
+      "description": "Open a local path in a new independent project window with the selected opener. The opener is resolved and validated before requesting any window. File openings retain the current project roots; directory openings use that directory.",
+      "leftLabel": "Promise<void>",
       "type": "method"
     },
     {
