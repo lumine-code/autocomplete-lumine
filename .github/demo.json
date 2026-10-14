@@ -1,16 +1,75 @@
 {
   "title": "autocomplete-lumine",
   "description": "Complete Lumine workspace API methods while authoring a package.",
-  "recordedOn": "2026-10-13",
-  "sourceRevision": "0a000b5398eede51bcc29c6843d3b611a75e6ac6",
+  "recordedOn": "2026-10-14",
+  "sourceRevision": "3be9adb495aad919a3b3edae53413ad455633b5e",
+  "themeSourceRevision": "7fbd047a87ecf1367c896b19ff270cdc28d319f7",
   "mode": "normal",
   "fontSettings": "default",
+  "scenario": "demo.js",
+  "recipeHash": "8e563df58a899775fefd42651ce6b665b3fbfd4a04f523f8a68b765612e2f40d",
+  "environment": {
+    "platform": "win32",
+    "arch": "x64",
+    "electron": "44.7.0",
+    "chrome": "152.0.7977.130",
+    "devicePixelRatio": 1,
+    "locale": "en-GB",
+    "fontFamily": "Fira Code, Menlo, DejaVu Sans Mono, Consolas, monospace",
+    "fontSize": 14,
+    "themes": ["one-day-syntax", "one-day-ui"]
+  },
+  "viewport": { "width": 1100, "height": 520 },
+  "cornerRadius": 10,
+  "sources": {
+    "editor": {
+      "revision": "8be8f86075ad93df038610d82b3ac6d99329957d",
+      "dirty": true,
+      "workingTreeHash": "0a9458f6e3959fe7a52b2fec76abef27dcbaa9792f192b81ac1e3f6b2be82009"
+    },
+    "package": {
+      "revision": "3be9adb495aad919a3b3edae53413ad455633b5e",
+      "dirty": false,
+      "workingTreeHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "autocomplete-lumine": {
+      "revision": "3be9adb495aad919a3b3edae53413ad455633b5e",
+      "dirty": false,
+      "workingTreeHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "autocomplete": {
+      "revision": "6c09c061f8693eafa65d9e6077c8cb5c09e12ac2",
+      "dirty": false,
+      "workingTreeHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "language-javascript": {
+      "revision": "ae2e6968e3a349fb4d09ce53e339a0f8cce903aa",
+      "dirty": false,
+      "workingTreeHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "one-theme": {
+      "revision": "7fbd047a87ecf1367c896b19ff270cdc28d319f7",
+      "dirty": false,
+      "workingTreeHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  },
+  "fixtures": [
+    {
+      "file": "api-completions/main.js",
+      "sha256": "c636027f9a9725c7b128d49c3e29613a213605a3c5e90cf27f3a12be89f6faa8"
+    },
+    {
+      "file": "api-completions/package.json",
+      "sha256": "36dcea5ed3e0c6b4b80b2fb3d82384ade7e2e76acc688c79e5af551757084ffb"
+    }
+  ],
   "images": [
     {
       "file": "demo.png",
       "label": "Complete Lumine workspace API methods while authoring a package.",
       "width": 1100,
-      "height": 520
+      "height": 520,
+      "sha256": "70813e9cfbcc2e4fa323614d4f6e7eedcbdec604736d48200472666c5f33c9f4"
     }
   ]
 }
