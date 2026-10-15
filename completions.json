@@ -10995,7 +10995,7 @@
       "name": "addWindowParticipant",
       "text": null,
       "snippet": "addWindowParticipant(${1:root}, ${2:participant})",
-      "description": "Register a presentation component that needs state preparation across documents.",
+      "description": "Register a presentation component that needs state preparation across documents. Disposing its registration allows the same DOM root to be registered again.",
       "leftLabel": "Disposable",
       "type": "method"
     },
@@ -12102,10 +12102,18 @@
       "type": "method"
     },
     {
+      "name": "onWillResolvePathOpeners",
+      "text": null,
+      "snippet": "onWillResolvePathOpeners(${1:callback})",
+      "description": "Prepare path opener descriptors synchronously before resolving a local path. Use cheap path checks before discovering optional installed integrations. The callback may register openers; their canOpen predicates remain side-effect free. A reentrant query skips callbacks already running, and errors propagate to the caller. Internal and remote URIs do not invoke these callbacks.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
       "name": "open",
       "text": null,
       "snippet": "open(${1:itemOrURI}, ${2:options})",
-      "description": "Opens the given URI in Lumine asynchronously. If the URI is already open, the existing item for that URI will be activated. If no URI is given, or no registered opener can open the URI, a new empty TextEditor will be created. Resetting or destroying the workspace, or closing an explicit destination pane, cancels an unfinished open and resolves it to undefined. A late opener-owned item is disposed if it remains unattached; an item supplied by the caller stays caller-owned.",
+      "description": "Opens the given URI in Lumine asynchronously. If the URI is already open, the existing item for that URI will be activated. If no URI is given, or no registered opener can open the URI, a new empty TextEditor will be created. The destination pane is captured before asynchronous opening begins, so later focus changes do not redirect the result into another window. Resetting or destroying the workspace, or closing the chosen destination pane, cancels an unfinished open and resolves it to undefined. A late opener-owned item is disposed if it remains unattached; an item supplied by the caller stays caller-owned.",
       "leftLabel": "Promise<Object|undefined>",
       "type": "method"
     },
@@ -12113,7 +12121,7 @@
       "name": "openEditorWindow",
       "text": null,
       "snippet": "openEditorWindow(${1:options})",
-      "description": "Create an additional editor window sharing this workspace's documents and packages.",
+      "description": "Create an additional editor window sharing this workspace's documents and packages. New calls are refused while the workspace windows prepare to unload.",
       "leftLabel": "Promise<EditorWindow>",
       "type": "method"
     },
