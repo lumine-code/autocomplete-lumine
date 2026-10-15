@@ -2125,6 +2125,14 @@
       "type": "method"
     },
     {
+      "name": "showOpenDialog",
+      "text": null,
+      "snippet": "showOpenDialog(${1:options})",
+      "description": "Choose resources in a native dialog attached to this window.",
+      "leftLabel": "Promise<Object>",
+      "type": "method"
+    },
+    {
       "name": "showSaveDialog",
       "text": null,
       "snippet": "showSaveDialog(${1:options})",
@@ -11497,7 +11505,7 @@
       "name": "addPathOpener",
       "text": null,
       "snippet": "addPathOpener(${1:descriptor})",
-      "description": "Register a named path opener for automatic opening and Open With. Availability is checked without constructing a view or opening a path.",
+      "description": "Register a named path opener for automatic opening and Launcher Open. Availability is checked without constructing a view or opening a path.",
       "leftLabel": "Disposable",
       "type": "method"
     },
