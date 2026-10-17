@@ -509,6 +509,14 @@
       "type": "method"
     },
     {
+      "name": "canDispatch",
+      "text": null,
+      "snippet": "canDispatch(${1:target}, ${2:commandName}, ${3:detail})",
+      "description": "Determine whether an enabled handler matches a target or its ancestors. Registration scope is checked before its optional isAvailable predicate. Handlers are never invoked. This follows the same route as command dispatch, including detached targets and the target's own window.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
       "name": "dispatch",
       "text": null,
       "snippet": "dispatch(${1:target}, ${2:commandName}, ${3:detail})",
@@ -536,8 +544,24 @@
       "name": "getCommandPresentations",
       "text": null,
       "snippet": "getCommandPresentations(${1:options})",
-      "description": "Return presentation metadata for every effective command at a target. Commands and keybindings are each scanned once, making this the preferred path for command pickers and other complete catalogues.",
+      "description": "Return presentation metadata for every effective command at a target. Metadata and keybindings are each scanned once; availability uses the indexed registrations of each command. Disabled commands remain visible.",
       "leftLabel": "Array<Object>",
+      "type": "method"
+    },
+    {
+      "name": "invalidateAvailability",
+      "text": null,
+      "snippet": "invalidateAvailability(${1:options})",
+      "description": "Notify command surfaces that state used by isAvailable predicates changed. Predicates are evaluated afresh on every query; this asks live presentations such as the native application menu to refresh without a focus change.",
+      "leftLabel": "void",
+      "type": "method"
+    },
+    {
+      "name": "onDidChange",
+      "text": null,
+      "snippet": "onDidChange(${1:callback})",
+      "description": "Invoke the callback when command registrations are added, removed, cleared or restored, or their availability is invalidated. Unlike dispatch subscriptions, this subscription survives clear() and is disposed when the registry is destroyed.",
+      "leftLabel": "Disposable",
       "type": "method"
     },
     {
@@ -2427,7 +2451,7 @@
       "name": "getLineDiffsAsync",
       "text": null,
       "snippet": "getLineDiffsAsync(${1:filePath}, ${2:text}, ${3:options})",
-      "description": "Computes gutter line diffs off the renderer thread via the git-host worker, fetching and caching the selected baseline blob before comparing it with the buffer. A path absent from that baseline is compared as empty text.",
+      "description": "Computes gutter line diffs off the renderer thread via the git-host worker, fetching and caching the selected baseline blob before comparing it with the buffer. A path absent from that baseline is compared as empty text unless skipMissingBaseline is enabled.",
       "leftLabel": "Promise<Array<Object>>",
       "type": "method"
     },
@@ -2597,6 +2621,14 @@
       "snippet": "isSubmodule(${1:filePath})",
       "description": "Is the given path a submodule in the repository?",
       "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
+      "name": "onDidChangeCachedState",
+      "text": null,
+      "snippet": "onDidChangeCachedState(${1:callback})",
+      "description": "Observe accepted changes to the cached status, refs or effective HEAD. Unlike the snapshot subscriptions, this declares no interest, schedules no refresh and performs no Git or filesystem work. It does not replay the current state. Combined refreshes publish both caches before notifying.",
+      "leftLabel": "Disposable",
       "type": "method"
     },
     {
@@ -5676,6 +5708,14 @@
       "type": "method"
     },
     {
+      "name": "getBufferStatusSummary",
+      "text": null,
+      "snippet": "getBufferStatusSummary(${1:filePath}, ${2:options})",
+      "description": "Combine Git's cached path status with a buffer's persistence state. Returns null outside a repository or before its status (including ignored paths) is ready. Git ignore rules, conflicts and untracked files take precedence over unsaved edits. canDiff identifies paths with a usable Git baseline; directory summaries should only aggregate buffers owned by that directory's repository. No filesystem access or Git process occurs.",
+      "leftLabel": "Object|null",
+      "type": "method"
+    },
+    {
       "name": "getById",
       "text": null,
       "snippet": "getById(${1:id})",
@@ -5808,6 +5848,14 @@
       "text": null,
       "snippet": "onDidChangeActiveRepository(${1:callback})",
       "description": "Invoke the callback whenever the active repository context changes.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidChangeRepositoryState",
+      "text": null,
+      "snippet": "onDidChangeRepositoryState(${1:callback})",
+      "description": "Observe cached state or available-operation changes in registered repositories. The subscription is passive: it does not load snapshots, retain repositories, create operation implementations or perform Git or filesystem reads. Registration and removal remain available through their separate events.",
       "leftLabel": "Disposable",
       "type": "method"
     },
@@ -7472,6 +7520,56 @@
       "text": null,
       "snippet": "trashItem(${1:filePath})",
       "description": "Move an item to the operating system trash.",
+      "leftLabel": "Promise<void>",
+      "type": "method"
+    }
+  ],
+  "StorageScope": [
+    {
+      "name": "get",
+      "text": null,
+      "snippet": "get(${1:key}, ${2:defaultValue})",
+      "description": "Return a detached cached value, or the default when this key is absent.",
+      "leftLabel": "*",
+      "type": "method"
+    },
+    {
+      "name": "keys",
+      "text": "keys()",
+      "snippet": null,
+      "description": "List this package's keys in the selected scope.",
+      "leftLabel": "Array<String>",
+      "type": "method"
+    },
+    {
+      "name": "mutate",
+      "text": null,
+      "snippet": "mutate(${1:key}, ${2:updater})",
+      "description": "Atomically update the latest persisted value, including writes from other windows. The pure updater runs synchronously inside a short transaction and receives a detached value, or undefined for an absent key. It must return JSON data, or undefined to remove the key, and must not perform I/O or modify other storage keys. This is a Lumine extension to the memento API.",
+      "leftLabel": "Promise<*>",
+      "type": "method"
+    },
+    {
+      "name": "observe",
+      "text": null,
+      "snippet": "observe(${1:key}, ${2:callback})",
+      "description": "Call immediately with the cached value, then after committed changes. An absent key supplies undefined. A workspace observer also runs when its handle follows different project roots, even when the value is unchanged.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidChange",
+      "text": null,
+      "snippet": "onDidChange(${1:key}, ${2:callback})",
+      "description": "Observe value changes without an immediate callback. Workspace scope changes emit only when the old and new values differ.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "update",
+      "text": null,
+      "snippet": "update(${1:key}, ${2:value})",
+      "description": "Persist a JSON value, or remove the key when the value is undefined. The input is detached when this method is called.",
       "leftLabel": "Promise<void>",
       "type": "method"
     }
@@ -9876,6 +9974,14 @@
       "type": "method"
     },
     {
+      "name": "onDidChangeReadOnly",
+      "text": null,
+      "snippet": "onDidChangeReadOnly(${1:callback})",
+      "description": "Invoke the callback when this editor starts or stops rejecting text edits.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
       "name": "onDidChangeSelectionRange",
       "text": null,
       "snippet": "onDidChangeSelectionRange(${1:callback})",
@@ -11451,6 +11557,14 @@
       "snippet": "addBottomPanel(${1:options})",
       "description": "Adds a panel item to the bottom of the editor window.",
       "leftLabel": "Panel",
+      "type": "method"
+    },
+    {
+      "name": "addDefaultDockItem",
+      "text": null,
+      "snippet": "addDefaultDockItem(${1:getItem})",
+      "description": "Register a dock item's initial visibility declaration without constructing it during package activation. Call this from the package's synchronous bootstrap and dispose the registration when the package deactivates.",
+      "leftLabel": "Disposable",
       "type": "method"
     },
     {
