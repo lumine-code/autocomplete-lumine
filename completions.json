@@ -227,6 +227,14 @@
   ],
   "ApplicationService": [
     {
+      "name": "createTaskProgress",
+      "text": "createTaskProgress()",
+      "snippet": null,
+      "description": "Create an owned reporter for work shown in the operating system's taskbar or Dock. Each reporter contributes independently to this workspace's main and detached windows; the application badge counts work across workspaces on platforms that support native badges.",
+      "leftLabel": "Object",
+      "type": "method"
+    },
+    {
       "name": "getAccentColor",
       "text": "getAccentColor()",
       "snippet": null,
@@ -801,7 +809,7 @@
       "text": "getCurrentParagraphBufferRange()",
       "snippet": null,
       "description": "Retrieves the range for the current paragraph.",
-      "leftLabel": "Range|undefined",
+      "leftLabel": "Array<Number>|undefined|Promise<Array<Number>|undefined>",
       "type": "method"
     },
     {
@@ -896,8 +904,8 @@
       "name": "getSyntaxTreeScopeDescriptor",
       "text": "getSyntaxTreeScopeDescriptor()",
       "snippet": null,
-      "description": "Retrieves the syntax tree scope descriptor for the cursor's current position.",
-      "leftLabel": "ScopeDescriptor",
+      "description": "Retrieves the syntax tree scope descriptor for the cursor's current position. Worker syntax resolves asynchronously.",
+      "leftLabel": "ScopeDescriptor|Promise<ScopeDescriptor>",
       "type": "method"
     },
     {
@@ -2802,6 +2810,14 @@
       "type": "method"
     },
     {
+      "name": "registerSyntaxModule",
+      "text": null,
+      "snippet": "registerSyntaxModule(${1:modulePath}, ${2:options})",
+      "description": "Register a syntax-only module in each parser owner. The module exports a factory receiving this registry followed by serializable arguments, and returns a disposable registration. It must not access renderer objects.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
       "name": "selectGrammar",
       "text": null,
       "snippet": "selectGrammar(${1:filePath}, ${2:fileContents})",
@@ -3999,12 +4015,20 @@
       "name": "setRangeTracker",
       "text": null,
       "snippet": "setRangeTracker(${1:callback})",
-      "description": "Set custom range tracking for this layer, or pass null to restore native tracking. The callback receives sorted {id, range} entries for markers touching an edit, with their pre-edit ranges, and {oldRange, newRange, newText} describing the edit. It returns {id, range} entries in the new coordinate space; omitted entries and null ranges invalidate markers. Normal marker invalidation strategies still apply independently.",
+      "description": "Set custom range tracking for this layer, or pass null to restore default tracking. The callback receives sorted {id, range} entries for markers touching an edit, with their pre-edit ranges, and {oldRange, newRange, newText} describing the edit. It returns {id, range} entries in the new coordinate space; omitted entries and null ranges invalidate markers. Normal marker invalidation strategies still apply independently.",
       "leftLabel": null,
       "type": "method"
     }
   ],
   "Matcher": [
+    {
+      "name": "getMatchIndexes",
+      "text": null,
+      "snippet": "getMatchIndexes(${1:id}, ${2:query}, ${3:options})",
+      "description": "Highlight a prepared candidate without rebuilding its text.",
+      "leftLabel": "Array<Number>|null",
+      "type": "method"
+    },
     {
       "name": "match",
       "text": null,
@@ -7054,6 +7078,14 @@
       "type": "method"
     },
     {
+      "name": "prepareItems",
+      "text": null,
+      "snippet": "prepareItems(${1:items}, ${2:options})",
+      "description": "Prepare an immutable source snapshot without publishing it. Source loaders may await this before returning {items}; cancellation leaves the list intact.",
+      "leftLabel": "Promise<Array>",
+      "type": "method"
+    },
+    {
       "name": "recordRecentItem",
       "text": null,
       "snippet": "recordRecentItem(${1:item})",
@@ -7560,7 +7592,7 @@
       "text": null,
       "snippet": "openPath(${1:filePath})",
       "description": "Open a path with its operating system default application.",
-      "leftLabel": "Promise<String>",
+      "leftLabel": "Promise<void>",
       "type": "method"
     },
     {
@@ -7740,6 +7772,14 @@
       "type": "method"
     },
     {
+      "name": "analyzeSyntax",
+      "text": null,
+      "snippet": "analyzeSyntax(${1:modulePath}, ${2:method}, ${3:params}, ${4:options})",
+      "description": "Run a read-only analysis in this buffer's syntax owner. The request survives closing one editor split and is cancelled by text, grammar or buffer disposal.",
+      "leftLabel": "Promise<*>",
+      "type": "method"
+    },
+    {
       "name": "append",
       "text": null,
       "snippet": "append(${1:text}, ${2:options})",
@@ -7777,6 +7817,14 @@
       "snippet": "characterIndexForPosition(${1:position})",
       "description": "Convert a position in the buffer in row/column coordinates to an absolute character offset, inclusive of line ending characters.",
       "leftLabel": "Number",
+      "type": "method"
+    },
+    {
+      "name": "clearRedoStack",
+      "text": "clearRedoStack()",
+      "snippet": null,
+      "description": "Clear the redo stack without changing text or the undo stack.",
+      "leftLabel": null,
       "type": "method"
     },
     {
@@ -7924,6 +7972,14 @@
       "type": "method"
     },
     {
+      "name": "findWordCandidates",
+      "text": null,
+      "snippet": "findWordCandidates(${1:query}, ${2:options})",
+      "description": "Find completion words in an immutable snapshot without allocating every occurrence. Coordinates are absolute UTF-16 buffer points. Each result contains word, score, matchIndices, the first position, occurrences, minimum row distance and containsPosition (inclusive of the word's end). Words and queries are limited to 80 UTF-16 units. Word characters cannot include line endings; use the legacy subsequence API for multiline tokens.",
+      "leftLabel": "Promise<Array<Object>>",
+      "type": "method"
+    },
+    {
       "name": "findWordsWithSubsequence",
       "text": null,
       "snippet": "findWordsWithSubsequence(${1:query}, ${2:extraWordCharacters}, ${3:maxCount})",
@@ -7951,7 +8007,7 @@
       "name": "getChangesToText",
       "text": null,
       "snippet": "getChangesToText(${1:text})",
-      "description": "Compute native diff changes to target text without modifying this buffer, its history, markers or observers. Ranges use UTF-16 buffer coordinates.",
+      "description": "Compute diff changes to target text without modifying this buffer, its history, markers or observers. Ranges use UTF-16 buffer coordinates.",
       "leftLabel": "Array<Object>",
       "type": "method"
     },
@@ -8044,6 +8100,14 @@
       "type": "method"
     },
     {
+      "name": "getLineEndings",
+      "text": "getLineEndings()",
+      "snippet": null,
+      "description": "Reads persistent tree metadata in constant time. A lone CR is ordinary text.",
+      "leftLabel": "Set<string>",
+      "type": "method"
+    },
+    {
       "name": "getLines",
       "text": "getLines()",
       "snippet": null,
@@ -8124,6 +8188,14 @@
       "type": "method"
     },
     {
+      "name": "getSyntaxSnapshotToken",
+      "text": "getSyntaxSnapshotToken()",
+      "snippet": null,
+      "description": "Identify the current settled syntax without exposing parser objects. Compare tokens by identity; null means syntax is pending or unavailable.",
+      "leftLabel": "Object|null",
+      "type": "method"
+    },
+    {
       "name": "getText",
       "text": "getText()",
       "snippet": null,
@@ -8137,6 +8209,22 @@
       "snippet": "getTextInRange(${1:range})",
       "description": "Get the text in a range.",
       "leftLabel": "String",
+      "type": "method"
+    },
+    {
+      "name": "getTextRevision",
+      "text": "getTextRevision()",
+      "snippet": null,
+      "description": "Get the revision of the current text state. Revisions increase before change observers read the new text, including undo, redo and file loads. A revision identifies a state of this buffer, not an undo entry or byte offset.",
+      "leftLabel": "Number",
+      "type": "method"
+    },
+    {
+      "name": "getTextSnapshot",
+      "text": "getTextSnapshot()",
+      "snippet": null,
+      "description": "Capture immutable text without copying the document. The snapshot remains valid after edits, undo and buffer destruction. Its read interface exposes length, lineCount, slice(start, end), charCodeAt(index), chunks(), lines(startRow, endRow), lineReader(), positionAt(index) and offsetAt(point). A line reader returns a row-to-text function with efficient sequential reads and indexed jumps; requests outside the snapshot return undefined. Offsets count UTF-16 units; line iteration strips LF/CRLF and uses an exclusive end row. Explicit string reads materialize only their range. Read .getTextRevision alongside the snapshot when preparing an asynchronous edit plan, then pass that revision when applying the plan.",
+      "leftLabel": "Object",
       "type": "method"
     },
     {
@@ -8255,7 +8343,7 @@
       "name": "onDidApplyChanges",
       "text": null,
       "snippet": "onDidApplyChanges(${1:callback})",
-      "description": "Invoke the callback synchronously at the end of a transaction with its individual edits in application order, before the consolidated change event. Each edit uses the coordinates of the buffer immediately before and after that edit. Edits that cancel each other still appear, allowing external external range snapshots to follow every applied edit.",
+      "description": "Invoke the callback synchronously at the end of a transaction with its individual edits in application order, before the consolidated change event. Each edit uses the coordinates of the buffer immediately before and after that edit. Edits that cancel each other still appear, allowing external range snapshots to follow every applied edit.",
       "leftLabel": "Disposable",
       "type": "method"
     },
@@ -8532,6 +8620,14 @@
       "type": "method"
     },
     {
+      "name": "setTextInIndependentRanges",
+      "text": null,
+      "snippet": "setTextInIndependentRanges(${1:edits}, ${2:options})",
+      "description": "Apply disjoint edits against the current revision as one undo operation. Ranges may span multiple rows but cannot overlap or share a start. Text is stored literally unless line-ending normalization is requested. Input order does not matter. All edits are validated before changing text; stale revisions and overlapping ranges reject.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
       "name": "setTextInRange",
       "text": null,
       "snippet": "setTextInRange(${1:range}, ${2:newText}, ${3:options})",
@@ -8622,11 +8718,27 @@
       "type": "method"
     },
     {
+      "name": "analyzeSyntax",
+      "text": null,
+      "snippet": "analyzeSyntax(${1:modulePath}, ${2:method}, ${3:params}, ${4:options})",
+      "description": "Run a package's syntax analysis beside the parser that owns this document. The module exports a function receiving a read-only document context, serializable parameters, and {signal, emit}. Only data may be returned; syntax nodes must remain inside the analysis. Stream consumers should stage their results until this promise resolves with a current revision.",
+      "leftLabel": "Promise<*>",
+      "type": "method"
+    },
+    {
       "name": "applyOvertype",
       "text": "applyOvertype()",
       "snippet": null,
       "description": "When overtype mode is active, expand each empty selection one character to the right (except at the end of a line) so that the text about to be inserted overwrites the following character rather than being inserted before it. Non-empty selections are left untouched and replaced as usual.",
       "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "autoIndentBufferRowsAtRows",
+      "text": null,
+      "snippet": "autoIndentBufferRowsAtRows(${1:rows}, ${2:options})",
+      "description": "Plan sparse rows together, then apply their whitespace in one transaction. Call after related text edits so every row belongs to the same revision.",
+      "leftLabel": "Object|undefined|Promise<Object|undefined>",
       "type": "method"
     },
     {
@@ -8944,7 +9056,7 @@
     {
       "name": "foldBufferRow",
       "text": null,
-      "snippet": "foldBufferRow(${1:bufferRow})",
+      "snippet": "foldBufferRow(${1:bufferRow}, ${2:options})",
       "description": "Fold the given row in buffer coordinates based on its indentation level.",
       "leftLabel": null,
       "type": "method"
@@ -9006,11 +9118,19 @@
       "type": "method"
     },
     {
+      "name": "getCommentDelimitersForBufferPositions",
+      "text": null,
+      "snippet": "getCommentDelimitersForBufferPositions(${1:positions}, ${2:options})",
+      "description": "Query comment delimiters for several positions against one syntax revision.",
+      "leftLabel": "Promise<Array<Object|null>|null>",
+      "type": "method"
+    },
+    {
       "name": "getCurrentParagraphBufferRange",
       "text": "getCurrentParagraphBufferRange()",
       "snippet": null,
-      "description": "Get the Range of the paragraph surrounding the most recently added cursor.",
-      "leftLabel": "Range|undefined",
+      "description": "Get the inclusive buffer-row bounds of the paragraph surrounding the most recently added cursor.",
+      "leftLabel": "Array<Number>|undefined|Promise<Array<Number>|undefined>",
       "type": "method"
     },
     {
@@ -9114,7 +9234,7 @@
       "text": null,
       "snippet": "getFoldableRangeAtBufferRow(${1:bufferRow})",
       "description": "Get the foldable range that starts at the given row in buffer coordinates without creating a fold.",
-      "leftLabel": "Range|null",
+      "leftLabel": "Range|null|Promise<Range|null>",
       "type": "method"
     },
     {
@@ -9262,6 +9382,14 @@
       "type": "method"
     },
     {
+      "name": "getParagraphRangesForBufferRows",
+      "text": null,
+      "snippet": "getParagraphRangesForBufferRows(${1:rows}, ${2:options})",
+      "description": "Find paragraph ranges for several rows against one syntax revision.",
+      "leftLabel": "Promise<Array<Range|null>|null>",
+      "type": "method"
+    },
+    {
       "name": "getPath",
       "text": "getPath()",
       "snippet": null,
@@ -9291,6 +9419,14 @@
       "snippet": null,
       "description": "Return a copy of this editor's shared save-confirmation policy.",
       "leftLabel": "Object|null",
+      "type": "method"
+    },
+    {
+      "name": "getScopeDescriptorsForBufferPositions",
+      "text": null,
+      "snippet": "getScopeDescriptorsForBufferPositions(${1:positions}, ${2:options})",
+      "description": "Query exact current syntax scopes for several positions in one analysis. Returns null if the text or grammar changes before completion.",
+      "leftLabel": "Promise<Array<ScopeDescriptor>|null>",
       "type": "method"
     },
     {
@@ -9526,6 +9662,14 @@
       "type": "method"
     },
     {
+      "name": "hasPendingIndentation",
+      "text": "hasPendingIndentation()",
+      "snippet": null,
+      "description": "Whether this editor has requested indentation that has not finished yet.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
       "name": "indentationForBufferRow",
       "text": null,
       "snippet": "indentationForBufferRow(${1:bufferRow})",
@@ -9582,11 +9726,19 @@
       "type": "method"
     },
     {
+      "name": "isApplyingAutomaticIndentation",
+      "text": "isApplyingAutomaticIndentation()",
+      "snippet": null,
+      "description": "Whether an editor-owned indentation correction is being published. Buffer change observers can distinguish it from independent edits and keep input intents whose coordinates will be acquired after the correction.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
       "name": "isBufferRowCommented",
       "text": null,
       "snippet": "isBufferRowCommented(${1:bufferRow})",
       "description": "Determine whether the first non-whitespace character on the given row has a comment scope.",
-      "leftLabel": "Boolean|undefined",
+      "leftLabel": "Boolean|undefined|Promise<Boolean|undefined>",
       "type": "method"
     },
     {
@@ -9610,7 +9762,7 @@
       "text": null,
       "snippet": "isFoldableAtBufferRow(${1:bufferRow})",
       "description": "Determine whether the given row in buffer coordinates is foldable.",
-      "leftLabel": "Boolean|undefined",
+      "leftLabel": "Boolean|undefined|Promise<Boolean|undefined>",
       "type": "method"
     },
     {
@@ -9618,7 +9770,7 @@
       "text": null,
       "snippet": "isFoldableAtScreenRow(${1:screenRow})",
       "description": "Determine whether the given row in screen coordinates is foldable.",
-      "leftLabel": "Boolean|undefined",
+      "leftLabel": "Boolean|undefined|Promise<Boolean|undefined>",
       "type": "method"
     },
     {
@@ -9969,7 +10121,7 @@
       "name": "onDidChange",
       "text": null,
       "snippet": "onDidChange(${1:callback})",
-      "description": "Invoke the given callback synchronously when the content of the buffer changes.",
+      "description": "Invoke the callback synchronously when the display changes, including text edits, folding, wrapping and prepared syntax highlighting. Subscribe to TextBuffer.onDidChangeText for changes to source text only.",
       "leftLabel": "Disposable",
       "type": "method"
     },
@@ -10073,7 +10225,7 @@
       "name": "onDidInsertText",
       "text": null,
       "snippet": "onDidInsertText(${1:callback})",
-      "description": "Calls your callback after text has been inserted.",
+      "description": "Calls your callback after text has been inserted. Called once per insertion, without waiting for asynchronous indentation. Later indentation corrections are buffer changes, not new insertions.",
       "leftLabel": "Disposable",
       "type": "method"
     },
@@ -10166,6 +10318,14 @@
       "type": "method"
     },
     {
+      "name": "requestHighlightingForScreenRows",
+      "text": null,
+      "snippet": "requestHighlightingForScreenRows(${1:owner}, ${2:startRow}, ${3:endRow})",
+      "description": "Request cached highlighting for a rendering surface's complete screen-row window. Pass its stable owner to tokensForScreenRow while drawing. Empty windows release that owner's request; completion emits highlighting changes.",
+      "leftLabel": null,
+      "type": "method"
+    },
+    {
       "name": "restoreViewState",
       "text": null,
       "snippet": "restoreViewState(${1:state})",
@@ -10217,7 +10377,7 @@
       "name": "scopeDescriptorForBufferPosition",
       "text": null,
       "snippet": "scopeDescriptorForBufferPosition(${1:bufferPosition})",
-      "description": "Get the syntactic ScopeDescriptor for the given position in buffer coordinates. Useful with Config.get.",
+      "description": "Get the syntactic ScopeDescriptor for the given position in buffer coordinates. Useful with Config.get. With worker syntax this is a cached presentation read. Use .getScopeDescriptorsForBufferPositions for exact semantic decisions.",
       "leftLabel": "ScopeDescriptor",
       "type": "method"
     },
@@ -10666,7 +10826,7 @@
       "text": null,
       "snippet": "syntaxTreeScopeDescriptorForBufferPosition(${1:bufferPosition})",
       "description": "Get the syntactic tree ScopeDescriptor for the given position in buffer coordinates.",
-      "leftLabel": "ScopeDescriptor",
+      "leftLabel": "ScopeDescriptor|Promise<ScopeDescriptor>",
       "type": "method"
     },
     {
@@ -10777,7 +10937,7 @@
       "name": "whenGrammarSettled",
       "text": null,
       "snippet": "whenGrammarSettled(${1:options})",
-      "description": "Wait for the current grammar to finish its initial parse and any pending transaction, including injected language layers.",
+      "description": "Wait for the current grammar to finish its initial parse and any pending transaction, including injected language layers and requested automatic indentation. Indentation edits are parsed before this wait completes.",
       "leftLabel": "Promise<Boolean>",
       "type": "method"
     }
@@ -11378,6 +11538,14 @@
       "text": "isSpecMode()",
       "snippet": null,
       "description": "Determine whether the current window is running specs.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
+      "name": "isUnloading",
+      "text": "isUnloading()",
+      "snippet": null,
+      "description": "Determine whether this window has finished its final session save and is releasing its resources for closing or reloading. Automatic saves must stop once this phase starts.",
       "leftLabel": "Boolean",
       "type": "method"
     },
@@ -12728,9 +12896,15 @@
   ],
   "lumine.tools": [
     {
+      "name": "completionMatcher",
+      "text": "completionMatcher",
+      "description": "Documented API namespace.",
+      "type": "property"
+    },
+    {
       "name": "fuzzyMatcher",
       "text": "fuzzyMatcher",
-      "description": "Fuzzy matching utilities used by autocomplete, file search and the command palette. Available as lumine.tools.fuzzyMatcher.",
+      "description": "Fuzzy matching utilities used by symbol lists, file search and the command palette. Available as lumine.tools.fuzzyMatcher.",
       "leftLabel": "fuzzyMatcher",
       "type": "property"
     },
@@ -12864,6 +13038,16 @@
       "snippet": "render(${1:content}, ${2:givenOpts})",
       "description": "Takes a Markdown document and renders it as HTML.",
       "leftLabel": "String",
+      "type": "method"
+    }
+  ],
+  "lumine.tools.completionMatcher": [
+    {
+      "name": "createQuery",
+      "text": null,
+      "snippet": "createQuery(${1:query})",
+      "description": "Prepare one completion query. Results keep their score and lazily computed UTF-16 match indices together. This scorer does not apply path bonuses. Matches also expose exact, prefix, caseSensitivePrefix and firstCharacterMatches flags using the same normalization as scoring. Queries longer than 256 UTF-16 units produce no matches. Cached candidate text is bounded to 2048 entries and 262144 UTF-16 units per query.",
+      "leftLabel": "Object",
       "type": "method"
     }
   ]
