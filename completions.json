@@ -7102,6 +7102,14 @@
       "type": "method"
     },
     {
+      "name": "refreshScores",
+      "text": "refreshScores()",
+      "snippet": null,
+      "description": "Recompute ranking after state captured by search.scoreModifier changes. Prepared candidate text and the existing worker remain reusable.",
+      "leftLabel": "Promise<void>",
+      "type": "method"
+    },
+    {
       "name": "reload",
       "text": "reload()",
       "snippet": null,
