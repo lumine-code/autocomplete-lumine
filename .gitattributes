@@ -1,2 +1,7 @@
+# Text uses LF on every platform; Windows command scripts require CRLF.
+* text=auto eol=lf
+*.cmd text eol=crlf
+*.bat text eol=crlf
+
 spec/fixtures/** -text
 completions.json text eol=lf
