@@ -3109,7 +3109,7 @@
       "name": "getQuery",
       "text": "getQuery()",
       "snippet": null,
-      "description": "Return the raw query editor text.",
+      "description": "Return the complete raw query text. Throws ERR_DIALOG_QUERY_TOO_LARGE when processing is unavailable; the draft remains accessible through the query editor snapshot.",
       "leftLabel": "String",
       "type": "method"
     },
@@ -3119,6 +3119,14 @@
       "snippet": null,
       "description": "Return the full TextEditor model used for the query.",
       "leftLabel": "TextEditor",
+      "type": "method"
+    },
+    {
+      "name": "getQueryStatus",
+      "text": "getQueryStatus()",
+      "snippet": null,
+      "description": "Return query availability and UTF-16 length metadata without reading text.",
+      "leftLabel": "Object",
       "type": "method"
     },
     {
@@ -3301,7 +3309,7 @@
       "name": "setQuery",
       "text": null,
       "snippet": "setQuery(${1:query}, ${2:options})",
-      "description": "Set the query text and optionally select it.",
+      "description": "Set the query text or immutable snapshot and optionally select it.",
       "leftLabel": "Promise<void>",
       "type": "method"
     },
@@ -6849,7 +6857,7 @@
       "name": "getQuery",
       "text": "getQuery()",
       "snippet": null,
-      "description": "Return the raw query editor text.",
+      "description": "Return the complete raw query text. Throws ERR_DIALOG_QUERY_TOO_LARGE when processing is unavailable; the draft remains accessible through the query editor snapshot.",
       "leftLabel": "String",
       "type": "method"
     },
@@ -6859,6 +6867,14 @@
       "snippet": null,
       "description": "Return the full TextEditor model used for the query.",
       "leftLabel": "TextEditor",
+      "type": "method"
+    },
+    {
+      "name": "getQueryStatus",
+      "text": "getQueryStatus()",
+      "snippet": null,
+      "description": "Return query availability and UTF-16 length metadata without reading text.",
+      "leftLabel": "Object",
       "type": "method"
     },
     {
@@ -7313,7 +7329,7 @@
       "name": "setQuery",
       "text": null,
       "snippet": "setQuery(${1:query}, ${2:options})",
-      "description": "Set the query text and optionally select it.",
+      "description": "Set the query text or immutable snapshot and optionally select it.",
       "leftLabel": "Promise<void>",
       "type": "method"
     },
@@ -8801,8 +8817,8 @@
       "name": "autoIndentSelectedRows",
       "text": null,
       "snippet": "autoIndentSelectedRows(${1:options})",
-      "description": "Indent rows intersecting selections based on the grammar's suggested indent level.",
-      "leftLabel": null,
+      "description": "Indent rows intersecting selections based on the grammar's suggested indent level. Large ranges consume bounded grammar batches and commit atomically.",
+      "leftLabel": "Object|undefined|Promise<Object|undefined>",
       "type": "method"
     },
     {
@@ -9753,8 +9769,8 @@
       "name": "indentSelectedRows",
       "text": null,
       "snippet": "indentSelectedRows(${1:options})",
-      "description": "Indent rows intersecting selections by one level.",
-      "leftLabel": null,
+      "description": "Indent rows intersecting selections by one level. Large row sets prepare cooperatively and publish one undo operation.",
+      "leftLabel": "Array|undefined|Promise<Number>",
       "type": "method"
     },
     {
@@ -10369,8 +10385,8 @@
       "name": "outdentSelectedRows",
       "text": null,
       "snippet": "outdentSelectedRows(${1:options})",
-      "description": "Outdent rows intersecting selections by one level.",
-      "leftLabel": null,
+      "description": "Outdent rows intersecting selections by one level. Large row sets prepare cooperatively and publish one undo operation.",
+      "leftLabel": "Array|undefined|Promise<Number>",
       "type": "method"
     },
     {
