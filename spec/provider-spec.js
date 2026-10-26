@@ -47,6 +47,26 @@ describe("Lumine API autocompletions", () => {
     editor = lumine.workspace.getActiveTextEditor();
   });
 
+  it("reads bounded context for API access near the end of a very long line", () => {
+    editor.setText("x".repeat(100000) + " lumine.workspace.");
+    spyOn(provider, "isEditingALuminePackageFile").and.returnValue(true);
+    const completions = spyOn(provider, "getCompletions").and.returnValue([]);
+    const original = editor.getTextInRange.bind(editor);
+    const reads = spyOn(editor, "getTextInRange").and.callFake((range) => {
+      expect(range[1].column - range[0][1]).toBeLessThanOrEqual(4097);
+      return original(range);
+    });
+    provider.getSuggestions({ editor, bufferPosition: editor.getBuffer().getEndPosition() });
+    expect(reads).toHaveBeenCalled();
+    expect(completions).toHaveBeenCalledWith("lumine.workspace.");
+    editor.setText("lumine." + "a.".repeat(3000));
+    completions.calls.reset();
+    expect(
+      provider.getSuggestions({ editor, bufferPosition: editor.getBuffer().getEndPosition() }),
+    ).toEqual([]);
+    expect(completions).not.toHaveBeenCalled();
+  });
+
   it("only includes completions in files that are in a Lumine package or Lumine core", () => {
     const emptyProjectPath = temp.mkdirSync("lumine-project-");
     lumine.project.setPaths([emptyProjectPath]);

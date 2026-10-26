@@ -16,6 +16,10 @@ Fork of [pulsar-edit/pulsar](https://github.com/pulsar-edit/pulsar) (`packages/a
 
 To install `autocomplete-lumine` search for it in the Install pane of the Lumine settings, or run the command `lumine --install lumine-code/autocomplete-lumine`.
 
+## Usage
+
+API access chains are completed up to4096 UTF-16 units. The provider reads bounded context around the cursor, including the complete chain's left boundary; longer chains are declined without suggesting a replacement for only their suffix.
+
 ## Services
 
 - `autocomplete.provider`: provided to supply `lumine.` API suggestions to autocomplete.
