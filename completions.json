@@ -3309,7 +3309,7 @@
       "name": "setQueryFromSelection",
       "text": "setQueryFromSelection()",
       "snippet": null,
-      "description": "Use the active editor's single-line selection as the query.",
+      "description": "Use the active editor's last selection as the query when it occupies one buffer line and contains at most 4,096 UTF-16 units. Otherwise keep the current query without reading the selection's text.",
       "leftLabel": "Boolean",
       "type": "method"
     },
@@ -7321,7 +7321,7 @@
       "name": "setQueryFromSelection",
       "text": "setQueryFromSelection()",
       "snippet": null,
-      "description": "Use the active editor's single-line selection as the query.",
+      "description": "Use the active editor's last selection as the query when it occupies one buffer line and contains at most 4,096 UTF-16 units. Otherwise keep the current query without reading the selection's text.",
       "leftLabel": "Boolean",
       "type": "method"
     },
@@ -7796,6 +7796,14 @@
       "type": "method"
     },
     {
+      "name": "applyTextEdits",
+      "text": null,
+      "snippet": "applyTextEdits(${1:edits}, ${2:options})",
+      "description": "Prepare an ordered stream of disjoint edits without a document string or a per-edit array, then publish one atomic undo operation. Ranges address the captured revision and must be ordered, in bounds, with distinct starts. Marker positions and invalidation follow forward individual edit semantics. Text and markers remain unchanged on cancellation or stale preparation. Custom range trackers requiring intermediate live text reject before edits.",
+      "leftLabel": "Promise<Number>",
+      "type": "method"
+    },
+    {
       "name": "backwardsScan",
       "text": null,
       "snippet": "backwardsScan(${1:regex}, ${2:options}, ${3:iterator})",
@@ -7809,6 +7817,14 @@
       "snippet": "backwardsScanInRange(${1:regex}, ${2:range}, ${3:options}, ${4:iterator})",
       "description": "Scan regular expression matches in a given range in reverse order, calling the given iterator function on each match.",
       "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "canMaterializeText",
+      "text": null,
+      "snippet": "canMaterializeText(${1:maxLength})",
+      "description": "Check a full-text allocation budget without reading or copying the text. The runtime's maximum string length remains an upper bound even when the supplied budget is larger. Use snapshots and chunk readers for other work.",
+      "leftLabel": "Boolean",
       "type": "method"
     },
     {
@@ -7865,6 +7881,14 @@
       "snippet": "createCheckpoint(${1:options})",
       "description": "Create a pointer to the current state of the buffer for use with .revertToCheckpoint and .groupChangesSinceCheckpoint.",
       "leftLabel": "Number",
+      "type": "method"
+    },
+    {
+      "name": "createSearch",
+      "text": null,
+      "snippet": "createSearch(${1:regex}, ${2:options})",
+      "description": "Search an immutable revision without flattening the document. The returned session provides cancellable iteration, exact counting, sparse navigation checkpoints and a separately bounded list of presentation ranges.",
+      "leftLabel": "Object",
       "type": "method"
     },
     {
@@ -8231,7 +8255,15 @@
       "name": "getTextSnapshot",
       "text": "getTextSnapshot()",
       "snippet": null,
-      "description": "Capture immutable text without copying the document. The snapshot remains valid after edits, undo and buffer destruction. Its read interface exposes length, lineCount, slice(start, end), charCodeAt(index), chunks(), lines(startRow, endRow), lineReader(), positionAt(index) and offsetAt(point). A line reader returns a row-to-text function with efficient sequential reads and indexed jumps; requests outside the snapshot return undefined. Offsets count UTF-16 units; line iteration strips LF/CRLF and uses an exclusive end row. Explicit string reads materialize only their range. Read .getTextRevision alongside the snapshot when preparing an asynchronous edit plan, then pass that revision when applying the plan.",
+      "description": "Capture immutable text without copying the document. The snapshot remains valid after edits, undo and buffer destruction. Its read interface exposes length, lineCount, slice(start, end), charCodeAt(index), chunks(), lines(startRow, endRow), lineReader(), positionAt(index) and offsetAt(point). subtext(start, end) captures a shared subrange; replace(start, end, text) returns a new snapshot, accepting a string or another snapshot. Neither operation mutates the captured text or materializes the whole document. mapChunks(mapper, {cache, signal, isCurrent}) asynchronously transforms bounded chunks with cooperative yields. A cache is a WeakMap owned by one pure context-free mapper; unchanged branches are reused across revisions. The mapper receives a string and synchronously returns a string or snapshot. It must preserve its own semantics across arbitrary chunk boundaries. commonPrefixLength(other, limit) and commonSuffixLength(other, limit) compare UTF-16 units exactly while skipping shared immutable branches. The default limit is the shorter snapshot's length. A line reader returns a row-to-text function with efficient sequential reads and indexed jumps; requests outside the snapshot return undefined. Offsets count UTF-16 units; line iteration strips LF/CRLF and uses an exclusive end row. Explicit string reads materialize only their range. Read .getTextRevision alongside the snapshot when preparing an asynchronous edit plan, then pass that revision when applying the plan.",
+      "leftLabel": "Object",
+      "type": "method"
+    },
+    {
+      "name": "getTextSnapshotInRange",
+      "text": null,
+      "snippet": "getTextSnapshotInRange(${1:range})",
+      "description": "Capture a clipped buffer range as immutable shared text without creating a string. Snapshot offsets and row positions are relative to the range start. Pass the snapshot to .setTextInRange, .insert or .append to copy text of any size with normal change events and undo history.",
       "leftLabel": "Object",
       "type": "method"
     },
@@ -8492,6 +8524,14 @@
       "type": "method"
     },
     {
+      "name": "prepareReplaceAllMatches",
+      "text": null,
+      "snippet": "prepareReplaceAllMatches(${1:regex}, ${2:replacement}, ${3:options})",
+      "description": "Prepare replacements without publishing text or markers. The one-use plan exposes count, snapshot, validate(), commit() and dispose().",
+      "leftLabel": "Promise<Object>",
+      "type": "method"
+    },
+    {
       "name": "previousNonBlankRow",
       "text": null,
       "snippet": "previousNonBlankRow(${1:startRow})",
@@ -8527,8 +8567,16 @@
       "name": "replace",
       "text": null,
       "snippet": "replace(${1:regex}, ${2:replacementText})",
-      "description": "Replace all regular expression matches in the entire buffer.",
+      "description": "Replace all regular expression matches in the entire buffer. This synchronous compatibility API is limited to 8 Mi UTF-16 units so native RegExp execution and replacement expansion stay bounded. Use .replaceAllMatches for cooperative snapshot-backed bulk replacement.",
       "leftLabel": "Number",
+      "type": "method"
+    },
+    {
+      "name": "replaceAllMatches",
+      "text": null,
+      "snippet": "replaceAllMatches(${1:regex}, ${2:replacement}, ${3:options})",
+      "description": "Prepare all replacements against one snapshot, then commit atomically as one undo operation. Cancellation or concurrent edits discard the plan.",
+      "leftLabel": "Promise<Number>",
       "type": "method"
     },
     {
@@ -9550,6 +9598,14 @@
       "type": "method"
     },
     {
+      "name": "getSyntaxAvailability",
+      "text": "getSyntaxAvailability()",
+      "snippet": null,
+      "description": "Report whether syntax analysis is enabled, independently of parse readiness. A disabled language reports reason none; a failed analysis reports reason failure and a diagnostic object. The selected grammar is preserved on failure.",
+      "leftLabel": "Object",
+      "type": "method"
+    },
+    {
       "name": "getSyntaxNodeAtBufferPosition",
       "text": null,
       "snippet": "getSyntaxNodeAtBufferPosition(${1:bufferPosition}, ${2:where})",
@@ -9850,7 +9906,7 @@
       "text": null,
       "snippet": "lowerCase(${1:options})",
       "description": "Convert the selected text to lower case.",
-      "leftLabel": null,
+      "leftLabel": "Boolean|undefined|Promise<Boolean>",
       "type": "method"
     },
     {
@@ -10214,6 +10270,14 @@
       "type": "method"
     },
     {
+      "name": "onDidChangeSyntaxAvailability",
+      "text": null,
+      "snippet": "onDidChangeSyntaxAvailability(${1:callback})",
+      "description": "Observe syntax availability when the document's language mode is replaced. Consumers should clear staged results and decorations when analysis becomes unavailable.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
       "name": "onDidChangeTitle",
       "text": null,
       "snippet": "onDidChangeTitle(${1:callback})",
@@ -10339,6 +10403,14 @@
       "snippet": "restoreViewState(${1:state})",
       "description": "Restore state produced by .serializeViewState. Invalid portions of the state are ignored.",
       "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "retrySyntaxAnalysis",
+      "text": "retrySyntaxAnalysis()",
+      "snippet": null,
+      "description": "Explicitly retry failed syntax analysis using the current document text.",
+      "leftLabel": "Boolean",
       "type": "method"
     },
     {
@@ -10890,7 +10962,7 @@
       "text": null,
       "snippet": "transpose(${1:options})",
       "description": "For each selection, transpose the selected text.",
-      "leftLabel": null,
+      "leftLabel": "Boolean|undefined|Promise<Boolean>",
       "type": "method"
     },
     {
@@ -10930,7 +11002,7 @@
       "text": null,
       "snippet": "upperCase(${1:options})",
       "description": "Convert the selected text to upper case.",
-      "leftLabel": null,
+      "leftLabel": "Boolean|undefined|Promise<Boolean>",
       "type": "method"
     },
     {
@@ -10989,6 +11061,14 @@
       "snippet": "pinScrollAnchorToBlockDecoration(${1:blockDecoration})",
       "description": "Holds the viewport against a block decoration while the user drags its size, instead of against the first visible row.",
       "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "pixelPositionBeforeBlocksForScreenRow",
+      "text": null,
+      "snippet": "pixelPositionBeforeBlocksForScreenRow(${1:row}, ${2:options})",
+      "description": "Get the vertical pixel offset before block decorations on a screen row. The row may be unrendered or the boundary immediately after the last row. Geometry uses the current measured line and block heights, without forcing a document-wide layout scan. With viewport, the offset is relative to the scroll viewport and may be negative; render coordinate origins are internal.",
+      "leftLabel": "Number",
       "type": "method"
     },
     {
