@@ -7815,7 +7815,7 @@
       "name": "applyTextEdits",
       "text": null,
       "snippet": "applyTextEdits(${1:edits}, ${2:options})",
-      "description": "Prepare an ordered stream of disjoint edits without a document string or a per-edit array, then publish one atomic undo operation. Ranges address the captured revision and must be ordered, in bounds, with distinct starts. Marker positions and invalidation follow forward individual edit semantics. Text and markers remain unchanged on cancellation or stale preparation. Custom range trackers requiring intermediate live text reject before edits.",
+      "description": "Prepare an ordered stream of disjoint edits with shared text and compressed coordinate runs, then publish one atomic undo operation. Ranges address the captured revision and must be ordered, in bounds, with distinct starts. Marker positions and invalidation follow forward individual edit semantics. Text and markers remain unchanged on cancellation or stale preparation. Custom range trackers requiring intermediate live text reject before edits.",
       "leftLabel": "Promise<Number>",
       "type": "method"
     },
@@ -10313,7 +10313,7 @@
       "name": "onDidInsertText",
       "text": null,
       "snippet": "onDidInsertText(${1:callback})",
-      "description": "Calls your callback after text has been inserted. Called once per insertion, without waiting for asynchronous indentation. Later indentation corrections are buffer changes, not new insertions.",
+      "description": "Calls your callback after text has been inserted. Called once per published insertion. Worker-backed multiline paste prepares its final indentation first; cancelled preparation emits no insertion. Typing-related indentation corrections are later buffer changes, not new insertions.",
       "leftLabel": "Disposable",
       "type": "method"
     },
