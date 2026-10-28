@@ -10382,6 +10382,14 @@
       "type": "method"
     },
     {
+      "name": "onWillPublishTextInsertion",
+      "text": null,
+      "snippet": "onWillPublishTextInsertion(${1:callback})",
+      "description": "Contribute synchronous edits to an insertion before its final indentation and publication. Edit only the supplied editor: worker-backed input uses a private candidate. This hook also runs inside ordinary insertion transactions.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
       "name": "outdentSelectedRows",
       "text": null,
       "snippet": "outdentSelectedRows(${1:options})",
@@ -11042,6 +11050,14 @@
       "text": null,
       "snippet": "whenGrammarSettled(${1:options})",
       "description": "Wait for the current grammar to finish its initial parse and any pending transaction, including injected language layers and requested automatic indentation. Indentation edits are parsed before this wait completes.",
+      "leftLabel": "Promise<Boolean>",
+      "type": "method"
+    },
+    {
+      "name": "whenPendingTextInputSettled",
+      "text": null,
+      "snippet": "whenPendingTextInputSettled(${1:options})",
+      "description": "Wait for previously accepted text input and its indentation before acquiring coordinates for a completion or snippet. A newer input, independent edit, cursor movement, grammar change or cancellation invalidates this intent. Waiting does not cancel the edits themselves.",
       "leftLabel": "Promise<Boolean>",
       "type": "method"
     }
