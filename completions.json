@@ -6344,7 +6344,7 @@
       "text": null,
       "snippet": "insertText(${1:text}, ${2:options})",
       "description": "Replaces text at the current selection.",
-      "leftLabel": "Range|undefined",
+      "leftLabel": "Range|undefined|Promise",
       "type": "method"
     },
     {
@@ -9802,7 +9802,7 @@
       "text": null,
       "snippet": "insertText(${1:text}, ${2:options})",
       "description": "For each selection, replace the selected text with the given text.",
-      "leftLabel": "Array<Range>|Boolean|undefined",
+      "leftLabel": "Array<Range>|Boolean|undefined|Promise",
       "type": "method"
     },
     {
@@ -10313,7 +10313,7 @@
       "name": "onDidInsertText",
       "text": null,
       "snippet": "onDidInsertText(${1:callback})",
-      "description": "Calls your callback after text has been inserted. Called once per published insertion. Worker-backed multiline paste prepares its final indentation first; cancelled preparation emits no insertion. Typing-related indentation corrections are later buffer changes, not new insertions.",
+      "description": "Calls your callback after text has been inserted. Called once per published insertion. Worker-backed automatic indentation is prepared before publication, including Enter, typing and multiline paste. Cancelled preparation emits no insertion.",
       "leftLabel": "Disposable",
       "type": "method"
     },
@@ -10974,6 +10974,14 @@
       "type": "method"
     },
     {
+      "name": "transactWithAutoIndentation",
+      "text": null,
+      "snippet": "transactWithAutoIndentation(${1:callback}, ${2:options})",
+      "description": "Prepare an editing operation and its automatic indentation, then publish text and selections together as one undo step. With worker syntax, the callback receives a private editor sharing the document's immutable text. Make all edits through that editor and keep the callback synchronous. Await completion before reading the live document or performing follow-up edits. Cancellation or a superseding edit leaves the live document intact.",
+      "leftLabel": "*|Promise",
+      "type": "method"
+    },
+    {
       "name": "transpose",
       "text": null,
       "snippet": "transpose(${1:options})",
@@ -11077,6 +11085,14 @@
       "snippet": "pinScrollAnchorToBlockDecoration(${1:blockDecoration})",
       "description": "Holds the viewport against a block decoration while the user drags its size, instead of against the first visible row.",
       "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "pixelPositionAfterBlocksForScreenRow",
+      "text": null,
+      "snippet": "pixelPositionAfterBlocksForScreenRow(${1:row}, ${2:options})",
+      "description": "Get the vertical pixel offset of a screen row's text, after its block decorations. Uses measured vertical geometry without requesting horizontal measurement or rendering.",
+      "leftLabel": "Number",
       "type": "method"
     },
     {
