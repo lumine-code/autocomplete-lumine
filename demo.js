@@ -29,7 +29,9 @@ module.exports = {
       },
       ready() {
         return Boolean(
-          document.querySelector(".autocomplete-suggestion-list")?.innerText.includes("getPanes()"),
+          document
+            .querySelector(".autocomplete-suggestion-list")
+            ?.innerText.includes("getTextEditors"),
         );
       },
     },

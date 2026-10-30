@@ -1,5 +1,5 @@
 module.exports = {
   activate() {
-    lumine.workspace.get
+    lumine.workspace.getText
   }
 };
