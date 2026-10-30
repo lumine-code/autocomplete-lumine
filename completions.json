@@ -141,6 +141,13 @@
       "type": "property"
     },
     {
+      "name": "scrollbars",
+      "text": "scrollbars",
+      "description": "Shared overlay scrollbar presentation and local geometry.",
+      "leftLabel": "ScrollbarManager",
+      "type": "property"
+    },
+    {
       "name": "secrets",
       "text": "secrets",
       "description": "SecretStore",
@@ -557,10 +564,18 @@
       "type": "method"
     },
     {
+      "name": "getCommandState",
+      "text": null,
+      "snippet": "getCommandState(${1:commandName}, ${2:options})",
+      "description": "Read persistent choice state from the nearest scoped command registration. This never dispatches the command or loads its implementation. A matching handler without state shadows an ancestor's state as it does its label.",
+      "leftLabel": "Object|null",
+      "type": "method"
+    },
+    {
       "name": "invalidateAvailability",
       "text": null,
       "snippet": "invalidateAvailability(${1:options})",
-      "description": "Notify command surfaces that state used by isAvailable predicates changed. Predicates are evaluated afresh on every query; this asks live presentations such as the native application menu to refresh without a focus change.",
+      "description": "Notify command surfaces that state used by isAvailable or checked changed. Predicates are evaluated afresh on every query; this asks live presentations such as the native application menu to refresh without a focus change.",
       "leftLabel": "void",
       "type": "method"
     },
@@ -2050,6 +2065,14 @@
       "snippet": null,
       "description": "Minimize this window.",
       "leftLabel": "Promise<void>",
+      "type": "method"
+    },
+    {
+      "name": "observeModalPanels",
+      "text": null,
+      "snippet": "observeModalPanels(${1:callback})",
+      "description": "Observe this window's existing and newly added modal panels.",
+      "leftLabel": "Disposable",
       "type": "method"
     },
     {
@@ -6064,6 +6087,48 @@
       "type": "method"
     }
   ],
+  "ScrollbarManager": [
+    {
+      "name": "attach",
+      "text": null,
+      "snippet": "attach(${1:element}, ${2:options})",
+      "description": "Attach shared scrollbar chrome without wrapping or reparenting the scrollport.",
+      "leftLabel": "Object|null",
+      "type": "method"
+    },
+    {
+      "name": "getFrameSource",
+      "text": "getFrameSource()",
+      "snippet": null,
+      "description": "Get the same DOM scrollbar runtime and styles for a trusted isolated frame.",
+      "leftLabel": "String",
+      "type": "method"
+    },
+    {
+      "name": "getGeometry",
+      "text": null,
+      "snippet": "getGeometry(${1:element})",
+      "description": "Read track thickness and viewport/document extents in CSS pixels. Thickness stays stable when a thumb is hidden or content fits the viewport.",
+      "leftLabel": "Object",
+      "type": "method"
+    },
+    {
+      "name": "getVerticalTrack",
+      "text": null,
+      "snippet": "getVerticalTrack(${1:element})",
+      "description": "Obtain the local vertical track for a noninteractive marker canvas. A DOM scrollport is attached to the shared manager if needed.",
+      "leftLabel": "HTMLElement|null",
+      "type": "method"
+    },
+    {
+      "name": "observe",
+      "text": null,
+      "snippet": "observe(${1:element}, ${2:callback})",
+      "description": "Observe geometry changes, independently of thumb movement.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    }
+  ],
   "SecretStore": [
     {
       "name": "delete",
@@ -8838,6 +8903,14 @@
       "type": "method"
     },
     {
+      "name": "batchDecorations",
+      "text": null,
+      "snippet": "batchDecorations(${1:callback})",
+      "description": "Coalesce decoration and marker-layer update notifications for synchronous work. Does not open an undo transaction. Individual marker change and decoration add/remove events remain synchronous. Nested batches publish one final update, including applied changes when the callback throws. Promises are not awaited.",
+      "leftLabel": "*",
+      "type": "method"
+    },
+    {
       "name": "bufferPositionForScreenPosition",
       "text": null,
       "snippet": "bufferPositionForScreenPosition(${1:screenPosition}, ${2:options})",
@@ -9438,6 +9511,14 @@
       "type": "method"
     },
     {
+      "name": "getMetadata",
+      "text": null,
+      "snippet": "getMetadata(${1:options})",
+      "description": "Get structured metadata for the current text, including unsaved edits. This implements the optional pane-item metadata protocol. File-system properties belong to the inspector's shared file section.",
+      "leftLabel": "Array<Object>",
+      "type": "method"
+    },
+    {
       "name": "getNonWordCharacters",
       "text": null,
       "snippet": "getNonWordCharacters(${1:position})",
@@ -9475,6 +9556,14 @@
       "snippet": null,
       "description": "Retrieves the greyed out placeholder of a mini editor.",
       "leftLabel": "String|undefined",
+      "type": "method"
+    },
+    {
+      "name": "getRenderedBufferRanges",
+      "text": "getRenderedBufferRanges()",
+      "snippet": null,
+      "description": "Return the buffer ranges needed to render the current viewport, including its overscan. Fold interiors and horizontally virtualized text are omitted. An unmeasured, detached or hidden editor returns an empty array.",
+      "leftLabel": "Range[]",
       "type": "method"
     },
     {
@@ -10234,6 +10323,14 @@
       "text": null,
       "snippet": "onDidChangeGrammar(${1:callback})",
       "description": "Calls your callback when the grammar that interprets and colorizes the text has been changed.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidChangeMetadata",
+      "text": null,
+      "snippet": "onDidChangeMetadata(${1:callback})",
+      "description": "Notify when a previous metadata snapshot is no longer current. The callback is an invalidation signal, not a new snapshot. Text changes are coalesced through .onDidStopChanging.",
       "leftLabel": "Disposable",
       "type": "method"
     },
@@ -11093,6 +11190,14 @@
       "snippet": "invalidateBlockDecorationDimensions(${1:blockDecoration})",
       "description": "Invalidate the passed block Decoration's dimensions, forcing them to be recalculated and the surrounding content to be adjusted on the next animation frame.",
       "leftLabel": null,
+      "type": "method"
+    },
+    {
+      "name": "onDidChangeScrollGeometry",
+      "text": null,
+      "snippet": "onDidChangeScrollGeometry(${1:callback})",
+      "description": "Observe changes to logical scroll extents, viewport size or row geometry. Ordinary scroll-position changes do not emit this event.",
+      "leftLabel": "Disposable",
       "type": "method"
     },
     {
