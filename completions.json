@@ -5035,6 +5035,14 @@
       "type": "method"
     },
     {
+      "name": "getPresentedPane",
+      "text": "getPresentedPane()",
+      "snippet": null,
+      "description": "Get the pane currently representing this container's visible presentation.",
+      "leftLabel": "Pane|null",
+      "type": "method"
+    },
+    {
       "name": "getWindow",
       "text": "getWindow()",
       "snippet": null,
@@ -5056,6 +5064,14 @@
       "snippet": "observeActiveFileTextEditor(${1:callback})",
       "description": "Observe this window-local active file-content editor.",
       "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "presentPane",
+      "text": null,
+      "snippet": "presentPane(${1:pane})",
+      "description": "Present one pane independently of its split layout without recreating or disconnecting its live view. The caller owns its visual positioning. Visual navigation treats it as the container's only pane and uses the container's bounds when finding neighboring docks. Activating a different pane or changing the split layout ends the presentation.",
+      "leftLabel": "Object",
       "type": "method"
     }
   ],
@@ -7880,7 +7896,7 @@
       "name": "applyTextEdits",
       "text": null,
       "snippet": "applyTextEdits(${1:edits}, ${2:options})",
-      "description": "Prepare an ordered stream of disjoint edits with shared text and compressed coordinate runs, then publish one atomic undo operation. Ranges address the captured revision and must be ordered, in bounds, with distinct starts. Marker positions and invalidation follow forward individual edit semantics. Text and markers remain unchanged on cancellation or stale preparation. Custom range trackers requiring intermediate live text reject before edits.",
+      "description": "Prepare an ordered stream of disjoint edits with shared text and compressed coordinate runs, then publish one atomic undo operation. Ranges address the captured revision and must be ordered, in bounds, with distinct starts. Marker positions and invalidation follow forward individual edit semantics. Text and markers remain unchanged on cancellation or stale preparation. Custom range trackers receive each intermediate edit inside the transaction.",
       "leftLabel": "Promise<Number>",
       "type": "method"
     },
@@ -12137,6 +12153,14 @@
       "type": "method"
     },
     {
+      "name": "beginLayoutResize",
+      "text": "beginLayoutResize()",
+      "snippet": null,
+      "description": "Declare continuous layout resizing, such as an animated pane transition. Soft wrap honors editor.softWrapDebounceInterval while any resize session remains active and settles synchronously at the final width when it ends. Start before changing geometry, retain the session across interrupted or retargeted animation frames, and dispose after restoring the final layout. One-shot layout changes need no session. This API leaves pointer input enabled.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
       "name": "buildInputDialog",
       "text": null,
       "snippet": "buildInputDialog(${1:options})",
@@ -12438,6 +12462,14 @@
       "snippet": null,
       "description": "Get an Array of all the panel items at the top of the editor window.",
       "leftLabel": "Array<Panel>",
+      "type": "method"
+    },
+    {
+      "name": "getVisiblePanes",
+      "text": "getVisiblePanes()",
+      "snippet": null,
+      "description": "Get panes available to visual navigation, including visible docks. A temporary pane presentation exposes only its representative pane; getPanes() continues to return every pane in the original layout.",
+      "leftLabel": "Array<Pane>",
       "type": "method"
     },
     {
