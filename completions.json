@@ -9719,6 +9719,22 @@
       "type": "method"
     },
     {
+      "name": "getSoftWrapMaxColumn",
+      "text": "getSoftWrapMaxColumn()",
+      "snippet": null,
+      "description": "Get the maximum wrapping column. Zero leaves the maximum unrestricted.",
+      "leftLabel": "Number",
+      "type": "method"
+    },
+    {
+      "name": "getSoftWrapMinColumn",
+      "text": "getSoftWrapMinColumn()",
+      "snippet": null,
+      "description": "Get the minimum wrapping column. Zero leaves the minimum unrestricted.",
+      "leftLabel": "Number",
+      "type": "method"
+    },
+    {
       "name": "getSyntaxAvailability",
       "text": "getSyntaxAvailability()",
       "snippet": null,
@@ -10387,6 +10403,14 @@
       "text": null,
       "snippet": "onDidChangeSelectionRange(${1:callback})",
       "description": "Calls your callback when a selection's screen range changes.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidChangeSoftWrapColumn",
+      "text": null,
+      "snippet": "onDidChangeSoftWrapColumn(${1:callback})",
+      "description": "Calls your callback when the effective soft-wrap column changes, after the display layer has adopted the new column. Unwrapped large documents report Infinity.",
       "leftLabel": "Disposable",
       "type": "method"
     },
