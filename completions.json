@@ -2036,6 +2036,22 @@
       "type": "method"
     },
     {
+      "name": "getZoomFactor",
+      "text": "getZoomFactor()",
+      "snippet": null,
+      "description": "Get the zoom factor of this window's interface and content.",
+      "leftLabel": "Promise<Number>",
+      "type": "method"
+    },
+    {
+      "name": "getZoomState",
+      "text": "getZoomState()",
+      "snippet": null,
+      "description": "Get this window's applied zoom and configured default together.",
+      "leftLabel": "Promise<Object>",
+      "type": "method"
+    },
+    {
       "name": "isDestroyed",
       "text": "isDestroyed()",
       "snippet": null,
@@ -2080,6 +2096,22 @@
       "text": null,
       "snippet": "onDidBlur(${1:callback})",
       "description": "Subscribe when the native window loses focus.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidChangeZoomFactor",
+      "text": null,
+      "snippet": "onDidChangeZoomFactor(${1:callback})",
+      "description": "Observe changes to this window's applied zoom factor.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidChangeZoomState",
+      "text": null,
+      "snippet": "onDidChangeZoomState(${1:callback})",
+      "description": "Observe applied changes to this window's zoom or its default.",
       "leftLabel": "Disposable",
       "type": "method"
     },
@@ -2148,6 +2180,14 @@
       "type": "method"
     },
     {
+      "name": "resetZoom",
+      "text": "resetZoom()",
+      "snippet": null,
+      "description": "Restore this window's zoom to the configured core.zoomFactor.",
+      "leftLabel": "Promise<Number>",
+      "type": "method"
+    },
+    {
       "name": "setBounds",
       "text": null,
       "snippet": "setBounds(${1:bounds})",
@@ -2201,6 +2241,22 @@
       "snippet": null,
       "description": "Restore this window from maximization.",
       "leftLabel": "Promise<void>",
+      "type": "method"
+    },
+    {
+      "name": "zoomIn",
+      "text": "zoomIn()",
+      "snippet": null,
+      "description": "Increase this window's scale by five percentage points.",
+      "leftLabel": "Promise<Number>",
+      "type": "method"
+    },
+    {
+      "name": "zoomOut",
+      "text": "zoomOut()",
+      "snippet": null,
+      "description": "Decrease this window's scale by five percentage points.",
+      "leftLabel": "Promise<Number>",
       "type": "method"
     }
   ],
@@ -9575,6 +9631,14 @@
       "type": "method"
     },
     {
+      "name": "getPreferredLineLength",
+      "text": "getPreferredLineLength()",
+      "snippet": null,
+      "description": "Get the preferred column for formatting and wrap guides, independent of soft wrap.",
+      "leftLabel": "Number",
+      "type": "method"
+    },
+    {
       "name": "getRenderedBufferRanges",
       "text": "getRenderedBufferRanges()",
       "snippet": null,
@@ -10387,6 +10451,14 @@
       "text": null,
       "snippet": "onDidChangePlaceholderText(${1:callback})",
       "description": "Calls your callback when the placeholder text is changed.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidChangePreferredLineLength",
+      "text": null,
+      "snippet": "onDidChangePreferredLineLength(${1:callback})",
+      "description": "Calls your callback when the preferred formatting and guide column changes.",
       "leftLabel": "Disposable",
       "type": "method"
     },
@@ -11767,6 +11839,22 @@
       "type": "method"
     },
     {
+      "name": "getZoomFactor",
+      "text": "getZoomFactor()",
+      "snippet": null,
+      "description": "Get the zoom factor of the current window's interface and content.",
+      "leftLabel": "Promise<Number>",
+      "type": "method"
+    },
+    {
+      "name": "getZoomState",
+      "text": "getZoomState()",
+      "snippet": null,
+      "description": "Get the current window's applied zoom and configured default together.",
+      "leftLabel": "Promise<Object>",
+      "type": "method"
+    },
+    {
       "name": "hide",
       "text": "hide()",
       "snippet": null,
@@ -11863,6 +11951,22 @@
       "type": "method"
     },
     {
+      "name": "onDidChangeZoomFactor",
+      "text": null,
+      "snippet": "onDidChangeZoomFactor(${1:callback})",
+      "description": "Observe changes to the current window's applied zoom factor.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidChangeZoomState",
+      "text": null,
+      "snippet": "onDidChangeZoomState(${1:callback})",
+      "description": "Observe applied changes to the current window's zoom or its default.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
       "name": "onDidEnterFullScreen",
       "text": null,
       "snippet": "onDidEnterFullScreen(${1:callback})",
@@ -11940,6 +12044,14 @@
       "snippet": null,
       "description": "Reload the current window.",
       "leftLabel": "Promise<void>",
+      "type": "method"
+    },
+    {
+      "name": "resetZoom",
+      "text": "resetZoom()",
+      "snippet": null,
+      "description": "Restore the current window's zoom to the configured core.zoomFactor.",
+      "leftLabel": "Promise<Number>",
       "type": "method"
     },
     {
@@ -12035,6 +12147,22 @@
       "text": "whenLoaded()",
       "snippet": null,
       "description": "Wait until the current editor window has finished loading.",
+      "leftLabel": "Promise<Number>",
+      "type": "method"
+    },
+    {
+      "name": "zoomIn",
+      "text": "zoomIn()",
+      "snippet": null,
+      "description": "Increase the current window's scale by five percentage points.",
+      "leftLabel": "Promise<Number>",
+      "type": "method"
+    },
+    {
+      "name": "zoomOut",
+      "text": "zoomOut()",
+      "snippet": null,
+      "description": "Decrease the current window's scale by five percentage points.",
       "leftLabel": "Promise<Number>",
       "type": "method"
     }
