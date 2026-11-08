@@ -6169,6 +6169,14 @@
       "type": "method"
     },
     {
+      "name": "createActivity",
+      "text": null,
+      "snippet": "createActivity(${1:element}, ${2:onChange})",
+      "description": "Create the shared activity timer for renderer-owned scrollbar chrome.",
+      "leftLabel": "Object|null",
+      "type": "method"
+    },
+    {
       "name": "getFrameSource",
       "text": "getFrameSource()",
       "snippet": null,
@@ -6198,6 +6206,14 @@
       "snippet": "observe(${1:element}, ${2:callback})",
       "description": "Observe geometry changes, independently of thumb movement.",
       "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "reveal",
+      "text": null,
+      "snippet": "reveal(${1:element})",
+      "description": "Reveal transient overlay chrome after a handled navigation action, even at a boundary. Hover and dragging retain visibility; activity expires 700 ms after the last action.",
+      "leftLabel": "Boolean",
       "type": "method"
     }
   ],
