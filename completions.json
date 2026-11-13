@@ -6201,6 +6201,14 @@
       "type": "method"
     },
     {
+      "name": "navigationCommands",
+      "text": null,
+      "snippet": "navigationCommands(${1:element}, ${2:commands})",
+      "description": "Apply shared scrollbar activity to an explicit group of handled navigation commands. Register the returned map with commands.add; its scope, availability and disposal stay with that registration.",
+      "leftLabel": "Object",
+      "type": "method"
+    },
+    {
       "name": "observe",
       "text": null,
       "snippet": "observe(${1:element}, ${2:callback})",
