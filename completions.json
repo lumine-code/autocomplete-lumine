@@ -4196,7 +4196,7 @@
       "name": "getMessage",
       "text": "getMessage()",
       "snippet": null,
-      "description": "Get the notification message.",
+      "description": "Get the authored Markdown source of the notification summary.",
       "leftLabel": "String",
       "type": "method"
     },
@@ -6169,6 +6169,14 @@
       "type": "method"
     },
     {
+      "name": "bindNavigation",
+      "text": null,
+      "snippet": "bindNavigation(${1:element})",
+      "description": "Bind shared viewport navigation to a read-only DOM scrollport. Owns scoped arrow, page, document-edge and Space bindings while leaving controls, editable content and nested scrollports to their own handlers. Accepted navigation reveals transient chrome even at a boundary; wheel, rendering and automatic scrolling remain quiet.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
       "name": "createActivity",
       "text": null,
       "snippet": "createActivity(${1:element}, ${2:onChange})",
@@ -6220,7 +6228,7 @@
       "name": "reveal",
       "text": null,
       "snippet": "reveal(${1:element})",
-      "description": "Reveal transient overlay chrome after a handled navigation action, even at a boundary. Hover and dragging retain visibility; activity expires 700 ms after the last action.",
+      "description": "Reveal transient overlay chrome after a handled navigation action, even at a boundary. Hover and dragging retain visibility; activity expires 700 ms after the last navigation action. Wheel, position updates and automatic scrolling do not extend or cancel it.",
       "leftLabel": "Boolean",
       "type": "method"
     }
