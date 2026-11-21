@@ -2367,6 +2367,14 @@
   ],
   "GitRepository": [
     {
+      "name": "checkIgnoredPaths",
+      "text": null,
+      "snippet": "checkIgnoredPaths(${1:filePaths}, ${2:options})",
+      "description": "Check current worktree ignore rules for a batch of paths without loading a status snapshot. Tracked paths follow the same ignore rules as other paths in a project crawl.",
+      "leftLabel": "Promise<Array<String>>",
+      "type": "method"
+    },
+    {
       "name": "checkoutHead",
       "text": null,
       "snippet": "checkoutHead(${1:filePath})",
@@ -2498,7 +2506,7 @@
       "name": "getDiff",
       "text": null,
       "snippet": "getDiff(${1:options})",
-      "description": "Compute a structured diff between two endpoints.",
+      "description": "Compare two endpoints.",
       "leftLabel": "Promise<Object>",
       "type": "method"
     },
@@ -2538,7 +2546,7 @@
       "name": "getLineDiffsAsync",
       "text": null,
       "snippet": "getLineDiffsAsync(${1:filePath}, ${2:text}, ${3:options})",
-      "description": "Computes gutter line diffs off the renderer thread via the git-host worker, fetching and caching the selected baseline blob before comparing it with the buffer. A path absent from that baseline is compared as empty text unless skipMissingBaseline is enabled.",
+      "description": "Computes gutter line diffs off the renderer thread via the git-host worker, fetching and caching the selected baseline blob before comparing it with the buffer. A path absent from that baseline is compared as empty text unless skipMissingBaseline is enabled. A comparison that exceeds its input or computation budget rejects with ERR_GIT_LINE_DIFF_TOO_LARGE.",
       "leftLabel": "Promise<Array<Object>>",
       "type": "method"
     },
@@ -2612,6 +2620,14 @@
       "snippet": "getStatusEntry(${1:filePath})",
       "description": "Get the detailed cached status entry for a repository path.",
       "leftLabel": "Object|null",
+      "type": "method"
+    },
+    {
+      "name": "getStatusPathKey",
+      "text": null,
+      "snippet": "getStatusPathKey(${1:filePath})",
+      "description": "Return the key used by status path notifications.",
+      "leftLabel": "String|null",
       "type": "method"
     },
     {
@@ -2727,6 +2743,14 @@
       "type": "method"
     },
     {
+      "name": "onDidChangeStatusPaths",
+      "text": null,
+      "snippet": "onDidChangeStatusPaths(${1:callback})",
+      "description": "Observe accepted status changes by path. Subscribing declares background status interest.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
       "name": "onDidChangeStatusSnapshot",
       "text": null,
       "snippet": "onDidChangeStatusSnapshot(${1:callback})",
@@ -2740,6 +2764,22 @@
       "snippet": "onDidDestroy(${1:callback})",
       "description": "Invoke the given callback when this GitRepository's destroy() method is invoked.",
       "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "readHead",
+      "text": null,
+      "snippet": "readHead(${1:options})",
+      "description": "Read the current Git HEAD without refreshing repository snapshots.",
+      "leftLabel": "Promise<Object>",
+      "type": "method"
+    },
+    {
+      "name": "readRemotes",
+      "text": null,
+      "snippet": "readRemotes(${1:options})",
+      "description": "Read the effective fetch and push URLs of the repository's remotes via git-host without initializing or refreshing its refs snapshot.",
+      "leftLabel": "Promise<Array<Object>>",
       "type": "method"
     },
     {
@@ -4415,6 +4455,14 @@
       "type": "method"
     },
     {
+      "name": "getAvailablePackageIndex",
+      "text": "getAvailablePackageIndex()",
+      "snippet": null,
+      "description": "Take an inventory snapshot for a batch of related package lookups. Both lists are read-only and sorted by name. get(name) returns the winner. Repeated lookups in the same synchronous batch share one directory scan. Package directories added or removed externally are visible on the next batch. Refresh the index explicitly after changing a manifest outside the package manager.",
+      "leftLabel": "Object",
+      "type": "method"
+    },
+    {
       "name": "getAvailablePackageMetadata",
       "text": "getAvailablePackageMetadata()",
       "snippet": null,
@@ -4543,6 +4591,14 @@
       "type": "method"
     },
     {
+      "name": "loadAvailablePackageIndex",
+      "text": "loadAvailablePackageIndex()",
+      "snippet": null,
+      "description": "Discover packages without synchronously enumerating installed directories. An installation changed during discovery invalidates that attempt.",
+      "leftLabel": "Promise<Object>",
+      "type": "method"
+    },
+    {
       "name": "onDidActivateInitialPackages",
       "text": null,
       "snippet": "onDidActivateInitialPackages(${1:callback})",
@@ -4600,9 +4656,9 @@
     },
     {
       "name": "refreshPackageIndex",
-      "text": "refreshPackageIndex()",
-      "snippet": null,
-      "description": "Forget everything read from package manifests.",
+      "text": null,
+      "snippet": "refreshPackageIndex(${1:packagePath})",
+      "description": "Invalidate the current inventory and forget resources for a changed copy.",
       "leftLabel": null,
       "type": "method"
     },
@@ -9271,6 +9327,14 @@
       "type": "method"
     },
     {
+      "name": "dispatchTextInput",
+      "text": null,
+      "snippet": "dispatchTextInput(${1:input}, ${2:operation})",
+      "description": "Queue a user input from an editor surface and report its committed edits.",
+      "leftLabel": "*",
+      "type": "method"
+    },
+    {
       "name": "doesShowLineNumbers",
       "text": "doesShowLineNumbers()",
       "snippet": null,
@@ -9967,6 +10031,14 @@
       "type": "method"
     },
     {
+      "name": "hasPendingTextInput",
+      "text": "hasPendingTextInput()",
+      "snippet": null,
+      "description": "Whether the editor has input or indentation waiting to finish.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
       "name": "indentationForBufferRow",
       "text": null,
       "snippet": "indentationForBufferRow(${1:bufferRow})",
@@ -10027,6 +10099,14 @@
       "text": "isApplyingAutomaticIndentation()",
       "snippet": null,
       "description": "Whether an editor-owned indentation correction is being published. Buffer change observers can distinguish it from independent edits and keep input intents whose coordinates will be acquired after the correction.",
+      "leftLabel": "Boolean",
+      "type": "method"
+    },
+    {
+      "name": "isApplyingTextInput",
+      "text": "isApplyingTextInput()",
+      "snippet": null,
+      "description": "Whether the editor is publishing text on behalf of a user input.",
       "leftLabel": "Boolean",
       "type": "method"
     },
@@ -10595,6 +10675,14 @@
       "text": null,
       "snippet": "onDidSave(${1:callback})",
       "description": "Invoke the given callback after the buffer is saved to disk.",
+      "leftLabel": "Disposable",
+      "type": "method"
+    },
+    {
+      "name": "onDidSettleTextInput",
+      "text": null,
+      "snippet": "onDidSettleTextInput(${1:callback})",
+      "description": "Observe an editor input after its text and automatic indentation are applied. Programmatic buffer and editor mutations do not emit this event.",
       "leftLabel": "Disposable",
       "type": "method"
     },
@@ -11310,6 +11398,14 @@
       "snippet": null,
       "description": "Get the width of an x character displayed in this element.",
       "leftLabel": "Number",
+      "type": "method"
+    },
+    {
+      "name": "getInputElement",
+      "text": "getInputElement()",
+      "snippet": null,
+      "description": "Return the element that receives keyboard input for this editor. Use it to associate an accessible popup with the focused control.",
+      "leftLabel": "HTMLInputElement",
       "type": "method"
     },
     {
