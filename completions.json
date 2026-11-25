@@ -9898,7 +9898,7 @@
       "name": "getSyntaxAvailability",
       "text": "getSyntaxAvailability()",
       "snippet": null,
-      "description": "Report whether syntax analysis is enabled, independently of parse readiness. A disabled language reports reason none; a failed analysis reports reason failure and a diagnostic object. The selected grammar is preserved on failure.",
+      "description": "Report whether syntax analysis is enabled, independently of parse readiness. A disabled language reports reason none; a failed analysis reports reason failure and a diagnostic object. The selected grammar is preserved on failure. An enabled restored document can report deferred: true until a visible view or an explicit request starts its worker session. This read is passive.",
       "leftLabel": "Object",
       "type": "method"
     },
