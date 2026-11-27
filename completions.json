@@ -5076,7 +5076,7 @@
       "name": "saveItems",
       "text": "saveItems()",
       "snippet": null,
-      "description": "Save all saveable items whose file state is not unmodified.",
+      "description": "Save all saveable items with unsaved or pending changes.",
       "leftLabel": "Promise<Array<*>>",
       "type": "method"
     },
